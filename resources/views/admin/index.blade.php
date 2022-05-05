@@ -25,6 +25,7 @@
         <a href="">{{$menu}}</a>
     @endforeach
     
+    <a href="{{route('home')}}">Home</a>
     <a href="{{route('about')}}">About</a>
 
     @for ($i = 1; $i < 5; $i++)

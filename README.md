@@ -8,18 +8,26 @@
 </p>
 
 # test-github
+
 tonasdasd <br>
 stang <br>
 FF <br>
 Jiew <br>
-test ton's branch
 ## Next step 
+
 1. clone this repo to your PC
 2. ลองดูวิธี clone laravel project https://medium.com/ckartisan/how-to-clone-laravel-from-github-6723377e6e1
 3. วิธีเปิด laravel ให้พิมพ์ php artisan serve ลงใน CMD
 
 ## Note
+
 ทุกครั้งที่เปิด vscode อย่าลืมใช้คำสั่ง git pull เพื่อ update file ให้ตรงกับใน git
+## Note: process
+
+- เหลือแก้ UI ทำ animation ของ sidebar
+- เพิ่มหน้าต่างๆ ของ staff, teacher
+- เชื่อมต่อ database 
+- อยากให้ลิสต์มาให้เพิ่มด้วยว่าจะให้เพิ่มปุ่มหรือแก้ UI แบบไหน
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
