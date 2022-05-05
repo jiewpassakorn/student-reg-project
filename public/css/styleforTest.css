@@ -23,11 +23,32 @@ body {
     padding: 0 1rem;
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
-    transition: .5s
+    transition: .5s;
+}
+
+#insertButton {
+    background: #A3DF57;
+    color: black;
+    box-shadow: none;
+    border: none;
+}
+
+#editButton {
+    background: #FA4616;
+    box-shadow: none;
+    border: none;
+}
+
+#insertButton:hover, #editButton:hover {
+    background: #707070;
+    color: white;
+    box-shadow: none;
+    border: none;
 }
 
 a {
-    text-decoration: none
+    text-decoration: none;
+    color: #FA4616;
 }
 
 .header {
@@ -93,8 +114,6 @@ a {
 
 .nav_logo {
     margin-bottom: 2rem
-
-
 }
 
 .nav_logo-icon {
@@ -122,7 +141,7 @@ a {
     font-size: 1.25rem
 }
 
-.show {
+.showSide {
     left: 0
 }
 
@@ -148,9 +167,22 @@ a {
 }
 
 @media screen and (min-width: 768px) {
+
+    #insertButton {
+        background: #A3DF57;
+        color: black;
+        box-shadow: none;
+        border: none;
+    }
+    
+    #editButton {
+        background: #FA4616;
+        box-shadow: none;
+        border: none;
+    }
+
     body {
-        margin: calc(var(--header-height) + 1rem) 0 0 0;
-        padding-left: calc(var(--nav-width) + 2rem)
+        padding-left: calc(var(--nav-width) + 2rem);
     }
 
     .header {
@@ -172,7 +204,7 @@ a {
         padding: 1rem 1rem 0 0
     }
 
-    .show {
+    .showSide {
         width: calc(var(--nav-width) + 156px)
     }
 
@@ -225,5 +257,4 @@ a {
     cursor: pointer;
     border: solid 1px #BA68C8
 }
-    
 }

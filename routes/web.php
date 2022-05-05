@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Route as RoutingRoute;
@@ -19,12 +20,21 @@ use Symfony\Component\Routing\Route as RoutingRoute;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 })->name('home');
 
-Route::get('/about',[AboutController::class,'index'])->name('about');
-Route::get('/member',[MemberController::class,'index'])->name('mem');
-Route::get('/admin',[AdminController::class,'index'])->name('admin')->middleware('check');
-Route::get('/login',[AboutController::class,'login'])->name('login');
+Route::get('/admin',[AdminController::class,'index'])->name('admin');
+Route::get('/about',[AboutController::class,'about'])->name('about');
+// Route::get('/admin',[AdminController::class,'index'])->name('admin')->middleware('check');
 
-Route::get('/firstpage',[AboutController::class,'first'])->name('first');
+// For Student
+Route::get('/student/login',[StudentController::class,'login'])->name('login');
+Route::get('/myinfo',[StudentController::class,'myinfo'])->name('myinfo');
+Route::get('/welcome',[StudentController::class,'welcome'])->name('first');
+Route::get('/register',[StudentController::class,'regis'])->name('regis');
+Route::get('/schedule',[StudentController::class,'schedule'])->name('schedule');
+Route::get('/grading',[StudentController::class,'grading'])->name('grading');
+
+// For Teacher
+Route::get('/teacher/login',[TeacherController::class,'login'])->name('tlog');
+Route::get('/teacher/welcome',[TeacherController::class,'welcome'])->name('t.welcome');
