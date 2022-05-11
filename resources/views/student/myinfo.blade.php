@@ -48,11 +48,7 @@
             <div class="row d-grid justify-content-center">
                  <div class="container mt-3">
                    <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded" >
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                             Accusantium unde excepturi mollitia suscipit ipsam id debitis ab voluptates, 
-                             animi aut in libero. Laborum aliquam exercitationem deserunt corporis aliquid,
-                              quam odit!
-                        </p>
+                        {{$students}}
                    </div>
                  </div>
            </div>

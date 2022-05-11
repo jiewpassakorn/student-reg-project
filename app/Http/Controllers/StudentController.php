@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
+use App\Models\ClassDetail;
+use App\Models\CourseDetail;
+use App\Models\Department;
+use App\Models\Registration;
+use App\Models\Schedule;
+use App\Models\Teacher;
 
 class StudentController extends Controller
 {
@@ -11,7 +18,8 @@ class StudentController extends Controller
     } 
 
     function myinfo() {
-        return view('student.myinfo');
+        $students = Student::all();
+        return view('student.myinfo',compact('students'));
     }
 
     function welcome () {
@@ -19,7 +27,8 @@ class StudentController extends Controller
     }
 
     function regis() {
-        return view('student.regis');
+        $coursedetails = CourseDetail::all();
+        return view('student.regis',compact('coursedetails'));
     }
 
     function schedule() {

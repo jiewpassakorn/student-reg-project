@@ -72,30 +72,17 @@
                 </tr>
             </thead>
             <tbody>
+                @php($i=1)
+                @foreach($coursedetails as $row)
                 <tr>
-                    <td>1</td>
-                    <td>CPE100</td>
-                    <td>Computer xxxxx xxxxx</td>
-                    <td>3</td>
-                    <td>1</td>
-                    <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>CPE101</td>
-                    <td>Computer xxxxx xxxxx</td>
-                    <td>3</td>
+                    <th>{{$i++}}</th>
+                    <td>{{$row->CourseID}}</td>
+                    <td>{{$row->CourseName}}</td>
+                    <td>{{$row->Credit}}</td>
                     <td><a href="#selectModal" data-bs-toggle="modal" data-bs-target="#selectModal">เลือก</a></td>
                     <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>CPE102</td>
-                    <td>Computer xxxxx xxxxx</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
 
