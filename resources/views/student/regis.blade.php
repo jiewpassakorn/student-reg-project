@@ -127,14 +127,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                         <div class="col-md-10 d-grid">
-                             <div class="search">
-                                 <input type="text" class="form-control" placeholder="พิมพ์รายวิชาที่ต้องการค้นหา">
+                        <div class="col-md-10 d-grid">
+                            <div class="search">
+                                <input type="text" class="form-control" name="search" placeholder="พิมพ์รายวิชาที่ต้องการค้นหา">
                             </div>
-                         </div>
-                         <div class="col-md-2 d-grid">
-                              <button class="btn btn-primary">ค้นหา</button> 
-                         </div>
+                        </div>
+                        <div class="col-md-2 d-grid">
+                            <button class="btn btn-primary">ค้นหา</button> 
+                        </div>
                     </div>
                     <table class="table table-striped shadow-sm text-center mt-3">
                         <thead class="table table-dark">
@@ -147,45 +147,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php($i=1)
+                            @foreach($coursedetails as $row)
                             <tr>
                                 <td>
                                     <div class="form-check">
                                     <label>
                                     <input type="checkbox" name="" class="form-check-input">
                                     </label>
-                                   </div>
+                                </div>
                                 </td>
-                                <td>1</td>
-                                <td>CPE100</td>
-                                <td>Computer xxxxx xxxxx</td>
-                                <td>3</td>
+                                <th>{{$i++}}</th>
+                                <td>{{$row->CourseID}}</td>
+                                <td>{{$row->CourseName}}</td>
+                                <td>{{$row->Credit}}</td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>2</td>
-                                <td>CPE101</td>
-                                <td>Computer xxxxx xxxxx</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>3</td>
-                                <td>CPE102</td>
-                                <td>Computer xxxxx xxxxx</td>
-                                <td>3</td>
-                            </tr>
+                             @endforeach
                         </tbody>
                     </table>
                 </div>

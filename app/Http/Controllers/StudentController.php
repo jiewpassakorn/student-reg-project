@@ -28,7 +28,8 @@ class StudentController extends Controller
 
     function regis() {
         $coursedetails = CourseDetail::all();
-        return view('student.regis',compact('coursedetails'));
+        $schedules = Schedule::all();
+        return view('student.regis',compact('coursedetails','schedules'));
     }
 
     function schedule() {

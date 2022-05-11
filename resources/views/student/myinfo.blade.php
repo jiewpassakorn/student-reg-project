@@ -47,9 +47,7 @@
             <hr>
             <div class="row d-grid justify-content-center">
                  <div class="container mt-3">
-                   <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded" >
-                        {{$students}}
-                   </div>
+                   <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded" ></div>
                  </div>
            </div>
            <div class="row d-flex">
