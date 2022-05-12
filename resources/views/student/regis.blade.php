@@ -220,7 +220,7 @@
                                         </div>
                                         </td>              
                                         <td>{{$row->Section}}</td>
-                                        <td>30</td>
+                                        <td>{{rand(1, 30)}}</td>
                                         @foreach ($row->schedules as $object)
                                             <td>{{$object->Room}}</td>
                                             <td>{{$object->Time}}</td>
