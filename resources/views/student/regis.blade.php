@@ -211,30 +211,18 @@
                             <tbody>
                                 <tr>
                                     @foreach($classdetails as $row)
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                            <label>
-                                            <input type="checkbox" name="" class="form-check-input">
-                                            </label>
-                                        </div>
-                                        </td>              
+                                    <tr>   
+                                        <td><button type="button" class="btn btn-outline-dark btn-sm">เลือก</button></td>          
                                         <td>{{$row->Section}}</td>
-                                        <td>{{rand(1, 30)}}</td>
-                                        @foreach ($row->schedules as $object)
-                                            <td>{{$object->Room}}</td>
-                                            <td>{{$object->Time}}</td>
-                                            <td>{{$object->teachers->TeacherName}}</td>
-                                        @endforeach
+                                        <td>{{rand(1, 30)}}</td>  
+                                        <td>{{$row->schedules->Room}}</td>
+                                        <td>{{$row->schedules->Time}}</td>
+                                        <td>{{$row->schedules->teachers->TeacherName}}</td>
                                     </tr>
                                     @endforeach
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                        <button class="btn btn-success">บันทึกข้อมูล</button>
                     </div>
                 </div>
             </div>

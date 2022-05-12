@@ -16,6 +16,6 @@ class ClassDetail extends Model
     ];
 
     public function schedules(){
-        return $this->hasMany(Schedule::class,'ClassID','ClassID');
+        return $this->hasOne(Schedule::class,'ClassID','ClassID');
     }
 }
