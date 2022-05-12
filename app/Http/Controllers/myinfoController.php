@@ -1,6 +1,7 @@
 <?php
 
 namespace app\Http\Controllers;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\DB;
 
@@ -12,7 +13,7 @@ class myinfoController extends Controller
         $data["studentid"] = $request -> studentid;
 
         DB :: table('student') -> insert($data);
-        return redirect() -> back -> with('success', "บันทึกข้อมูลเรียบร้อย");
+        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
 
     }
 }
