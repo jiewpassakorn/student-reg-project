@@ -14,4 +14,9 @@ class Registration extends Model
         'RegStatus',
         'Grade'
     ];
+
+    public function classdetails(){
+        return $this->hasOne(ClassDetail::class,'ClassID','ClassID');
+    }
+
 }

@@ -17,7 +17,6 @@
 
 <body id="body-pd" class="bg-light">
 
-
     <header class="header shadow-sm" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div class="header_img">  <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt=""> </div>
@@ -73,13 +72,13 @@
             </thead>
             <tbody>
                 @php($i=1)
-                @foreach($coursedetails as $row)
+                @foreach($registrations as $row)
                 <tr>
                     <th>{{$i++}}</th>
-                    <td>{{$row->CourseID}}</td>
-                    <td>{{$row->CourseName}}</td>
-                    <td>{{$row->Credit}}</td>
-                    <td><a href="#selectModal{{$row->CourseID}}" data-bs-toggle="modal" data-bs-target="#selectModal">เลือก</a></td>
+                    <td>{{$row->classdetails->courseDetails->CourseID}}</td>
+                    <td>{{$row->classdetails->courseDetails->CourseName}}</td>
+                    <td>{{$row->classdetails->courseDetails->Credit}}</td>
+                    <td>{{$row->classdetails->Section}}</td>
                     <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
                 </tr>
                 @endforeach
@@ -90,7 +89,7 @@
      <div class="row text-center">
         <div class="col-sm-2">
          <a href="#insertModal"><button id="insertButton" class="btn btn-success mt-2 p-2 px-3" 
-            data-bs-toggle="modal" data-bs-target="#insertModal">เพิ่มวิชา</button></a> 
+            data-bs-toggle="modal" data-bs-target="#insertModal">เลือกวิชา</button></a> 
         </div>
         <div class="col-sm-8">
         </div>
@@ -119,23 +118,13 @@
 
      <!-- Insert Modal -->
      <div class="modal fade" id="insertModal">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">เพิ่มวิชา</h5>
+                    <h5 class="modal-title">เลือกวิชา</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-10 d-grid">
-                            <div class="search">
-                                <input type="text" class="form-control" name="search" placeholder="พิมพ์รายวิชาที่ต้องการค้นหา">
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-grid">
-                            <button class="btn btn-primary">ค้นหา</button> 
-                        </div>
-                    </div>
                     <table class="table table-striped shadow-sm text-center mt-3">
                         <thead class="table table-dark">
                             <tr>
@@ -144,31 +133,33 @@
                                 <th>รหัสวิชา</th>
                                 <th>ชื่อวิชา</th>
                                 <th>หน่วยกิต</th>
+                                <th>กลุ่ม</th>
+                                <th>ห้องเรียน</th>
+                                <th>เวลาเรียน</th>
+                                <th>อาจารย์</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php($i=1)
                             @foreach($coursedetails as $row)
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                </div>
-                                </td>
-                                <th>{{$i++}}</th>
-                                <td>{{$row->CourseID}}</td>
-                                <td>{{$row->CourseName}}</td>
-                                <td>{{$row->Credit}}</td>
-                            </tr>
-                             @endforeach
+                                @foreach($row->classdetail as $dataclass)
+                                    @foreach($dataclass->schedules as $dataschedules)
+                                    <tr>
+                                        <td><button type="button" class="btn btn-outline-dark btn-sm">เลือก</button></td>
+                                        <th>{{$i++}}</th>
+                                        <td>{{$row->CourseID}}</td>
+                                        <td>{{$row->CourseName}}</td>
+                                        <td>{{$row->Credit}}</td>
+                                        <td>{{$dataschedules->ClassID}}</td>
+                                        <td>{{$dataschedules->Room}}</td>
+                                        <td>{{$dataschedules->Weekday}}. {{$dataschedules->Time}}</td>
+                                        <td>{{$dataschedules->teachers->TeacherName}}</td>
+                                    </tr>
+                                    @endforeach
+                                @endforeach
+                            @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-success">บันทึกข้อมูล</button>
                 </div>
             </div>
         </div>
@@ -213,11 +204,6 @@
                                     @foreach($classdetails as $row)
                                     <tr>   
                                         <td><button type="button" class="btn btn-outline-dark btn-sm">เลือก</button></td>          
-                                        <td>{{$row->Section}}</td>
-                                        <td>{{rand(1, 30)}}</td>  
-                                        <td>{{$row->schedules->Room}}</td>
-                                        <td>{{$row->schedules->Time}}</td>
-                                        <td>{{$row->schedules->teachers->TeacherName}}</td>
                                     </tr>
                                     @endforeach
                                 </tr>

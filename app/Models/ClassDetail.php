@@ -16,6 +16,10 @@ class ClassDetail extends Model
     ];
 
     public function schedules(){
-        return $this->hasOne(Schedule::class,'ClassID','ClassID');
+        return $this->hasMany(Schedule::class,'ClassID','ClassID');
+    }
+
+    public function courseDetails(){
+        return $this->hasOne(CourseDetail::class,'CourseID','CourseID');
     }
 }
