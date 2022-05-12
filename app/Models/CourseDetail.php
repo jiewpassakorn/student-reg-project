@@ -14,4 +14,8 @@ class CourseDetail extends Model
         'Credit',
         'DepartmentID'
     ];
+
+    public function classdetail(){
+        return $this->hasMany(ClassDetail::class,'CourseID','CourseID');
+    }
 }

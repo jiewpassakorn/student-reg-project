@@ -79,7 +79,7 @@
                     <td>{{$row->CourseID}}</td>
                     <td>{{$row->CourseName}}</td>
                     <td>{{$row->Credit}}</td>
-                    <td><a href="#selectModal" data-bs-toggle="modal" data-bs-target="#selectModal">เลือก</a></td>
+                    <td><a href="#selectModal{{$row->CourseID}}" data-bs-toggle="modal" data-bs-target="#selectModal">เลือก</a></td>
                     <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
                 </tr>
                 @endforeach
@@ -175,91 +175,69 @@
      </div>
 
      <!-- Select Modal -->
-     <div class="modal fade" id="selectModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">เลือกกลุ่มเรียน</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
-                </div>
-                <div class="modal-body">
-                    <div class="container bg-light p-1 shadow-sm">
-                         <div class="row ms-2">
-                             <div class="col-md-6 p-2">
-                             <b>รหัสวิชา:</b> GEN xxx
-                             </div>
-                             <div class="col-md-6 p-2">
-                              <b>หน่วยกิต: 3</b>
-                             </div>
-                             <div class="col-md-8 p-2">
-                              <b>ชื่อวิชา:</b> GEN คนดี ร่วมสร้างความดี
-                             </div>
-                         </div>
+    <form action="" method="">
+        <div class="modal fade" id="selectModal"} tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">เลือกกลุ่มเรียน</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
                     </div>
-                    <table class="table table-striped shadow-sm text-center mt-3">
-                        <thead class="table table-dark">
-                            <tr>
-                                <th>เลือก</th>
-                                <th>กลุ่ม</th>
-                                <th>จำนวนคงเหลือ</th>
-                                <th>ห้องเรียน</th>
-                                <th>เวลาเรียน</th>
-                                <th>อาจารย์</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>1</td>
-                                <td>50</td>
-                                <td>Online</td>
-                                <td>จ. 08:00-10:00</td>
-                                <td>อ.Dummy Dummy</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>2</td>
-                                <td>50</td>
-                                <td>Online</td>
-                                <td>จ. 08:00-10:00</td>
-                                <td>อ.Dummy Dummy</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>3</td>
-                                <td>50</td>
-                                <td>Online</td>
-                                <td>จ. 08:00-10:00</td>
-                                <td>อ.Dummy Dummy</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-success">บันทึกข้อมูล</button>
+                    <div class="modal-body">
+                        <div class="container bg-light p-1 shadow-sm">
+                            <div class="row ms-2">
+                                <div class="col-md-6 p-2">
+                                <b>รหัสวิชา:</b> {{$row->CourseID}}
+                                </div>
+                                <div class="col-md-6 p-2">
+                                <b>หน่วยกิต: 3</b>
+                                </div>
+                                <div class="col-md-8 p-2">
+                                <b>ชื่อวิชา:</b> GEN คนดี ร่วมสร้างความดี
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped shadow-sm text-center mt-3">
+                            <thead class="table table-dark">
+                                <tr>
+                                    <th>เลือก</th>
+                                    <th>กลุ่ม</th>
+                                    <th>จำนวนคงเหลือ</th>
+                                    <th>ห้องเรียน</th>
+                                    <th>เวลาเรียน</th>
+                                    <th>อาจารย์</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @foreach($classdetails as $row)
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                            <label>
+                                            <input type="checkbox" name="" class="form-check-input">
+                                            </label>
+                                        </div>
+                                        </td>              
+                                        <td>{{$row->Section}}</td>
+                                        <td>30</td>
+                                        <td>{{$row->ClassID}}</td>
+                                        <td>{{$row->schedules}}</td>
+                                        <td>dummy teacher</td>
+                                    </tr>
+                                    @endforeach
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button class="btn btn-success">บันทึกข้อมูล</button>
+                    </div>
                 </div>
             </div>
         </div>
-     </div>
+    </form>
 
     <!-- Delete Modal -->
      <div class="modal fade" id="deleteModal">

@@ -14,4 +14,8 @@ class ClassDetail extends Model
         'Section',
         'Semester'
     ];
+
+    public function schedules(){
+        return $this->hasMany(Schedule::class,'ClassID','ClassID');
+    }
 }
