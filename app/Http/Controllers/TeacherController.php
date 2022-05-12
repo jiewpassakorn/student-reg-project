@@ -13,4 +13,8 @@ class TeacherController extends Controller
     function welcome() {
         return view('teacher.welcome');
     }
+
+    function index() {
+        return view('teacher.welcome');
+    }
 }
