@@ -16,4 +16,9 @@ class Schedule extends Model
         'Weekday',
         'Time'
     ];
+
+    public function teachers(){
+        return $this->hasOne(Teacher::class,'TeacherID','TeacherID');
+    }
+
 }

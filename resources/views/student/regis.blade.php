@@ -221,9 +221,11 @@
                                         </td>              
                                         <td>{{$row->Section}}</td>
                                         <td>30</td>
-                                        <td>{{$row->ClassID}}</td>
-                                        <td>{{$row->schedules}}</td>
-                                        <td>dummy teacher</td>
+                                        @foreach ($row->schedules as $object)
+                                            <td>{{$object->Room}}</td>
+                                            <td>{{$object->Time}}</td>
+                                            <td>{{$object->teachers->TeacherName}}</td>
+                                        @endforeach
                                     </tr>
                                     @endforeach
                                 </tr>
