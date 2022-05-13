@@ -8,9 +8,14 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Students\LessonController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TeacherController;
+
+use App\Http\Controllers\myinfoController;
+use Faker\Guesser\Name;
+
 use App\Http\Controllers\Teachers\CourseController;
 use App\Http\Controllers\UsersController;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -36,7 +41,20 @@ Route::get('/welcomeByLaravel', function () {
 Route::get('/admin',[AdminController::class,'index'])->name('admin');
 Route::get('/about',[AboutController::class,'about'])->name('about');
 
-// For Student
+
+Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB');
+
+
+// For Teacher
+Route::get('/teacher/login',[TeacherController::class,'login'])->name('tlog');
+Route::get('/teacher/welcome',[TeacherController::class,'welcome'])->name('t.welcome');
+
+ //Department
+ Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
+ Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
+ Route::get('/department/edit/{id}',[DepartmentController::class,'edit']);
+ Route::post('/department/update/{id}',[DepartmentController::class,'update']);
+
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {
         $users=User::all();
@@ -91,3 +109,4 @@ Route::group(['middleware' => 'auth'], function () {
  Route::get('/service/edit/{id}',[StudentController::class,'edit']);
  Route::post('/service/update/{id}',[StudentController::class,'update']);
  Route::get('/service/delete/{id}',[StudentController::class,'delete']);
+
