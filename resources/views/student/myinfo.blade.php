@@ -2,15 +2,11 @@
 @section('title','Student | information')
 @section('content')
 
-@extends('layouts.default')
-@section('title','Student | information')
-@section('content')
-
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
             <div class="row mt-5 p-2">
                 <div class="col-sm-12 mt-3 pt-3 justify-content-center">
-                    <h4> ประวัตินักศึกษา Name: {{Auth::user()->name}} </h4></button> 
+                    <h4> ประวัตินักศึกษา {{Auth::user()->name}} </h4></button> 
                 </div>
             </div>
             <hr>
@@ -58,7 +54,7 @@
                         <div class="col-md-12"><label class="labels">Name</label><input type="text" name="StudentName" class="form-control" placeholder="full name" value=""></div>             
                         <div class="col-md-12"><label class="labels">DOB</label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
                         <div class="col-md-12"><label class="labels">Address</label><input type="text" name = "Address" class="form-control" placeholder="enter address" value=""><br></div>
-                        <div class="col-md-12"><label class="labels">Department</label><input list = "Department" name="Department" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div>
+                        <div class="col-md-12"><label class="labels">Department</label><input list = "Department" name="DepartmentID" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div>
                         <div class="col-md-12"><br><label class="labels">Email</label><input type="email" name ="Email" class="form-control" placeholder="enter email" value=""></div>
                         <div class="col-md-12"><label class="labels">Phone</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
                         <div class="col-md-12"><label class="labels">Status</label><input type="text" name ="Status" class="form-control" placeholder="status" value="" ><br></div>

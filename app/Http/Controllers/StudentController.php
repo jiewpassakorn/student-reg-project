@@ -79,14 +79,6 @@ class StudentController extends Controller
 
         
         $student_id = Auth::user()->student_licence_number;
-      /*   global $data;
-        $data = array();
-        $data["ClassID"] = $request->ClassID;
-        $data["RegStatus"] = "Wait";
-        $data["StudentID"] = $student_id;
-        DB :: table('registrations') -> insert($data); */
-
-        /* dd($data);  */
 
         $registration = new Registration;
         $registration->ClassID = $request->ClassID;
