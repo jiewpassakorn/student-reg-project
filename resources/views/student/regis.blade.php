@@ -46,21 +46,23 @@
             <hr>
             <div class="row d-grid justify-content-center">
                 <div class="container mt-3">
-
                     <div class="col-sm-12 justify-content-around shadow p-4 mb-4 bg-body rounded">
                         <div class="row ms-2">
                             <div class="col-md-6 p-2">
-                                <b>รหัสนักศึกษา:</b> {{Auth::user()->students->StudentID}}
+                                <b>รหัสนักศึกษา:</b> {{$studentsinfo->StudentID}}
                             </div>
                             <div class="col-md-6 p-2">
-                                <b>ชื่อ-นามสกุล:</b> {{Auth::user()->students->StudentName}}
+                                <b>ชื่อ-นามสกุล:</b> {{$studentsinfo->StudentName}}
                             </div>
                             <div class="col-md-6 p-2">
-                                <b>E-mail:</b> {{Auth::user()->students->Email}}
+                                <b>E-mail:</b> {{$studentsinfo->Email}}
                             </div>
                             <div class="col-md-6 p-2">
+                                <b>ภาควิชา:</b> {{$studentsinfo->DepartmentName}}
+                            </div>
+                            <div class="col-md-12 p-2">
                                 <b>สถานะ:</b>
-                                @if (Auth::user()->students->Status == "Normal")
+                                @if ($studentsinfo->status == "Normal")
                                     <font color="green">Normal</font>
                                 @elseif (Auth::user()->students->Status == "Drop")
                                     <font color="red">Drop</font>

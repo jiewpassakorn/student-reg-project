@@ -34,7 +34,11 @@ class StudentController extends Controller
         ->select('course_details.CourseID','course_details.CourseName','course_details.Credit','class_details.ClassID','class_details.Section','schedules.Room','schedules.Weekday','schedules.Time','teachers.TeacherName')
         ->get();
         $registrations = Registration::where('StudentID',Auth::user()->student_licence_number)->get();
-        return view('student.regis',compact('coursedetails','classdetails','registrations','coursejoin'));
+        $studentsinfo = Student::where('StudentID',Auth::user()->student_licence_number)
+        ->Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('students.StudentID','students.StudentName','students.Email','students.status','departments.DepartmentName','departments.FacultyName')
+        ->first();
+        return view('student.regis',compact('coursedetails','classdetails','registrations','coursejoin','studentsinfo'));
     }
 
     function schedule() {
