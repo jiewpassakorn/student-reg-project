@@ -65,8 +65,11 @@ class StudentController extends Controller
         // บันทึกข้อมูล
 
         // บันทึกแบบ eloquant
-
-        $student_id = "63070501049";
+        
+        $student_id = Auth::user()->student_licence_number;
+        $student_classid=$request->ClassID;
+        //dd($student_id,$student_classid);
+        
 
         $registration = new Registration;
         $registration->ClassID = $request->ClassID;
