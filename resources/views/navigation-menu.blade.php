@@ -20,26 +20,11 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                </div>
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks')">
-                        {{ __('Tasks') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
-                        Users
-                    </x-jet-nav-link>
-                </div> --}}               
+                </div>              
 
                 @can('manage-users')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('department') }}" :active="request()->routeIs('department')">
-                            {{ __('Department') }}
-                        </x-jet-nav-link>
-                    </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.index')">
+                        <x-jet-nav-link href="{{ route('admin.users.dashboard') }}" :active="request()->routeIs('admin.users.dashboard')">
                             {{ __('Users') }}
                         </x-jet-nav-link>
                     </div>

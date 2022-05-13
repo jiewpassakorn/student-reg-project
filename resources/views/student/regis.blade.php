@@ -12,18 +12,19 @@
                 </div>
             </div>
             <hr>
-            <div class="row d-grid justify-content-center">
-                 <div class="container mt-3">
-                   <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded" >
-                        <p>
-                            Student info Student info Student info Student infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent info
-                        </p>
-                   </div>
-                 </div>
-           </div>
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Anoucement</h5>
+                  <p class="card-text">This is student register beta version.</p>
+                </div>
+                <div class="card-footer text-muted">
+                  2 days remaining
+                </div>
+              </div>
  
     <!-- table -->
            <!-- Striped  -->
+           <br>
         <table class="table table-striped shadow-lg text-center">
             <thead class="table table-dark">
                 <tr>
