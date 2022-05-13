@@ -21,4 +21,8 @@ class Student extends Model
         'Sex',
         'Password'
     ];
+
+    public function departments(){
+        return $this->hasOne(Department::class,'DepartmentID','DepartmentID');
+    }
 }

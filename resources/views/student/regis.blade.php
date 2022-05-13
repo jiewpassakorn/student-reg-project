@@ -46,10 +46,26 @@
             <hr>
             <div class="row d-grid justify-content-center">
                 <div class="container mt-3">
-                    <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded">
-                        <p>
-                            {{Auth::user()->students->StudentID}}{{Auth::user()->students->StudentName}}
-                        </p>
+                    <div class="col-sm-12 justify-content-around shadow p-4 mb-4 bg-body rounded">
+                    <div class="row ms-2">
+                        <div class="col-md-6 p-2">
+                                <b>รหัสนักศึกษา:</b> {{Auth::user()->students->StudentID}}
+                            </div>
+                            <div class="col-md-6 p-2">
+                                <b>ชื่อ-นามสกุล:</b> {{Auth::user()->students->StudentName}}
+                            </div>
+                            <div class="col-md-6 p-2">
+                                <b>E-mail:</b> {{Auth::user()->students->Email}}
+                            </div>
+                            <div class="col-md-6 p-2">
+                                <b>สถานะ:</b>
+                                @if (Auth::user()->students->Status == "Normal")
+                                    <font color="green">Normal</font>
+                                @elseif (Auth::user()->students->Status == "Normal")
+                                    <font color="green">Normal</font>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,8 +145,6 @@
                             
                         <form action="{{route('addRegistration')}}" method="POST">
                                 @csrf
-                                
-
                                 @php($i=1)
                                 @foreach($coursedetails as $row)
                                 @foreach($row->classdetail as $dataclass)
@@ -142,10 +156,6 @@
                                         <label class="form-check-label" for="ClassID">
                                         </label>
                                     </div></td>
-                                    
-                                    
-                                   
-                                    
                                     <th>{{$i++}}</th>
                                     <td>{{$row->CourseID}}</td>
                                     <td>{{$row->CourseName}}</td>

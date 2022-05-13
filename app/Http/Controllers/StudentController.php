@@ -28,7 +28,7 @@ class StudentController extends Controller
     function regis() {
         $coursedetails = CourseDetail::all();
         $classdetails = ClassDetail::all();
-        $registrations = Registration::all();
+        $registrations = Registration::where('StudentID',Auth::user()->student_licence_number)->get();
         return view('student.regis',compact('coursedetails','classdetails','registrations'));
     }
 
