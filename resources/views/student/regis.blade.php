@@ -61,8 +61,10 @@
                                 <b>สถานะ:</b>
                                 @if (Auth::user()->students->Status == "Normal")
                                     <font color="green">Normal</font>
-                                @elseif (Auth::user()->students->Status == "Normal")
-                                    <font color="green">Normal</font>
+                                @elseif (Auth::user()->students->Status == "Drop")
+                                    <font color="red">Drop</font>
+                                @elseif (Auth::user()->students->Status == "Retire")
+                                    <font color="red">Retire</font>
                                 @endif
                             </div>
                         </div>
@@ -147,26 +149,27 @@
                                 @csrf
                                 @php($i=1)
                                 @foreach($coursedetails as $row)
-                                @foreach($row->classdetail as $dataclass)
-                                @foreach($dataclass->schedules as $dataschedules)
-                                <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ClassID" id="ClassID" value="{{$dataschedules->ClassID}}">
-                                        <label class="form-check-label" for="ClassID">
-                                        </label>
-                                    </div></td>
-                                    <th>{{$i++}}</th>
-                                    <td>{{$row->CourseID}}</td>
-                                    <td>{{$row->CourseName}}</td>
-                                    <td>{{$row->Credit}}</td>
-                                    <td>{{$dataschedules->ClassID}}</td>
-                                    <td>{{$dataschedules->Room}}</td>
-                                    <td>{{$dataschedules->Weekday}}.{{$dataschedules->Time}}</td>
-                                    <td>{{$dataschedules->teachers->TeacherName}}</td>
-                                </tr>
-                                @endforeach
-                                @endforeach
+                                    @foreach($row->classdetail as $dataclass)
+                                        @foreach($dataclass->schedules as $dataschedules)
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="ClassID" id="ClassID" value="{{$dataschedules->ClassID}}">
+                                                    <label class="form-check-label" for="ClassID">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <th>{{$i++}}</th>
+                                            <td>{{$row->CourseID}}</td>
+                                            <td>{{$row->CourseName}}</td>
+                                            <td>{{$row->Credit}}</td>
+                                            <td>{{$dataclass->Section}}</td>
+                                            <td>{{$dataschedules->Room}}</td>
+                                            <td>{{$dataschedules->Weekday}}.{{$dataschedules->Time}}</td>
+                                            <td>{{$dataschedules->teachers->TeacherName}}</td>
+                                        </tr>
+                                        @endforeach
+                                    @endforeach
                                 @endforeach
                                 <button type="submit" class="btn btn-outline-dark btn-sm">เลือก</button>
                                 </form>
