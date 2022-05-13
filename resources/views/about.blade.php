@@ -24,7 +24,7 @@
         <nav class="nav">
           <div> <a href="{{route('home')}}" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Information System</span> </a>
             <div class="nav_list">
-                <a href="{{route('home')}}" class="nav_link"> <i class="fa-solid fa-house"></i> <span class="nav_name">Homepage</span> </a>
+                <a href="{{route('first')}}" class="nav_link"> <i class="fa-solid fa-house"></i> <span class="nav_name">Homepage</span> </a>
                 <a href="{{route('about')}}" class="nav_link active"> <i class="fa fa-users"></i> <span class="nav_name">About us</span> </a>
             </div>
         </div>
@@ -42,7 +42,8 @@
                 <img src="assets/img/man-large.jpg" class="card-img-top" alt="...">
                 <div class="card-body shadow p-3">
                   <h5 class="card-title">63070501087</h5>
-                  <b>Kanawat Gumkuntee</b>
+                  <font size = "4"> <b>Ton</b>  </font> <br>
+                  <h6>Kanawat Gumkuntee</h6>
                   <li>Project manager</li>
                   <li>Front-End</li>
                 </div>
@@ -55,7 +56,8 @@
                 <div class="card-body shadow p-3">
                   <h5 class="card-title">63070501090</h5>
                   {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
-                  <h6>Stang</h6>
+                  <font size = "4"> <b>Stang</b>  </font> <br>
+                  <h6>Watcharapong Chuaidue</h6>
                   <li>Back-End</li>
                   <li>Database Builder</li>
                 </div>
@@ -67,7 +69,8 @@
                 <img src="assets/img/insta-1.jpg" class="card-img-top" alt="...">
                 <div class="card-body shadow p-3">
                   <h5 class="card-title">63070501077</h5>
-                  <h6>Mark</h6>
+                  <font size = "4"> <b>Mark</b>  </font> <br>
+                  <h6>Suttiphong Panyadee</h6>
                   <li>Front-End</li>
                   <li>Database</li>
                 </div>
@@ -78,7 +81,8 @@
                 <img src="assets/img/insta-3.jpg" class="card-img-top" alt="...">
                 <div class="card-body shadow p-3">
                   <h5 class="card-title">63070501048</h5>
-                  <h6>Jiew</h6>                  
+                  <font size = "4"> <b>Jiew</b>  </font> <br>
+                  <h6>Passakorn Klaikaew</h6>              
                   <li>Back-End</li>
                   <li>Database</li>
                 </div>
@@ -89,7 +93,8 @@
                 <img src="assets/img/insta-2.jpg" class="card-img-top" alt="...">
                 <div class="card-body shadow p-3">
                   <h5 class="card-title">63070501028</h5>
-                  <h6>F</h6>
+                  <font size = "4"> <b>F</b>  </font> <br>
+                  <h6>Tittawat Jai-ou</h6>
                   <li>Back-End</li>
                   <li>Database</li>
                 </div>
