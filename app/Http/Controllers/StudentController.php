@@ -8,6 +8,7 @@ use App\Models\ClassDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class StudentController extends Controller
 {
     function login () {
@@ -15,7 +16,8 @@ class StudentController extends Controller
     } 
 
     function myinfo() {
-        return view('student.myinfo');
+        $students = Student::all();
+        return view('student.myinfo',compact('students'));
     }
 
     function welcome () {
