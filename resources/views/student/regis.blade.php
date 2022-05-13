@@ -69,13 +69,6 @@
                                 @endif
                             </div>
                         </div>
-
-                    <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded">
-                        <p>
-                            {{Auth::user()->student_licence_number}}
-                        </p>
-
-                    </div>
                 </div>
             </div>
 
@@ -96,7 +89,6 @@
                         @php($i=1)
                         @foreach($registrations as $row)
                         <tr>
-                    <tr>
                             <th>{{$i++}}</th>
                             <td>{{$row->classdetails->courseDetails->CourseID}}</td>
                             <td>{{$row->classdetails->courseDetails->CourseName}}</td>
@@ -104,8 +96,8 @@
                             <td>{{$row->classdetails->Section}}</td>
                             <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
                         </tr>
+                        @endforeach
                     </form>
-                    @endforeach
                 </tbody>
             </table>
 
