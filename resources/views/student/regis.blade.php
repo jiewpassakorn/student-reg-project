@@ -61,15 +61,14 @@
                             <div class="col-md-6 p-2">
                                 <b>สถานะ:</b>
                                 @if (Auth::user()->students->Status == "Normal")
-                                <font color="green">Normal</font>
-                                @elseif (Auth::user()->students->Status == "Normal")
-                                <font color="green">Normal</font>
+                                    <font color="green">Normal</font>
+                                @elseif (Auth::user()->students->Status == "Drop")
+                                    <font color="red">Drop</font>
+                                @elseif (Auth::user()->students->Status == "Retire")
+                                    <font color="red">Retire</font>
                                 @endif
                             </div>
                         </div>
-
-
-                    </div>
                 </div>
 
                 <!-- table -->
@@ -89,13 +88,29 @@
                         @php($i=1)
                         @foreach($registrations as $row)
                         <tr>
-                        <tr>
                             <th>{{$i++}}</th>
                             <td>{{$row->classdetails->courseDetails->CourseID}}</td>
                             <td>{{$row->classdetails->courseDetails->CourseName}}</td>
                             <td>{{$row->classdetails->courseDetails->Credit}}</td>
                             <td>{{$row->classdetails->Section}}</td>
+                            <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
+                        </tr>
+                        @endforeach
+                    </form>
+                </tbody>
+            </table>
 
+            <!-- button -->
+            <div class="row text-center">
+                <div class="col-sm-2">
+                    <a href="#insertModal"><button id="insertButton" class="btn btn-success mt-2 p-2 px-3" data-bs-toggle="modal" data-bs-target="#insertModal">เลือกวิชา</button></a>
+                </div>
+                <div class="col-sm-8">
+                </div>
+                <div class="col-sm-2">
+                    <a href="#insertModal"><button id="editButton" class="btn  btn-secondary mt-2 p-2 px-3">ยืนยัน</button></a>
+                </div>
+            </div>
                             <form action="{{route('student.destroy', $row->ClassID)}}" method="post">
                                 @csrf
                                 @method('PUT')
@@ -119,8 +134,50 @@
                         <a href="#insertModal"><button id="editButton" class="btn  btn-secondary mt-2 p-2 px-3">ยืนยัน</button></a>
                     </div>
                 </div>
-
-
+                <div class="modal-body">
+                    <table class="table table-striped shadow-sm text-center mt-3">
+                        <thead class="table table-dark">
+                            <tr>
+                                <th>เลือก</th>
+                                <th>ลำดับ</th>
+                                <th>รหัสวิชา</th>
+                                <th>ชื่อวิชา</th>
+                                <th>หน่วยกิต</th>
+                                <th>กลุ่ม</th>
+                                <th>ห้องเรียน</th>
+                                <th>เวลาเรียน</th>
+                                <th>อาจารย์</th>
+                            </tr>
+                        </thead>
+                        <tbody>   
+                        <form action="{{route('addRegistration')}}" method="POST">
+                                @csrf
+                                @php($i=1)
+                                @foreach($coursedetails as $row)
+                                    @foreach($row->classdetail as $dataclass)
+                                        @foreach($dataclass->schedules as $dataschedules)
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="ClassID" id="ClassID" value="{{$dataschedules->ClassID}}">
+                                                    <label class="form-check-label" for="ClassID">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <th>{{$i++}}</th>
+                                            <td>{{$row->CourseID}}</td>
+                                            <td>{{$row->CourseName}}</td>
+                                            <td>{{$row->Credit}}</td>
+                                            <td>{{$dataclass->Section}}</td>
+                                            <td>{{$dataschedules->Room}}</td>
+                                            <td>{{$dataschedules->Weekday}}.{{$dataschedules->Time}}</td>
+                                            <td>{{$dataschedules->teachers->TeacherName}}</td>
+                                        </tr>
+                                        @endforeach
+                                    @endforeach
+                                @endforeach
+                                <button type="submit" class="btn btn-outline-dark btn-sm">เลือก</button>
+                                </form>
             </div>
         </div>
         <!--Container Main end-->
