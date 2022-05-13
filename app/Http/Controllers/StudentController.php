@@ -53,30 +53,39 @@ class StudentController extends Controller
 
     public function storeRegistration(Request $request) {
         // ตรวจสอบข้อมูล
-        //dd($request);
+       
         $request->validate([
-           
+           'ClassID' => 'required'
         ],
         [
-           
+            'ClassID.required'=>"กรุณาป้อนชื่อแผนกด้วยครับ",
         ]
         );
 
         // บันทึกข้อมูล
 
         // บันทึกแบบ eloquant
+        $student_classid="C1AB01";
+
         
         $student_id = Auth::user()->student_licence_number;
-        $student_classid=$request->ClassID;
+
         //dd($student_id,$student_classid);
-        
 
         $registration = new Registration;
         $registration->ClassID = $request->ClassID;
         $registration->RegStatus = "Ready";
         $registration->StudentID = $student_id;
         $registration->save();
-
+        
         return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
+        
+
+    }
+
+    public function delete($ClassID){
+        $select=$ClassID;
+        $delete=Registration::where('ClassID',$select)->delete();
+        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
 }

@@ -48,8 +48,8 @@
                 <div class="container mt-3">
 
                     <div class="col-sm-12 justify-content-around shadow p-4 mb-4 bg-body rounded">
-                    <div class="row ms-2">
-                        <div class="col-md-6 p-2">
+                        <div class="row ms-2">
+                            <div class="col-md-6 p-2">
                                 <b>รหัสนักศึกษา:</b> {{Auth::user()->students->StudentID}}
                             </div>
                             <div class="col-md-6 p-2">
@@ -61,191 +61,199 @@
                             <div class="col-md-6 p-2">
                                 <b>สถานะ:</b>
                                 @if (Auth::user()->students->Status == "Normal")
-                                    <font color="green">Normal</font>
+                                <font color="green">Normal</font>
                                 @elseif (Auth::user()->students->Status == "Normal")
-                                    <font color="green">Normal</font>
+                                <font color="green">Normal</font>
                                 @endif
                             </div>
                         </div>
 
-                   
-                </div>
-            </div>
 
-            <!-- table -->
-            <!-- Striped  -->
-            <table class="table table-striped shadow-lg text-center">
-                <thead class="table table-dark">
+                    </div>
+                </div>
+
+                <!-- table -->
+                <!-- Striped  -->
+                <table class="table table-striped shadow-lg text-center">
+                    <thead class="table table-dark">
                         <th>ลำดับ</th>
                         <th>รหัสวิชา</th>
                         <th>ชื่อวิชา</th>
                         <th>หน่วยกิต</th>
                         <th>กลุ่ม</th>
                         <th>แก้ไข</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <form action="{{route('addRegistration')}}" method="POST">
+                        </tr>
+                    </thead>
+                    <tbody>
+
                         @php($i=1)
                         @foreach($registrations as $row)
                         <tr>
-                    <tr>
+                        <tr>
                             <th>{{$i++}}</th>
                             <td>{{$row->classdetails->courseDetails->CourseID}}</td>
                             <td>{{$row->classdetails->courseDetails->CourseName}}</td>
                             <td>{{$row->classdetails->courseDetails->Credit}}</td>
                             <td>{{$row->classdetails->Section}}</td>
-                            <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
-                        </tr>
-                    </form>
-                    @endforeach
-                </tbody>
-            </table>
 
-            <!-- button -->
-            <div class="row text-center">
-                <div class="col-sm-2">
-                    <a href="#insertModal"><button id="insertButton" class="btn btn-success mt-2 p-2 px-3" data-bs-toggle="modal" data-bs-target="#insertModal">เลือกวิชา</button></a>
-                </div>
-                <div class="col-sm-8">
-                </div>
-                <div class="col-sm-2">
-                    <a href="#insertModal"><button id="editButton" class="btn  btn-secondary mt-2 p-2 px-3">ยืนยัน</button></a>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-    <!--Container Main end-->
-
-
-    <!-- Insert Modal -->
-    <div class="modal fade" id="insertModal">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">เลือกวิชา</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
-                </div>
-                <div class="modal-body">
-                    <table class="table table-striped shadow-sm text-center mt-3">
-                        <thead class="table table-dark">
-                            <tr>
-                                <th>เลือก</th>
-                                <th>ลำดับ</th>
-                                <th>รหัสวิชา</th>
-                                <th>ชื่อวิชา</th>
-                                <th>หน่วยกิต</th>
-                                <th>กลุ่ม</th>
-                                <th>ห้องเรียน</th>
-                                <th>เวลาเรียน</th>
-                                <th>อาจารย์</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                        <form action="{{route('addRegistration')}}" method="POST">
+                            <form action="{{route('student.destroy', $row->ClassID)}}" method="post">
                                 @csrf
-                                @php($i=1)
-                                @foreach($coursedetails as $row)
-                                @foreach($row->classdetail as $dataclass)
-                                @foreach($dataclass->schedules as $dataschedules)
-                                <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ClassID" id="ClassID" value="{{$dataschedules->ClassID}}">
-                                        <label class="form-check-label" for="ClassID">
-                                        </label>
-                                    </div></td>
-                                    <th>{{$i++}}</th>
-                                    <td>{{$row->CourseID}}</td>
-                                    <td>{{$row->CourseName}}</td>
-                                    <td>{{$row->Credit}}</td>
-                                    <td>{{$dataschedules->ClassID}}</td>
-                                    <td>{{$dataschedules->Room}}</td>
-                                    <td>{{$dataschedules->Weekday}}.{{$dataschedules->Time}}</td>
-                                    <td>{{$dataschedules->teachers->TeacherName}}</td>
-                                </tr>
-                                @endforeach
-                                @endforeach
-                                @endforeach
-                                <button type="submit" class="btn btn-outline-dark btn-sm">เลือก</button>
-                                </form>
+                                @method('PUT')
 
-                        </tbody>
-                        
-                    </table>
+                                <td><a href="{{url('/service/delete/'.$row->ClassID)}}" class="btn btn-warning">ลบ</a></td>
+                            </form>
+                        </tr>
+
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <!-- button -->
+                <div class="row text-center">
+                    <div class="col-sm-2">
+                        <a href="#insertModal"><button id="insertButton" class="btn btn-success mt-2 p-2 px-3" data-bs-toggle="modal" data-bs-target="#insertModal">เลือกวิชา</button></a>
+                    </div>
+                    <div class="col-sm-8">
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="#insertModal"><button id="editButton" class="btn  btn-secondary mt-2 p-2 px-3">ยืนยัน</button></a>
+                    </div>
                 </div>
+
+
             </div>
         </div>
-    </div>
+        <!--Container Main end-->
 
-    <!-- Select Modal -->
-    <form action="" method="">
-        <div class="modal fade" id="selectModal" } tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
+
+        <!-- Insert Modal -->
+        <div class="modal fade" id="insertModal">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">เลือกกลุ่มเรียน</h5>
+                        <h5 class="modal-title">เลือกวิชา</h5>
                         <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
                     </div>
                     <div class="modal-body">
-                        <div class="container bg-light p-1 shadow-sm">
-                            <div class="row ms-2">
-                                <div class="col-md-6 p-2">
-                                    <b>รหัสวิชา:</b> {{$row->CourseID}}
-                                </div>
-                                <div class="col-md-6 p-2">
-                                    <b>หน่วยกิต: 3</b>
-                                </div>
-                                <div class="col-md-8 p-2">
-                                    <b>ชื่อวิชา:</b> GEN คนดี ร่วมสร้างความดี
-                                </div>
-                            </div>
-                        </div>
                         <table class="table table-striped shadow-sm text-center mt-3">
                             <thead class="table table-dark">
                                 <tr>
                                     <th>เลือก</th>
+                                    <th>ลำดับ</th>
+                                    <th>รหัสวิชา</th>
+                                    <th>ชื่อวิชา</th>
+                                    <th>หน่วยกิต</th>
                                     <th>กลุ่ม</th>
-                                    <th>จำนวนคงเหลือ</th>
                                     <th>ห้องเรียน</th>
                                     <th>เวลาเรียน</th>
                                     <th>อาจารย์</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    @foreach($classdetails as $row)
-                                <tr>
-                                    <td><button type="button" class="btn btn-outline-dark btn-sm">เลือก</button></td>
-                                </tr>
-                                @endforeach
-                                </tr>
+
+                                <form action="{{route('addRegistration')}}" method="POST">
+                                    @csrf
+                                    @php($i=1)
+                                    @foreach($coursedetails as $row)
+                                    @foreach($row->classdetail as $dataclass)
+                                    @foreach($dataclass->schedules as $dataschedules)
+                                    @php($ClassID=1)
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="ClassID" value="{{$dataschedules->ClassID}}">
+                                                <label class="form-check-label" for="ClassID">
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <th>{{$i++}}</th>
+                                        <td>{{$row->CourseID}}</td>
+                                        <td>{{$row->CourseName}}</td>
+                                        <td>{{$row->Credit}}</td>
+                                        <td>{{$dataclass->Section}}</td>
+                                        <td>{{$dataschedules->Room}}</td>
+                                        <td>{{$dataschedules->Weekday}}.{{$dataschedules->Time}}</td>
+                                        <td>{{$dataschedules->teachers->TeacherName}}</td>
+                                    </tr>
+                                    @endforeach
+                                    @endforeach
+                                    @endforeach
+                                    <button type="submit" class="btn btn-outline-dark btn-sm">เลือก</button>
+                                </form>
+
                             </tbody>
+
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
 
-    <!-- Delete Modal -->
-    <div class="modal fade" id="deleteModal">
-        <div class="modal-dialog modal-sm modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">ยืนยันการลบวิชา</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
+        <!-- Select Modal -->
+        <form action="" method="">
+            <div class="modal fade" id="selectModal" } tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">เลือกกลุ่มเรียน</h5>
+                            <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
+                        </div>
+                        <div class="modal-body">
+                            <div class="container bg-light p-1 shadow-sm">
+                                <div class="row ms-2">
+                                    <div class="col-md-6 p-2">
+                                        <b>รหัสวิชา:</b> {{$row->CourseID}}
+                                    </div>
+                                    <div class="col-md-6 p-2">
+                                        <b>หน่วยกิต: 3</b>
+                                    </div>
+                                    <div class="col-md-8 p-2">
+                                        <b>ชื่อวิชา:</b> GEN คนดี ร่วมสร้างความดี
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped shadow-sm text-center mt-3">
+                                <thead class="table table-dark">
+                                    <tr>
+                                        <th>เลือก</th>
+                                        <th>กลุ่ม</th>
+                                        <th>จำนวนคงเหลือ</th>
+                                        <th>ห้องเรียน</th>
+                                        <th>เวลาเรียน</th>
+                                        <th>อาจารย์</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        @foreach($classdetails as $row)
+                                    <tr>
+                                        <td><button type="button" class="btn btn-outline-dark btn-sm">เลือก</button></td>
+                                    </tr>
+                                    @endforeach
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    คุณต้องการที่จะลบรายวิชานี้หรือไม่
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-danger">ตกลง</button>
+            </div>
+        </form>
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">ยืนยันการลบวิชา</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
+                    </div>
+                    <div class="modal-body">
+                        คุณต้องการที่จะลบรายวิชานี้หรือไม่
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button class="btn btn-danger">ตกลง</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
