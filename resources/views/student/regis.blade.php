@@ -46,24 +46,28 @@
             <hr>
             <div class="row d-grid justify-content-center">
                 <div class="container mt-3">
-
                     <div class="col-sm-12 justify-content-around shadow p-4 mb-4 bg-body rounded">
                         <div class="row ms-2">
                             <div class="col-md-6 p-2">
-                                <b>รหัสนักศึกษา:</b> {{Auth::user()->students->StudentID}}
+                                <b>รหัสนักศึกษา:</b> {{$studentsinfo->StudentID}}
                             </div>
                             <div class="col-md-6 p-2">
-                                <b>ชื่อ-นามสกุล:</b> {{Auth::user()->students->StudentName}}
+                                <b>ชื่อ-นามสกุล:</b> {{$studentsinfo->StudentName}}
                             </div>
                             <div class="col-md-6 p-2">
-                                <b>E-mail:</b> {{Auth::user()->students->Email}}
+                                <b>E-mail:</b> {{$studentsinfo->Email}}
                             </div>
                             <div class="col-md-6 p-2">
+                                <b>ภาควิชา:</b> {{$studentsinfo->DepartmentName}}
+                            </div>
+                            <div class="col-md-12 p-2">
                                 <b>สถานะ:</b>
-                                @if (Auth::user()->students->Status == "Normal")
-                                <font color="green">Normal</font>
-                                @elseif (Auth::user()->students->Status == "Normal")
-                                <font color="green">Normal</font>
+                                @if ($studentsinfo->status == "Normal")
+                                    <font color="green">Normal</font>
+                                @elseif (Auth::user()->students->Status == "Drop")
+                                    <font color="red">Drop</font>
+                                @elseif (Auth::user()->students->Status == "Retire")
+                                    <font color="red">Retire</font>
                                 @endif
                             </div>
                         </div>
@@ -71,7 +75,6 @@
 
                     </div>
                 </div>
-
                 <!-- table -->
                 <!-- Striped  -->
                 <table class="table table-striped shadow-lg text-center">
@@ -85,25 +88,20 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         @php($i=1)
                         @foreach($registrations as $row)
-                        <tr>
                         <tr>
                             <th>{{$i++}}</th>
                             <td>{{$row->classdetails->courseDetails->CourseID}}</td>
                             <td>{{$row->classdetails->courseDetails->CourseName}}</td>
                             <td>{{$row->classdetails->courseDetails->Credit}}</td>
                             <td>{{$row->classdetails->Section}}</td>
-
                             <form action="{{route('student.destroy', $row->ClassID)}}" method="post">
                                 @csrf
                                 @method('PUT')
-
-                                <td><a href="{{url('/service/delete/'.$row->ClassID)}}" class="btn btn-warning">ลบ</a></td>
+                                <td><a href="{{url('/service/delete/'.$row->ClassID)}}" class="btn btn-warning btn-sm">ลบ</a></td>
                             </form>
                         </tr>
-
                         @endforeach
                     </tbody>
                 </table>
@@ -152,18 +150,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 <form action="{{route('addRegistration')}}" method="POST">
                                     @csrf
                                     @php($i=1)
-                                    @foreach($coursedetails as $row)
-                                    @foreach($row->classdetail as $dataclass)
-                                    @foreach($dataclass->schedules as $dataschedules)
-                                    @php($ClassID=1)
+                                    @foreach($coursejoin as $row)
                                     <tr>
                                         <td>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="ClassID" value="{{$dataschedules->ClassID}}">
+                                                <input class="form-check-input" type="radio" name="ClassID" value="{{$row->ClassID}}">
                                                 <label class="form-check-label" for="ClassID">
                                                 </label>
                                             </div>
@@ -172,19 +166,15 @@
                                         <td>{{$row->CourseID}}</td>
                                         <td>{{$row->CourseName}}</td>
                                         <td>{{$row->Credit}}</td>
-                                        <td>{{$dataclass->Section}}</td>
-                                        <td>{{$dataschedules->Room}}</td>
-                                        <td>{{$dataschedules->Weekday}}.{{$dataschedules->Time}}</td>
-                                        <td>{{$dataschedules->teachers->TeacherName}}</td>
+                                        <td>{{$row->Section}}</td>
+                                        <td>{{$row->Room}}</td>
+                                        <td>{{$row->Weekday}}. {{$row->Time}}</td>
+                                        <td>{{$row->TeacherName}}</td>
                                     </tr>
                                     @endforeach
-                                    @endforeach
-                                    @endforeach
-                                    <button type="submit" class="btn btn-outline-dark btn-sm">เลือก</button>
+                                    <button type="submit" class="btn btn btn-success btn-sm">เลือก</button>
                                 </form>
-
                             </tbody>
-
                         </table>
                     </div>
                 </div>
