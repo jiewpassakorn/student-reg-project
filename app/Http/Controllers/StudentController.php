@@ -53,6 +53,7 @@ class StudentController extends Controller
 
     public function storeRegistration(Request $request) {
         // ตรวจสอบข้อมูล
+        dd($request);
         $request->validate([
            
         ],

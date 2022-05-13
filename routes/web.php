@@ -73,6 +73,8 @@ Route::resource('tasks', TaskController::class);
 Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
 Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
 
+Route::post('/student/register/add',[StudentController::class,'storeRegistration'])->name('addRegistration');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('tasks', TaskController::class);
 
