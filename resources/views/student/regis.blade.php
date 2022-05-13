@@ -1,256 +1,207 @@
 @extends('layouts.default')
 @section('title','Student | Registration')
-@section('content') 
-    
-<!--Container Main start-->
+@section('content')
 
-<div class="height-100 bg-light">
-    <div class="container">
+    <!--Container Main start-->
+
+
+    <div class="height-100 bg-light">
+        <div class="container">
             <div class="row mt-5 p-2">
                 <div class="col-sm-12 mt-3 pt-3">
-                    <h4> ลงทะเบียนเรียน </h4></button> 
+                    <h4> ลงทะเบียนเรียน </h4></button>
                 </div>
             </div>
             <hr>
-            <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Anoucement</h5>
-                  <p class="card-text">This is student register beta version.</p>
-                </div>
-                <div class="card-footer text-muted">
-                  2 days remaining
-                </div>
-              </div>
- 
-    <!-- table -->
-        <br>
-        <table class="table table-striped shadow-lg text-center">
-            <thead class="table table-dark">
-                <tr>
-                    <th>ลำดับ</th>
-                    <th>รหัสวิชา</th>
-                    <th>ชื่อวิชา</th>
-                    <th>หน่วยกิต</th>
-                    <th>กลุ่ม</th>
-                    <th>แก้ไข</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>CPE100</td>
-                    <td>Computer xxxxx xxxxx</td>
-                    <td>3</td>
-                    <td>1</td>
-                    <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>CPE101</td>
-                    <td>Computer xxxxx xxxxx</td>
-                    <td>3</td>
-                    <td><a href="#selectModal" data-bs-toggle="modal" data-bs-target="#selectModal">เลือก</a></td>
-                    <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>CPE102</td>
-                    <td>Computer xxxxx xxxxx</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td><a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบ</a></td>
-                </tr>
-            </tbody>
-        </table>
-
-     <!-- button -->
-     <div class="row text-center">
-        <div class="col-sm-2">
-         <a href="#insertModal"><button id="insertButton" class="btn btn-success mt-2 p-2 px-3" 
-            data-bs-toggle="modal" data-bs-target="#insertModal">เพิ่มวิชา</button></a> 
-        </div>
-        <div class="col-sm-8">
-        </div>
-        <div class="col-sm-2">
-         <a href="#insertModal"><button id="editButton" class="btn  btn-secondary mt-2 p-2 px-3">ยืนยัน</button></a> 
-        </div>
-     </div>
-
-
-    </div>
-</div>
-     <!--Container Main end-->
-
-
-     <!-- Insert Modal -->
-     <div class="modal fade" id="insertModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">เพิ่มวิชา</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                         <div class="col-md-10 d-grid">
-                             <div class="search">
-                                 <input type="text" class="form-control" placeholder="พิมพ์รายวิชาที่ต้องการค้นหา">
+            <div class="row d-grid justify-content-center">
+                <div class="container mt-3">
+                    <div class="col-sm-12 justify-content-around shadow p-4 mb-4 bg-body rounded">
+                        <div class="row ms-2">
+                            <div class="col-md-6 p-2">
+                                <b>รหัสนักศึกษา:</b> {{$studentsinfo->StudentID}}
                             </div>
-                         </div>
-                         <div class="col-md-2 d-grid">
-                              <button class="btn btn-primary">ค้นหา</button> 
-                         </div>
+                            <div class="col-md-6 p-2">
+                                <b>ชื่อ-นามสกุล:</b> {{$studentsinfo->StudentName}}
+                            </div>
+                            <div class="col-md-6 p-2">
+                                <b>E-mail:</b> {{$studentsinfo->Email}}
+                            </div>
+                            <div class="col-md-6 p-2">
+                                <b>ภาควิชา:</b> {{$studentsinfo->DepartmentName}}
+                            </div>
+                            <div class="col-md-12 p-2">
+                                <b>สถานะ:</b>
+                                @if ($studentsinfo->status == "Normal")
+                                    <font color="green">Normal</font>
+                                @elseif (Auth::user()->students->Status == "Drop")
+                                    <font color="red">Drop</font>
+                                @elseif (Auth::user()->students->Status == "Retire")
+                                    <font color="red">Retire</font>
+                                @endif
+                            </div>
+                        </div>
+
+
                     </div>
-                    <table class="table table-striped shadow-sm text-center mt-3">
-                        <thead class="table table-dark">
-                            <tr>
-                                <th>เลือก</th>
-                                <th>ลำดับ</th>
-                                <th>รหัสวิชา</th>
-                                <th>ชื่อวิชา</th>
-                                <th>หน่วยกิต</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>1</td>
-                                <td>CPE100</td>
-                                <td>Computer xxxxx xxxxx</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>2</td>
-                                <td>CPE101</td>
-                                <td>Computer xxxxx xxxxx</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>3</td>
-                                <td>CPE102</td>
-                                <td>Computer xxxxx xxxxx</td>
-                                <td>3</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-success">บันทึกข้อมูล</button>
+                <!-- table -->
+                <!-- Striped  -->
+                <table class="table table-striped shadow-lg text-center">
+                    <thead class="table table-dark">
+                        <th>ลำดับ</th>
+                        <th>รหัสวิชา</th>
+                        <th>ชื่อวิชา</th>
+                        <th>หน่วยกิต</th>
+                        <th>กลุ่ม</th>
+                        <th>แก้ไข</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php($i=1)
+                        @foreach($registrations as $row)
+                        <tr>
+                            <th>{{$i++}}</th>
+                            <td>{{$row->classdetails->courseDetails->CourseID}}</td>
+                            <td>{{$row->classdetails->courseDetails->CourseName}}</td>
+                            <td>{{$row->classdetails->courseDetails->Credit}}</td>
+                            <td>{{$row->classdetails->Section}}</td>
+                            <form action="{{route('student.destroy', $row->ClassID)}}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <td><a href="{{url('/service/delete/'.$row->ClassID)}}" class="btn btn-warning btn-sm">ลบ</a></td>
+                            </form>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <!-- button -->
+                <div class="row text-center">
+                    <div class="col-sm-2">
+                        <a href="#insertModal"><button id="insertButton" class="btn btn-success mt-2 p-2 px-3" data-bs-toggle="modal" data-bs-target="#insertModal">เลือกวิชา</button></a>
+                    </div>
+                    <div class="col-sm-8">
+                    </div>
+                    
+                    <div class="col-sm-2"><form action="{{route('submit')}}" method="post"> @csrf
+                        <a href="#insertModal"><button id="editButton" class="btn  btn-secondary mt-2 p-2 px-3">ยืนยัน</button></a>
+                     </form></div>
+                   
+                </div>
+
+
+            </div>
+        </div>
+        <!--Container Main end-->
+
+
+        <!-- Insert Modal -->
+        <div class="modal fade" id="insertModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">เลือกวิชา</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped shadow-sm text-center mt-3">
+                            <thead class="table table-dark">
+                                <tr>
+                                    <th>เลือก</th>
+                                    <th>ลำดับ</th>
+                                    <th>รหัสวิชา</th>
+                                    <th>ชื่อวิชา</th>
+                                    <th>หน่วยกิต</th>
+                                    <th>กลุ่ม</th>
+                                    <th>ห้องเรียน</th>
+                                    <th>เวลาเรียน</th>
+                                    <th>อาจารย์</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <form action="{{route('addRegistration')}}" method="POST">
+                                    @csrf
+                                    @php($i=1)
+                                    @foreach($coursejoin as $row)
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="ClassID" value="{{$row->ClassID}}">
+                                                <label class="form-check-label" for="ClassID">
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <th>{{$i++}}</th>
+                                        <td>{{$row->CourseID}}</td>
+                                        <td>{{$row->CourseName}}</td>
+                                        <td>{{$row->Credit}}</td>
+                                        <td>{{$row->Section}}</td>
+                                        <td>{{$row->Room}}</td>
+                                        <td>{{$row->Weekday}}. {{$row->Time}}</td>
+                                        <td>{{$row->TeacherName}}</td>
+                                    </tr>
+                                    @endforeach
+                                    <button type="submit" class="btn btn btn-success btn-sm">เลือก</button>
+                                </form>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-     </div>
 
-     <!-- Select Modal -->
-     <div class="modal fade" id="selectModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">เลือกกลุ่มเรียน</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
-                </div>
-                <div class="modal-body">
-                    <div class="container bg-light p-1 shadow-sm">
-                         <div class="row ms-2">
-                             <div class="col-md-6 p-2">
-                             <b>รหัสวิชา:</b> GEN xxx
-                             </div>
-                             <div class="col-md-6 p-2">
-                              <b>หน่วยกิต: 3</b>
-                             </div>
-                             <div class="col-md-8 p-2">
-                              <b>ชื่อวิชา:</b> GEN คนดี ร่วมสร้างความดี
-                             </div>
-                         </div>
+        <!-- Select Modal -->
+        <form action="" method="">
+            <div class="modal fade" id="selectModal" } tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">เลือกกลุ่มเรียน</h5>
+                            <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
+                        </div>
+                        <div class="modal-body">
+                            <div class="container bg-light p-1 shadow-sm">
+                                <div class="row ms-2">
+                                    <div class="col-md-6 p-2">
+                                        <b>รหัสวิชา:</b> {{$row->CourseID}}
+                                    </div>
+                                    <div class="col-md-6 p-2">
+                                        <b>หน่วยกิต: 3</b>
+                                    </div>
+                                    <div class="col-md-8 p-2">
+                                        <b>ชื่อวิชา:</b> GEN คนดี ร่วมสร้างความดี
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped shadow-sm text-center mt-3">
+                                <thead class="table table-dark">
+                                    <tr>
+                                        <th>เลือก</th>
+                                        <th>กลุ่ม</th>
+                                        <th>จำนวนคงเหลือ</th>
+                                        <th>ห้องเรียน</th>
+                                        <th>เวลาเรียน</th>
+                                        <th>อาจารย์</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        @foreach($classdetails as $row)
+                                    <tr>
+                                        <td><button type="button" class="btn btn-outline-dark btn-sm">เลือก</button></td>
+                                    </tr>
+                                    @endforeach
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <table class="table table-striped shadow-sm text-center mt-3">
-                        <thead class="table table-dark">
-                            <tr>
-                                <th>เลือก</th>
-                                <th>กลุ่ม</th>
-                                <th>จำนวนคงเหลือ</th>
-                                <th>ห้องเรียน</th>
-                                <th>เวลาเรียน</th>
-                                <th>อาจารย์</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>1</td>
-                                <td>50</td>
-                                <td>Online</td>
-                                <td>จ. 08:00-10:00</td>
-                                <td>อ.Dummy Dummy</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>2</td>
-                                <td>50</td>
-                                <td>Online</td>
-                                <td>จ. 08:00-10:00</td>
-                                <td>อ.Dummy Dummy</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                    <label>
-                                    <input type="checkbox" name="" class="form-check-input">
-                                    </label>
-                                   </div>
-                                </td>
-                                <td>3</td>
-                                <td>50</td>
-                                <td>Online</td>
-                                <td>จ. 08:00-10:00</td>
-                                <td>อ.Dummy Dummy</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-success">บันทึกข้อมูล</button>
                 </div>
             </div>
-        </div>
-     </div>
+        </form>
 
-    <!-- Delete Modal -->
-     <div class="modal fade" id="deleteModal">
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal">
             <div class="modal-dialog modal-sm modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -266,4 +217,4 @@
                     </div>
                 </div>
             </div>
-     </div>
+        </div>
