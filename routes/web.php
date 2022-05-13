@@ -2,18 +2,15 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Students\LessonController;
-use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TeacherController;
 
 use App\Http\Controllers\myinfoController;
 use Faker\Guesser\Name;
 
 use App\Http\Controllers\Teachers\CourseController;
-use App\Http\Controllers\UsersController;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Route;
@@ -38,9 +35,15 @@ Route::get('/welcomeByLaravel', function () {
     return view('welcomeByLaravel');
 })->name('welcomeByLaravel');
 
-Route::get('/admin',[AdminController::class,'index'])->name('admin');
 Route::get('/about',[AboutController::class,'about'])->name('about');
 
+// For Admin
+Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
+Route::get('/admin/studentManage',[AdminController::class,'studentManage'])->name('studentManage');
+Route::get('/admin/teacherManage',[AdminController::class,'teacherManage'])->name('teacherManage');
+Route::get('/admin/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
+
+// For Student
 
 Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB');
 
@@ -61,9 +64,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
     Route::get('/welcome', function () {
         $users=User::all();
-        return view('student.welcome', compact('users'));
+        return view('welcome', compact('users'));
     })->name('first');
-
     Route::get('/student/login',[StudentController::class,'login'])->name('s.login');
     Route::get('/student/information',[StudentController::class,'myinfo'])->name('myinfo');
     Route::get('/student/register',[StudentController::class,'regis'])->name('regis');

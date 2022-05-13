@@ -6,15 +6,19 @@
     <div class="container">
             <div class="row mt-5 p-2">
                 <div class="col-sm-12 mt-3 pt-3 justify-content-center">
-                    <h4> ประวัตินักศึกษา Name: {{Auth::user()->name}} </h4></button> 
+                    <h4> ประวัตินักศึกษา</h4></button> 
                 </div>
             </div>
             <hr>
-            <div class="row d-grid justify-content-center">
-                 <div class="container mt-3">
-                   <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded" ></div>
-                 </div>
-           </div>
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Anoucement</h5>
+                  <p class="card-text">This is student register beta version.</p>
+                </div>
+                <div class="card-footer text-muted">
+                  2 days remaining
+                </div>
+              </div>
            <div class="row d-flex">
                <div class="col-12 mt-2 d-flex justify-content-center">
                   <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-success">เพิ่มข้อมูล</button></a> 
@@ -28,8 +32,8 @@
             <div class="col-md-2 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    <span class="font-weight-bold">Edogaru</span>
-                    <span class="text-black-50">edogaru@mail.com.my</span>
+                    <span class="font-weight-bold">{{Auth::user()->name}}</span>
+                    <span class="text-black-50">{{Auth::user()->email}}</span>
                     <button type="button" class="btn btn-outline-primary mt-2">เปลี่ยนรูป</button>
                 </div>
             </div>
@@ -41,21 +45,18 @@
                         <h4 class="text-right">Profile Settings</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-12"><label class="labels">Student ID.</label><input type="text" name="studentid" class="form-control" placeholder="630xxxxxxxx" value="" ></div>
-                        
-                        <!-- <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div> -->
+                        <div class="col-md-12"><label class="labels">Student ID.</label><input type="text" name="studentid" class="form-control" value="{{Auth::user()->student_licence_number}}" readonly></div>
                     </div>
                     <div class="row mt-3">
-
-                        <div class="col-md-12"><label class="labels">Name</label><input type="text" name="StudentName" class="form-control" placeholder="full name" value=""></div>             
-                        <div class="col-md-12"><label class="labels">DOB</label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
-                        <div class="col-md-12"><label class="labels">Address</label><input type="text" name = "Address" class="form-control" placeholder="enter address" value=""><br></div>
-                        <div class="col-md-12"><label class="labels">Department</label><input list = "Department" name="Departmentid" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div>
-                        <div class="col-md-12"><br><label class="labels">Email</label><input type="email" name ="Email" class="form-control" placeholder="enter email" value=""></div>
-                        <div class="col-md-12"><label class="labels">Phone</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
-                        <div class="col-md-12"><label class="labels">Status</label><input type="text" name ="Status" class="form-control" placeholder="status" value="" ><br></div>
-                        <div class="col-md-12"><label class="labels">Sex</label><input list="Sex" name = "Sex"><datalist id="Sex"><option value="M">Male<option value="F">Female<option value="U">Undefined</datalist></div>
-                        <div class="col-md-12"><br><label class="labels">Advisor</label><input type="text" name ="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
+                        <div class="col-md-12"><label class="labels">Name</label><input type="text" name="StudentName" class="form-control" value="{{Auth::user()->name}}"></div>             
+                        <div class="col-md-12"><label class="labels mt-2">DOB (required)</label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
+                        <div class="col-md-12"><label class="labels mt-2">Address</label><input type="text" name = "Address" class="form-control" value="{{Auth::user()->student_address}}"></div>
+                        <div class="col-md-12"><label class="labels mt-3">Department (required)</label><input class="ml-2" list = "Department" name="DepartmentID" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div>
+                        <div class="col-md-12"><label class="labels mt-2">Email</label><input type="email" name ="Email" class="form-control" value="{{Auth::user()->email}}" readonly></div>
+                        <div class="col-md-12"><label class="labels mt-2">Phone (required)</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
+                        <div class="col-md-12"><label class="labels mt-2">Status</label><input type="text" name ="Status" class="form-control" placeholder="status" value="" ></div>
+                        <div class="col-md-12"><label class="labels mt-3">Sex</label><input class="ml-2" list="Sex" name = "Sex"><datalist id="Sex"><option value="M">Male<option value="F">Female<option value="U">Undefined</datalist></div>
+                        <div class="col-md-12"><label class="labels mt-2">Advisor</label><input type="text" name ="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
                     </div>
                     <div class="mt-5 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
                 </form>

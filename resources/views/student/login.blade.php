@@ -49,9 +49,7 @@
                 </div>
                 <!-- login button -->
                 <div class="input-group mb-3">
-                    <div class="d-grid gap-2 col-12 mx-auto">
-                        {{-- <input type="submit" name="" id="" value="เข้าสู่ระบบ" class="btn btn-warning"
-                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="13:00 - 19:00"> --}}
+                    <div class="d-grid gap-2 col-12 mx-auto">      
                         <a href="{{route('first')}}" class="btn btn-warning">เข้าสู่ระบบ</a>
                     </div> 
                 </div>
