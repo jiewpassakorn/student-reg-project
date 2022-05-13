@@ -62,6 +62,6 @@
 
             </div>
         </div>
-            <div class="text-center pb-4"><button id="saveProfile" class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+           
     </div>
 </div>
