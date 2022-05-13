@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
 {
+    public $timestamps = false;
+    
     use HasFactory;
     protected $fillable = [
         'StudentID',

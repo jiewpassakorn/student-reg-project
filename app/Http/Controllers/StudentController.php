@@ -53,7 +53,7 @@ class StudentController extends Controller
 
     public function storeRegistration(Request $request) {
         // ตรวจสอบข้อมูล
-        dd($request);
+        //dd($request);
         $request->validate([
            
         ],
@@ -65,10 +65,13 @@ class StudentController extends Controller
         // บันทึกข้อมูล
 
         // บันทึกแบบ eloquant
+
+        $student_id = "63070501049";
+
         $registration = new Registration;
         $registration->ClassID = $request->ClassID;
-        $registration->Regstatus = "Ready";
-        $registration->StudentID = Auth::user()->id;
+        $registration->RegStatus = "Ready";
+        $registration->StudentID = $student_id;
         $registration->save();
 
         return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
