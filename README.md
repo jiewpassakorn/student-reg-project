@@ -7,12 +7,11 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# test-github
+# Process
 
-ton <br>
-stang <br>
-FF <br>
-Jiew <br>
+- แก้ footer
+- แก้ database ของ admin
+- ทำให้ครบตาม transaction
 ## Next step 
 
 1. clone this repo to your PC
