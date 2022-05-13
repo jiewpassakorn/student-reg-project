@@ -48,7 +48,7 @@
                 <div class="container mt-3">
                     <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded">
                         <p>
-                            Student info Student info Student info Student infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent infoStudent info
+                            {{Auth::user()->students->StudentID}}{{Auth::user()->students->StudentName}}
                         </p>
                     </div>
                 </div>
