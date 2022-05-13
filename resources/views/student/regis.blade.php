@@ -115,9 +115,11 @@
                     </div>
                     <div class="col-sm-8">
                     </div>
-                    <div class="col-sm-2">
+                    
+                    <div class="col-sm-2"><form action="{{route('submit')}}" method="post"> @csrf
                         <a href="#insertModal"><button id="editButton" class="btn  btn-secondary mt-2 p-2 px-3">ยืนยัน</button></a>
-                    </div>
+                     </form></div>
+                   
                 </div>
 
 

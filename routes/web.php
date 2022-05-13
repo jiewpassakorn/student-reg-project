@@ -50,8 +50,6 @@ Route::get('/teacher/login',[TeacherController::class,'login'])->name('tlog');
 Route::get('/teacher/welcome',[TeacherController::class,'welcome'])->name('t.welcome');
 
  //Department
- Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
- Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
  Route::get('/department/edit/{id}',[DepartmentController::class,'edit']);
  Route::post('/department/update/{id}',[DepartmentController::class,'update']);
 
@@ -92,6 +90,7 @@ Route::get('/department/all',[DepartmentController::class,'index'])->name('depar
 Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
 
 Route::post('/student/register/add',[StudentController::class,'storeRegistration'])->name('addRegistration');
+Route::post('/student/register/submit',[StudentController::class,'submit'])->name('submit');
 Route::post('/student/register/delete/{ClassID}',[StudentController::class,'delete']);
 
 Route::resource('student',StudentController::class);

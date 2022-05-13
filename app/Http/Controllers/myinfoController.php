@@ -18,7 +18,7 @@ class myinfoController extends Controller
         $data["Phone"] = $request -> Phone;
         $data["Status"] = $request -> Status;
         $data["Sex"] = $request -> Sex;
-        $data["Password"] = $request -> Password;
+        
 
         DB :: table('students') -> insert($data);
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");

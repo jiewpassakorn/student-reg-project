@@ -8,6 +8,7 @@ use App\Models\ClassDetail;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\facades\DB;
 
 
 class StudentController extends Controller
@@ -50,7 +51,7 @@ class StudentController extends Controller
     //     return redirect() -> back -> with('success', "บันทึกข้อมูลเรียบร้อย");
 
     // }
-
+    
     public function storeRegistration(Request $request) {
         // ตรวจสอบข้อมูล
        
@@ -69,18 +70,38 @@ class StudentController extends Controller
 
         
         $student_id = Auth::user()->student_licence_number;
+      /*   global $data;
+        $data = array();
+        $data["ClassID"] = $request->ClassID;
+        $data["RegStatus"] = "Wait";
+        $data["StudentID"] = $student_id;
+        DB :: table('registrations') -> insert($data); */
 
-        //dd($student_id,$student_classid);
+        /* dd($data);  */
 
         $registration = new Registration;
         $registration->ClassID = $request->ClassID;
-        $registration->RegStatus = "Ready";
+        $registration->RegStatus = "Wait";
         $registration->StudentID = $student_id;
         $registration->save();
         
-        return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
+       
+        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
         
 
+    }
+
+    public function submit(Request $request){
+        $student_id = Auth::user()->student_licence_number;
+        /* $sql = "UPDATE registrations SET RegStatus='Ready' WHERE StudentID=$student_id";
+        query($sql); */
+        DB::table('registrations')->where('StudentID',$student_id)->update(array(
+            'RegStatus'=>"Ready",));
+
+       
+            
+
+        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
     public function delete($ClassID){

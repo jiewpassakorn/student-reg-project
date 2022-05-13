@@ -42,7 +42,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-12"><label class="labels">Student ID.</label><input type="text" name="studentid" class="form-control" placeholder="630xxxxxxxx" value="" ></div>
-                        <div class="col-md-12"><label class="labels">Password</label><input type="password" name="Password" class="form-control" placeholder="******" value=""></div>
+                        
                         <!-- <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div> -->
                     </div>
                     <div class="row mt-3">
