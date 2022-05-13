@@ -24,7 +24,7 @@
         <nav class="nav">
           <div> <a href="{{route('home')}}" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Information System</span> </a>
             <div class="nav_list">
-                <a href="{{route('home')}}" class="nav_link"> <i class="fa-solid fa-house"></i> <span class="nav_name">Homepage</span> </a>
+                <a href="{{route('first')}}" class="nav_link"> <i class="fa-solid fa-house"></i> <span class="nav_name">Homepage</span> </a>
                 <a href="{{route('about')}}" class="nav_link active"> <i class="fa fa-users"></i> <span class="nav_name">About us</span> </a>
             </div>
         </div>

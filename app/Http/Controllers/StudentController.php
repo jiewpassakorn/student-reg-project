@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Student;
-use App\Models\ClassDetail;
-use App\Models\CourseDetail;
-use App\Models\Department;
 use App\Models\Registration;
-use App\Models\Schedule;
-use App\Models\Teacher;
+use App\Models\CourseDetail;
+use App\Models\ClassDetail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class StudentController extends Controller
 {
@@ -39,5 +37,38 @@ class StudentController extends Controller
      
     function grading() {
         return view('student.grading');
+    }
+
+    // public function store(Request $request) {
+    //     //send data to DB
+    //     $data = array();
+    //     $data["studentid"] = $request -> studentid;
+
+    //     DB :: table('student') -> insert($data);
+        
+    //     return redirect() -> back -> with('success', "บันทึกข้อมูลเรียบร้อย");
+
+    // }
+
+    public function storeRegistration(Request $request) {
+        // ตรวจสอบข้อมูล
+        $request->validate([
+           
+        ],
+        [
+           
+        ]
+        );
+
+        // บันทึกข้อมูล
+
+        // บันทึกแบบ eloquant
+        $registration = new Registration;
+        $registration->ClassID = $request->ClassID;
+        $registration->Regstatus = "Ready";
+        $registration->StudentID = Auth::user()->id;
+        $registration->save();
+
+        return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 }

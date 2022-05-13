@@ -29,7 +29,6 @@
                     <a href="{{route('regis')}}" class="nav_link"> <i class="fa-solid fa-book-open"></i> <span class="nav_name">ลงทะเบียนเรียน</span> </a> 
                     <a href="{{route('schedule')}}" class="nav_link"> <i class="fa-solid fa-calendar ps-1"></i> <span class="nav_name">ตารางเรียน</span> </a> 
                     <a href="{{route('grading')}}" class="nav_link"> <i class="fa-solid fa-graduation-cap"></i> <span class="nav_name">ผลการเรียน</span> </a> 
-                    <a href="{{route('tlog')}}" class="nav_link pt-4"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
                     <a href="{{route('about')}}" class="nav_link" target="_blank"> <i class="fa fa-users"></i> <span class="nav_name">About us</span> </a>
                 </div>
             </div>
