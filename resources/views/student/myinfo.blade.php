@@ -2,6 +2,10 @@
 @section('title','Student | information')
 @section('content')
 
+@extends('layouts.default')
+@section('title','Student | information')
+@section('content')
+
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
             <div class="row mt-5 p-2">
@@ -38,28 +42,34 @@
                 </div>
             </div>
             <div class="col-md-10 border-right">
+                <form action = "{{route('adddatatoDB')}}"  method="POST">
+                @csrf
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Profile Settings</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-12"><label class="labels">Student ID.</label><input type="text" class="form-control" placeholder="630xxxxxxxx" value="" disabled></div>
-                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                        <div class="col-md-12"><label class="labels">Student ID.</label><input type="text" name="studentid" class="form-control" placeholder="630xxxxxxxx" value="" ></div>
+                        
+                        <!-- <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div> -->
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">DOB</label><input type="text" class="form-control" placeholder="enter dob" value=""></div>
-                        <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address" value=""></div>
-                        <div class="col-md-12"><label class="labels">Department</label><input type="text" class="form-control" placeholder="computer engineering" value="" disabled></div>
-                        <div class="col-md-12"><label class="labels">Email</label><input type="email" class="form-control" placeholder="enter email" value=""></div>
-                        <div class="col-md-12"><label class="labels">Phone</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                        <div class="col-md-12"><label class="labels">Status</label><input type="text" class="form-control" placeholder="status" value="" disabled></div>
-                        <div class="col-md-12"><label class="labels">Sex</label><input type="text" class="form-control" placeholder="Sex" value="" disabled></div>
-                        <div class="col-md-12"><label class="labels">Advisor</label><input type="text" class="form-control" placeholder="Advisor name" value="" disabled></div>
-                    </div>                    
-                </div>
+
+                        <div class="col-md-12"><label class="labels">Name</label><input type="text" name="StudentName" class="form-control" placeholder="full name" value=""></div>             
+                        <div class="col-md-12"><label class="labels">DOB</label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
+                        <div class="col-md-12"><label class="labels">Address</label><input type="text" name = "Address" class="form-control" placeholder="enter address" value=""><br></div>
+                        <div class="col-md-12"><label class="labels">Department</label><input list = "Department" name="Department" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div>
+                        <div class="col-md-12"><br><label class="labels">Email</label><input type="email" name ="Email" class="form-control" placeholder="enter email" value=""></div>
+                        <div class="col-md-12"><label class="labels">Phone</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
+                        <div class="col-md-12"><label class="labels">Status</label><input type="text" name ="Status" class="form-control" placeholder="status" value="" ><br></div>
+                        <div class="col-md-12"><label class="labels">Sex</label><input list="Sex" name = "Sex"><datalist id="Sex"><option value="M">Male<option value="F">Female<option value="U">Undefined</datalist></div>
+                        <div class="col-md-12"><br><label class="labels">Advisor</label><input type="text" name ="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
+                    </div>
+                    <div class="mt-5 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
+                </form>
+
             </div>
         </div>
-            <div class="text-center pb-4"><button id="saveProfile" class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+           
     </div>
 </div>

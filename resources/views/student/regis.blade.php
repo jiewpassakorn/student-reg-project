@@ -23,8 +23,7 @@
               </div>
  
     <!-- table -->
-           <!-- Striped  -->
-           <br>
+        <br>
         <table class="table table-striped shadow-lg text-center">
             <thead class="table table-dark">
                 <tr>
