@@ -93,8 +93,8 @@
                         <div class="col-md-12"><label class="labels">Department</label><input type="text" name = "Department" class="form-control" placeholder="computer engineering" value="" disabled></div>
                         <div class="col-md-12"><label class="labels">Email</label><input type="email" name ="Email" class="form-control" placeholder="enter email" value=""></div>
                         <div class="col-md-12"><label class="labels">Phone</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
-                        <div class="col-md-12"><label class="labels">Status</label><input type="text" name ="Status" class="form-control" placeholder="status" value="" ></div>
-                        <div class="col-md-12"><label class="labels">Sex</label><input type="text" name ="Sex" class="form-control" placeholder="Sex" value="" ></div>
+                        <div class="col-md-12"><label class="labels">Status</label><input type="text" name ="Status" class="form-control" placeholder="status" value="" ><br></div>
+                        <div class="col-md-12"><label class="labels">Sex</label><input list="Sex" name = "Sex"><datalist id="Sex"><option value="M"><option value="F"><option value="U"></datalist></div>
                         <div class="col-md-12"><label class="labels">Advisor</label><input type="text" name ="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
                     </div>
                     <div class="mt-5 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
