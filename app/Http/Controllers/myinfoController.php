@@ -14,6 +14,7 @@ class myinfoController extends Controller
         $data["StudentName"] = $request -> StudentName;
         $data["DOB"] = $request -> DOB;
         $data["Address"] = $request -> Address;
+
         $data["DepartmentID"] = $request -> DepartmentID;
         $data["Email"] = $request -> Email;
         $data["Phone"] = $request -> Phone;
