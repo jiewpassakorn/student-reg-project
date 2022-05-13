@@ -1,13 +1,20 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <div class="col-sm-4  text-center" style="background-color: #E64011; border-radius: 25px">
+                <a href="{{route('home')}}">
+                    <img src="/images/kmutt-logo.png" alt="" width="100px" height="115px">
+                </a>
+            </div>
+            {{-- <x-jet-authentication-card-logo /> --}}
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}" x-data="{role_id: 2}">
             @csrf
+
+            <div class="text-center text-lg ">Registration</div>
 
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />
@@ -31,7 +38,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="role_id" value="{{ __('Register as:') }}" />
-                <select name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                <select name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-red-700 focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     <option value="1">Admin</option>
                     <option value="2">Student</option>
                     <option value="3">Teacher</option>

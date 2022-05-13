@@ -51,7 +51,7 @@
       <div class="container">
           <nav class="nav-menu mobile-menu">
               <ul>
-                  <li class="active"><a href="#">Home</a></li>
+                  <li class="active"><a href="{{route('home')}}">Home</a></li>
                   <li><a href="#">News</a></li>
                   <li><a href="#">Courses</a>
                       <ul class="dropdown">
@@ -61,10 +61,10 @@
                       </ul>
                   </li>
                   <li><a href={{route('about')}} target="_blank">About</a></li>
-                  <li><a href={{route('welcomeByLaravel')}}>welcomeByLaravel</a></li>
-                  <li><a href="#">Login</a>
+                  {{-- <li><a href={{route('welcomeByLaravel')}}>welcomeByLaravel</a></li> --}}
+                  <li><a href="{{route('login')}}">Login</a>
                       <ul class="dropdown">
-                          <li><a href={{route('login')}}>for student</a></li>
+                          <li><a href={{route('login')}}>Login</a></li>
                           <li><a href={{route('register')}}>register</a></li>
                         </ul>
                     </li>

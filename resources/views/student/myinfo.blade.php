@@ -2,6 +2,10 @@
 @section('title','Student | information')
 @section('content')
 
+@extends('layouts.default')
+@section('title','Student | information')
+@section('content')
+
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
             <div class="row mt-5 p-2">
@@ -10,11 +14,15 @@
                 </div>
             </div>
             <hr>
-            <div class="row d-grid justify-content-center">
-                 <div class="container mt-3">
-                   <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded" ></div>
-                 </div>
-           </div>
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Anoucement</h5>
+                  <p class="card-text">This is student register beta version.</p>
+                </div>
+                <div class="card-footer text-muted">
+                  2 days remaining
+                </div>
+              </div>
            <div class="row d-flex">
                <div class="col-12 mt-2 d-flex justify-content-center">
                   <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-success">เพิ่มข้อมูล</button></a> 
