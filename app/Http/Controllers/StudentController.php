@@ -88,4 +88,13 @@ class StudentController extends Controller
         $delete=Registration::where('ClassID',$select)->delete();
         return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
+
+    public function join(){
+        // $coursedetails = CourseDetail::all('CousreID')->get();
+        // $classdetails = ClassDetail::with('CousreID')->get();
+        // $registrations = Registration::with('ClassID')->get();
+
+     
+        return view('student.regis',compact('coursedetails','classdetails','registrations'));
+    }
 }
