@@ -16,8 +16,5 @@ class Department extends Model
         'DepartmentID',
         'DepartmentName',
         'FacultyName'
-
- 
-
     ];
 }
