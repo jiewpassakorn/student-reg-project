@@ -43,6 +43,7 @@ Route::get('/admin/studentManage',[AdminController::class,'studentManage'])->nam
 Route::get('/admin/teacherManage',[AdminController::class,'teacherManage'])->name('teacherManage');
 Route::get('/admin/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
 
+Route::post('/admin/studentManage/add',[AdminController::class,'store'])->name('studentManage_add');
 // For Student
 
 Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB');
