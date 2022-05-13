@@ -58,7 +58,7 @@
                         <div class="col-md-12"><label class="labels">Name</label><input type="text" name="StudentName" class="form-control" placeholder="full name" value=""></div>             
                         <div class="col-md-12"><label class="labels">DOB</label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
                         <div class="col-md-12"><label class="labels">Address</label><input type="text" name = "Address" class="form-control" placeholder="enter address" value=""><br></div>
-                        <div class="col-md-12"><label class="labels">Department</label><input list = "Department" name="Department" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div>
+                        <div class="col-md-12"><label class="labels">Department</label><input list = "Department" name="Departmentid" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div>
                         <div class="col-md-12"><br><label class="labels">Email</label><input type="email" name ="Email" class="form-control" placeholder="enter email" value=""></div>
                         <div class="col-md-12"><label class="labels">Phone</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
                         <div class="col-md-12"><label class="labels">Status</label><input type="text" name ="Status" class="form-control" placeholder="status" value="" ><br></div>
