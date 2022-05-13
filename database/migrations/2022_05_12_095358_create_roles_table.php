@@ -18,24 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
-
-        DB::table('roles')->insert(
-            array(
-                'name' => 'admin'
-            )
-        );
-
-        DB::table('roles')->insert(
-            array(
-                'name' => 'student'
-            )
-        );
-
-        DB::table('roles')->insert(
-            array(
-                'name' => 'teacher'
-            )
-        );
     }
 
     /**
