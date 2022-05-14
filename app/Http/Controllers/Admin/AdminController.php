@@ -114,6 +114,7 @@ class AdminController extends Controller
         $teacher->Phone = $request->Phone;
         $teacher->DepartmentID = $request->DepartmentID;
         $teacher -> save();
+        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
         
 
     }
