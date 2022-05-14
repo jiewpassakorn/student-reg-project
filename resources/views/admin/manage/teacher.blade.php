@@ -53,21 +53,18 @@
             <tbody>
                 @foreach($teachersinfo as $row)
                 <tr>
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        $('#deleteModal').on('show.bs.modal', function (event) {
-                        $(this).find('{{$row->TeacherID}}').val();
-                        });
-                    });        
-                </script>
+
                     <th>{{$row->TeacherID}}</th>
                     <td>{{$row->TeacherName}}</td>
                     <td>{{$row->Email}}</td>
                     <td>{{$row->FacultyName}}</td>
                     <td>{{$row->DepartmentName}}</td>
-                    <td><a href="#"><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="{{url('/admin/teacherManage/delete/'.$row->TeacherID)}}"><button class="btn btn-danger">ลบข้อมูล</button></a> </td>
-                    {{-- <td><a href="{{url('/admin/teacherManage/delete/'.$row->TeacherID)}}"><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td> --}}
+
+
+                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
+                    <td><a onclick="return confirm('ยืนยันที่จะลบ อ.{{$row->TeacherName}}')" href="{{url('/admin/teacherManage/delete/'.$row->TeacherID)}}"><button class="btn ms-sm-5 mx-2 btn-danger" >ลบข้อมูล</button></a> </td>
+
+
                 </tr>
                 @endforeach
             </tbody>
