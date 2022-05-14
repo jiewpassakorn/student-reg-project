@@ -7,7 +7,10 @@
     <div class="container">
         <br>
         <br>
-        <h1><i class="fa fa-book fa-xs"></i> จัดการข้อมูลรายวิชา</h1>
+        <h1>
+            <i class="fa fa-book fa-xs"></i> จัดการข้อมูลรายวิชา
+            <font size = "5">จำนวนวิชา <span>{{count($courseinfo)}}</span> วิชา</font>
+        </h1>
     <div class="row d-flex">
         <hr>
         <div class="col-12 mt-2 d-flex justify-content-center">
@@ -20,7 +23,8 @@
                     <th>เลขคอร์ส</th>
                     <th>ชื่อคอร์ส</th>
                     <th>หน่วยกิต</th>
-                    <th>สาขา</th>
+                    <th>ภาควิชา</th>
+                    <th>จำนวนกลุ่ม</th>
                     <th> </th>
                     <th> </th>
                 </tr>
@@ -32,6 +36,7 @@
                     <td>{{$row->CourseName}}</td>
                     <td>{{$row->Credit}}</td>
                     <td>{{$row->DepartmentName}}</td>
+                    <td>{{$classinfo->where('CourseID',$row->CourseID)->count()}}</td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
                 </tr>

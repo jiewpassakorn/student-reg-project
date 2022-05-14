@@ -58,13 +58,13 @@
                     </thead>
                     <tbody>
                         @php($i=1)
-                        @foreach($registrations as $row)
+                        @foreach($registrationsinfo as $row)
                         <tr>
                             <th>{{$i++}}</th>
-                            <td>{{$row->classdetails->courseDetails->CourseID}}</td>
-                            <td>{{$row->classdetails->courseDetails->CourseName}}</td>
-                            <td>{{$row->classdetails->courseDetails->Credit}}</td>
-                            <td>{{$row->classdetails->Section}}</td>
+                            <td>{{$row->CourseID}}</td>
+                            <td>{{$row->CourseName}}</td>
+                            <td>{{$row->Credit}}</td>
+                            <td>{{$row->Section}}</td>
                             <form action="{{route('student.destroy', $row->ClassID)}}" method="post">
                                 @csrf
                                 @method('PUT')
@@ -74,7 +74,9 @@
                         @endforeach
                     </tbody>
                 </table>
-
+                <font size = "4" align = 'right'>จำนวนวิชาที่ลงทะเบียน <span>{{count($registrations)}}</span> วิชา</font>
+                <font size = "4" align = 'right'>หน่วยกิตทั้งหมด <span>{{$credit}}</span> หน่วยกิต</font>
+                <br>
                 <!-- button -->
                 <div class="row text-center">
                     <div class="col-sm-2">

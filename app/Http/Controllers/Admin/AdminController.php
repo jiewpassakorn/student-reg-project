@@ -39,7 +39,11 @@ class AdminController extends Controller
         $courseinfo = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
         ->select('course_details.CourseID','course_details.CourseName','course_details.Credit','departments.DepartmentName','departments.FacultyName')
         ->paginate(5);
-        return view('admin.manage.course',compact('courseinfo'));
+        $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
+        ->select('course_details.CourseID','course_details.CourseName','class_details.ClassID','class_details.Section','class_details.Semester')
+        ->get();
+        $registrations = Registration::all();
+        return view('admin.manage.course',compact('courseinfo','classinfo'));
     }
 
     public function studentManage_add(Request $request) {
