@@ -10,8 +10,10 @@ use App\Models\Teacher;
 use App\Models\CourseDetail;
 use App\Models\ClassDetail;
 use App\Models\Registration;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\DB;
+use Illuminate\Support\facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -49,7 +51,41 @@ class AdminController extends Controller
     }
 
     public function studentManage_add(Request $request) {
-        $request->validate([
+        // $validator = Validator::make($request->all(),[
+        //     'studentid' => 'required|unique:students',
+        //     'StudentName' => 'required',
+        //     'DOB' => 'required',
+        //     'Address' => 'required',
+        //     'DepartmentID' => 'required',
+        //     'Email' => 'required',
+        //     'Phone' => 'required',
+        //     'Status' => 'required',
+        //     'Sex' => 'required',
+        //  ]);
+
+        //  if($validator->fails())
+        //  {
+        //      return response()->json([
+        //          'status'=>400,
+                
+        //      ]);
+        //  }
+        //  else{
+        //      $data = array();
+        // $data["studentid"] = $request -> studentid;
+        // $data["StudentName"] = $request -> StudentName;
+        // $data["DOB"] = $request -> DOB;
+        // $data["Address"] = $request -> Address;
+        // $data["DepartmentID"] = $request -> DepartmentID;
+        // $data["Email"] = $request -> Email;
+        // $data["Phone"] = $request -> Phone;
+        // $data["Status"] = $request -> Status;
+        // $data["Sex"] = $request -> Sex;
+        // DB :: table('students') -> insert($data);
+
+        //  }
+
+         $request->validate([
             'studentid' => 'required|unique:students',
             'StudentName' => 'required',
             'DOB' => 'required',
@@ -73,9 +109,8 @@ class AdminController extends Controller
              'Sex.required'=>"กรุณาระบุด้วยครับ",
          ]
          );
-        //send data to DB
-        
-        $data = array();
+        // send data to DB
+             $data = array();
         $data["studentid"] = $request -> studentid;
         $data["StudentName"] = $request -> StudentName;
         $data["DOB"] = $request -> DOB;
@@ -86,6 +121,8 @@ class AdminController extends Controller
         $data["Status"] = $request -> Status;
         $data["Sex"] = $request -> Sex;
         DB :: table('students') -> insert($data);
+        
+        
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
@@ -99,6 +136,7 @@ class AdminController extends Controller
 
     public function studentManage_delete($StudentID){
         $select=$StudentID;
+        
         $delete=Student::where('StudentID',$select)->delete();
         return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
