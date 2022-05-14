@@ -97,16 +97,16 @@ class AdminController extends Controller
             'Sex' => 'required',
          ],
          [
-             'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
-             'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว",
-             'StudentName.required'=>"กรุณาป้อนชื่อนักศึกษาด้วยครับ",
-             'DOB.required'=>"กรุณาป้อนวันเกิดด้วยครับ",
-             'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
-             'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
-             'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
-             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
-             'Status.required'=>"กรุณาป้อนสถานภาพด้วยครับ",
-             'Sex.required'=>"กรุณาระบุด้วยครับ",
+            'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
+            'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว",
+            'StudentName.required'=>"กรุณาป้อนชื่อนักศึกษาด้วยครับ",
+            'DOB.required'=>"กรุณาป้อนวันเกิดด้วยครับ",
+            'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
+            'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
+            'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
+            'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
+            'Status.required'=>"กรุณาป้อนสถานภาพด้วยครับ",
+            'Sex.required'=>"กรุณาระบุด้วยครับ",
          ]
          );
         // send data to DB
@@ -138,7 +138,7 @@ class AdminController extends Controller
         $select=$StudentID;
         
         $delete=Student::where('StudentID',$select)->delete();
-        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+        return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
     }
 
 
@@ -187,7 +187,7 @@ class AdminController extends Controller
     public function teacherDelete($TeacherID){
         $select=$TeacherID;
         $delete=Teacher::where('TeacherID',$select)->delete();
-        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+        return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
     }
 
 

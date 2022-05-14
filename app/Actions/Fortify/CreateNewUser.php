@@ -25,6 +25,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            'role_id' => ['required']
         ])->validate();
 
         return User::create([
@@ -35,6 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'student_address' => $input['student_address'] ?? null,
             'student_licence_number' => $input['student_licence_number'] ?? null,
             'teacher_qualifications' => $input['teacher_qualifications'] ?? null,
+            'DepartmentID' => $input['DepartmentID'] ?? null,
         ]);
     }
 }
