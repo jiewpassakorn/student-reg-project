@@ -19,7 +19,27 @@
             <div class="col-12 mt-2 d-flex justify-content-center">
                 <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" data-bs-toggle="modal" data-bs-target="#insertModal">เพิ่มข้อมูลนักศึกษา</button></a>
             </div>
-            <table class="table table-striped shadow-sm text-center mt-3" style="border-radius: 10px">
+
+            {{-- alert message --}}
+            @if(Session::has('success'))
+                <div class="d-inline-flex">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                        {{Session::get('success')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>                  
+                </div>
+            @elseif(Session::has('delete'))      
+                <div class="d-inline-flex">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        {{Session::get('delete')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+
+            <table class="table table-striped shadow-sm text-center mt-2" style="border-radius: 10px">
                 <thead class="table table-dark">
                     <tr>
                         <th>รหัสนักศึกษา</th>
@@ -46,12 +66,12 @@
                             <font color="red">Retire</font>
                             @endif
                         </td>
-
-                        <td><a href="#"><button value="{{$row->StudentID}}" class="btn ms-sm-5 editbtn mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                        <!-- <td><a href="{{url('/admin/studentManage/edit/'.$row->StudentID)}}#" class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</a></td> -->
+                        
+                        <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td> -->
+                        <td><a href="{{url('/admin/studentManage/edit/'.$row->StudentID)}}#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</a></td>
                         <!-- <td><button type="button" value="1" class="btn btn-primary editbtn btn-sm">Edit</button></td> -->
                         <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger delete_student studentid" value="{{$row->StudentID}}" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td> -->
-                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger" >ลบข้อมูล</a></td>
+                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a></td>
 
 
                     </tr>
