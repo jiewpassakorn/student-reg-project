@@ -64,6 +64,16 @@
                             <font color="red">Drop</font>
                             @elseif ($row->Status == "Retire")
                             <font color="red">Retire</font>
+                            @elseif ($row->Status == "Graduated")
+                            <font color="Blue">Graduated</font>
+                            @elseif ($row->Status == "1")
+                            <font color="green">Normal</font>
+                            @elseif ($row->Status == "2")
+                            <font color="red">Drop</font>
+                            @elseif ($row->Status == "3")
+                            <font color="red">Retire</font>
+                            @elseif ($row->Status == "4")
+                            <font color="Blue">Graduated</font>
                             @endif
                         </td>
                         
@@ -135,11 +145,13 @@
                         <div class="row">
                             <div class="col-md-6"><label class="labels">Student ID</label>
                                 @error('studentid')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" class="form-control" placeholder="" value="{{$row->StudentID}}" name="studentid">
+                                <input type="text" class="form-control" placeholder="Student ID" value="" name="studentid">
+                                {{-- <input type="text" class="form-control" placeholder="" value="{{$row->StudentID}}" name="studentid"> --}}
                             </div>
                             <div class="col-md-6"><label class="labels">Name</label>
                                 @error('StudentName')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="StudentName" class="form-control" value="{{$row->StudentName}}">
+                                <input type="text" name="StudentName" class="form-control" value="" placeholder="Name">
+                                {{-- <input type="text" name="StudentName" class="form-control" value="{{$row->StudentName}}"> --}}
                             </div>
                         </div>
                         <div class="row">
@@ -152,16 +164,17 @@
 
                             <div class="col-md-7"><label class="labels mt-2">Address</label>
                                 @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="Address" class="form-control" value="{{Auth::user()->Address}}">
+                                <input type="text" name="Address" class="form-control" value="" placeholder="Address">
+                                {{-- <input type="text" name="Address" class="form-control" value="{{Auth::user()->Address}}"> --}}
                             </div>
 
 
 
                             <div class="col-md-4"><label class="labels mt-2">Department (required)</label>
-                                <div class="input-group mb-3">
-                                    <label class="input-group-text" for="DepartmentID"></label>
+                                <div class="mb-3">
+                                    <label class="" for="DepartmentID"></label>
                                     <select class="form-select" id="DepartmentID" name="DepartmentID">
-                                        <option selected value="">Choose...</option>
+                                        <option selected value="">Select department...</option>
                                         <option value="101">CPE</option>
                                         <option value="102">ME</option>
                                         <option value="111">Maths</option>
@@ -172,25 +185,25 @@
 
                             <div class="col-md-8"><label class="labels mt-2">Email</label>
                                 @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="email" name="Email" class="form-control" value="">
+                                <input type="email" name="Email" class="form-control" value="" placeholder="Enter email">
                             </div>
 
                             <div class="col-md-4"><label class="labels mt-0">Phone (required)</label>
 
-                                <input type="text" name="Phone" class="form-control" placeholder="enter phone number" value="">
+                                <input type="text" name="Phone" class="form-control" placeholder="Enter phone number" value="">
                                 @error('Phone')<span class="text-danger py-0">({{$message}})</span>@enderror
                             </div>
 
 
-                            <div class="col-md-4"><label class="labels mt-0">
-                                    Status (required)</label>
-                                <div class="input-group mb-2">
-                                    <label class="input-group-text" for="Status"></label>
+                            <div class="col-md-4"><label class="labels mt-0">Status (required)</label>
+                                <div class="mb-2">
+                                    <label class="" for="Status"></label>
                                     <select class="form-select" id="Status" name="Status">
                                         <option selected value="">Choose...</option>
-                                        <option value="Normal">Normal</option>
-                                        <option value="Drop">Drop</option>
-                                        <option value="Retire">Retire</option>
+                                        <option value="1">Normal</option>
+                                        <option value="2">Drop</option>
+                                        <option value="3">Retire</option>
+                                        <option value="4">Graduated</option>
                                     </select>
                                     @error('Status')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 </div>
@@ -200,8 +213,8 @@
                             <div class="col-md-4"><label class="labels mt-0">
                                     Sex </label>
                                 @error('Sex')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <div class="input-group mb-4">
-                                    <label class="input-group-text" for="Sex"></label>
+                                <div>
+                                    <label class="" for="Sex"></label>
                                     <select class="form-select" id="Sex" name="Sex">
                                         <option selected value="">Choose...</option>
                                         <option value="M">Male</option>
@@ -216,116 +229,6 @@
                         </div>
                         <div class="modal-footer mt-3">
                             <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- insert Modal -->
-<div class="modal fade" id="insertModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title">เพิ่มข้อมูลนักศึกษา</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
-            </div>
-            <div class="modal-body">
-                <div class="col-md-12">
-                    <form action="{{route('studentManage_add')}}" method="POST" id="addform">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-6"><label class="labels">Student ID.</label>
-                                @error('studentid')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" class="form-control studentid" placeholder="" value="" name="studentid">
-                            </div>
-                            <div class="col-md-6"><label class="labels">Name</label>
-                                @error('StudentName')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="StudentName" class="form-control StudentName" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-
-
-                            <div class="col-md-5"><label class="labels mt-2">DOB (required)</label>
-                                @error('DOB')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="date" name="DOB" class="form-control DOB" placeholder="enter dob" value="">
-                            </div>
-
-                            <div class="col-md-7"><label class="labels mt-2">Address</label>
-                                @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="Address" class="form-control Address" value="{{Auth::user()->Address}}">
-                            </div>
-
-
-
-                            <div class="col-md-4"><label class="labels mt-2">
-                                    Department (required)</label>
-                                <div class="input-group mb-3">
-                                    <label class="input-group-text" for="DepartmentID"></label>
-                                    <select class="form-select DepartmentID" id="DepartmentID" name="DepartmentID">
-                                        <option selected value="">Choose...</option>
-                                        <option value="101">CPE</option>
-                                        <option value="102">ME</option>
-                                        <option value="111">Maths</option>
-                                    </select>
-                                    @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-8"><label class="labels mt-2">Email</label>
-                                @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="email" name="Email" class="form-control Email" value="">
-                            </div>
-
-                            <div class="col-md-4"><label class="labels mt-0">Phone (required)</label>
-
-                                <input type="text" name="Phone" class="form-control Phone" placeholder="enter phone number" value="">
-                                @error('Phone')<span class="text-danger py-0">({{$message}})</span>@enderror
-                            </div>
-
-
-                            <div class="col-md-4"><label class="labels mt-0">
-                                    Status (required)</label>
-                                <div class="input-group mb-2">
-                                    <label class="input-group-text" for="Status"></label>
-                                    <select class="form-select Status" id="Status" name="Status">
-                                        <option selected value="">Choose...</option>
-                                        <option value="Normal">Normal</option>
-                                        <option value="Drop">Drop</option>
-                                        <option value="Retire">Retire</option>
-                                    </select>
-                                    @error('Status')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-4"><label class="labels mt-0">
-                                    Sex </label>
-                                @error('Sex')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <div class="input-group mb-4">
-                                    <label class="input-group-text" for="Sex"></label>
-                                    <select class="form-select Sex" id="Sex" name="Sex">
-                                        <option selected value="">Choose...</option>
-                                        <option value="M">Male</option>
-                                        <option value="F">Female</option>
-                                        <option value="U">Undefined</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12"><label class="labels mt-0">Advisor</label>
-                                <input type="text" name="Advisor" class="form-control Advisor" placeholder="Advisor name" value="" disabled>
-                            </div>
-                        </div>
-                        <div class="modal-footer mt-3">
-                            <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_student">
                         </div>
                     </form>
                 </div>

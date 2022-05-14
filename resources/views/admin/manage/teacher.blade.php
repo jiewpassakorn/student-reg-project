@@ -145,7 +145,7 @@
                                     </datalist> --}}
                                     <select name="DepartmentID" class="form-select">
                                         <option selected>Choose department...</option>
-                                        <option value="101">Computer Engineering</option>
+                                        <option value="101">CPE</option>
                                         <option value="102">ME</option>
                                         <option value="111">Maths</option>
                                     </select>

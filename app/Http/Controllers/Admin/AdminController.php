@@ -85,7 +85,7 @@ class AdminController extends Controller
 
         //  }
 
-         $request->validate([
+        $request->validate([
             'studentid' => 'required|unique:students',
             'StudentName' => 'required',
             'DOB' => 'required',
@@ -95,8 +95,8 @@ class AdminController extends Controller
             'Phone' => 'required',
             'Status' => 'required',
             'Sex' => 'required',
-         ],
-         [
+        ],
+        [
             'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
             'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว",
             'StudentName.required'=>"กรุณาป้อนชื่อนักศึกษาด้วยครับ",
@@ -107,10 +107,10 @@ class AdminController extends Controller
             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
             'Status.required'=>"กรุณาป้อนสถานภาพด้วยครับ",
             'Sex.required'=>"กรุณาระบุด้วยครับ",
-         ]
-         );
+        ]
+        );
         // send data to DB
-             $data = array();
+        $data = array();
         $data["studentid"] = $request -> studentid;
         $data["StudentName"] = $request -> StudentName;
         $data["DOB"] = $request -> DOB;
@@ -159,17 +159,17 @@ class AdminController extends Controller
             'Email' => 'required',
             'Phone' => 'required',
 
-         ],
-         [
-             'TeacherID.required'=>"กรุณาป้อนรหัสอาจารย์ด้วยครับ",
-             'TeacherID.unique'=>"รหัสอาจารย์นี้มีอยู่ในระบบแล้ว",
-             'TeacherName.required'=>"กรุณาป้อนชื่ออาจารย์ด้วยครับ",
-             'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
-             'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
-             'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
-             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
+        ],
+        [
+            'TeacherID.required'=>"กรุณาป้อนรหัสอาจารย์ด้วยครับ",
+            'TeacherID.unique'=>"รหัสอาจารย์นี้มีอยู่ในระบบแล้ว",
+            'TeacherName.required'=>"กรุณาป้อนชื่ออาจารย์ด้วยครับ",
+            'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
+            'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
+            'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
+            'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
 
-         ]);
+        ]);
         
         $teacher = new Teacher;
         $teacher->TeacherID = $request->TeacherID;
