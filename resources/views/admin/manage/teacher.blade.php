@@ -120,7 +120,7 @@
                     <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
                 </div>
                 <div class="modal-body">
-                    คุณต้องการที่จะลบรายวิชานี้หรือไม่
+                    คุณต้องการที่จะลบอาจารย์ท่านนี้หรือไม่
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
