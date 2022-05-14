@@ -19,15 +19,36 @@
                     2 days remaining
                 </div>
             </div>
-            <div class="row d-flex">
-                <div class="col-12 mt-2 d-flex justify-content-center">
-                    <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-success">เพิ่มข้อมูล</button></a> 
-                    <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-secondary">แก้ไขข้อมูล</button></a> 
+            
+            {{-- alert message --}}
+            @if(Session::has('success'))
+                <div class="d-inline-flex mt-3">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                        {{Session::get('success')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>                  
+                </div> 
+            @elseif(Session::has('wait'))
+                <div class="d-inline-flex mt-3">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                        {{Session::get('wait')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 </div>
-            </div>
+            @elseif(Session::has('delete'))      
+                <div class="d-inline-flex mt-3">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        {{Session::get('delete')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
 
     <!-- test form -->
-    <div class="container rounded bg-white mt-5 mb-5 shadow-lg">
+    <div class="container rounded bg-white mt-2 mb-5 shadow-lg">
         <div class="row">
             <div class="col-md-2 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -49,28 +70,24 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12"><label class="labels">Name</label><input type="text" name="StudentName" class="form-control" value="{{Auth::user()->name}}"></div>             
-                        <div class="col-md-12"><label class="labels mt-2">DOB (required)</label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
-                        <div class="col-md-12"><label class="labels mt-2">Address</label><input type="text" name = "Address" class="form-control" value="{{Auth::user()->Address}}"></div>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label class="labels mt-2">Department (required)</label>
-                                    <select class="form-select" aria-label="Default select example" name="DepartmentID">
-                                        <option selected>Open this select menu</option>
-                                        <option value="101">Computer Engineering</option>
-                                        <option value="102">ME</option>
-                                        <option value="111">Maths</option>
-                                    </select>
+                                    <label class="labels mt-2">Department (required)<input type="text" class="form-control" value="{{$departments->DepartmentName}}" readonly>
+                                    </label><input type="text" name="DepartmentID" class="form-control" value="{{Auth::user()->DepartmentID}}" hidden>
                                 </div>
+                                <div class="col-md-9"><label class="labels mt-2">DOB (required)</label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
                             </div>                            
                         </div>
+                        <div class="col-md-12"><label class="labels mt-2">Address</label><input type="text" name = "Address" class="form-control" value=""></div>
+                        
                         <div class="col-md-12"><label class="labels mt-2">Email</label><input type="email" name ="Email" class="form-control" value="{{Auth::user()->email}}" readonly></div>
                         <div class="col-md-12"><label class="labels mt-2">Phone (required)</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
 
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="mt-2">Sex</label>
+                                    <label class="mt-2">Sex (required)</label>
                                     <select class="form-select" aria-label="Default select example" name="Sex">
                                         <option value="" selected>Select your sex</option>
                                         <option value="M">Male</option>
@@ -80,7 +97,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="mt-2">Status (required)</label>
-                                    <select class="form-select" aria-label="Default select example" name ="Status">
+                                    <select class="form-select" aria-label="Default select example" name ="Status" >
                                         <option >Open this select menu</option>
                                         <option value="1" selected>Normal</option>
                                         <option value="2">Drop</option>
@@ -90,17 +107,19 @@
                                 </div>
                             </div>                            
                         </div>
-                        
-
-                        <div class="col-md-12"><label class="labels mt-2">Status (required)</label><input class="ml-2" list = "Status" name="Status" ><datalist id="Status"><option value="Normal" >Normal<option value="Drop">Drop<option value="Retire">Retire</datalist></div>
-                        <div class="col-md-12"><label class="labels mt-3">Sex</label><input class="ml-2" list="Sex" name = "Sex"><datalist id="Sex"><option value="M">Male<option value="F">Female<option value="U">Undefined</datalist></div>
-
                         <div class="col-md-12"><label class="labels mt-2">Advisor</label><input type="text" name ="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
                         
                     </div>
                     <div class="mt-4 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
-                </form>        
+                </form>       
             </div>
         </div>           
     </div>
+    
+    {{-- <div class="row d-flex">
+        <div class="col-12 mb-3 d-flex justify-content-center">
+            <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-success">เพิ่มข้อมูล</button></a> 
+            <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-secondary">แก้ไขข้อมูล</button></a> 
+        </div>
+    </div>  --}}
 </div>

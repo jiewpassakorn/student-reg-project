@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Registration;
 use App\Models\CourseDetail;
 use App\Models\ClassDetail;
+use App\Models\Department;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,8 +19,13 @@ class StudentController extends Controller
     } 
 
     function myinfo() {
+
         $students = Student::all();
-        return view('student.myinfo',compact('students'));
+
+        $departments = Department::where('DepartmentID',Auth::user()->DepartmentID)
+        ->select('departments.DepartmentID','departments.DepartmentName')->first();
+
+        return view('student.myinfo',compact('students','departments'));
     }
 
     function welcome () {
