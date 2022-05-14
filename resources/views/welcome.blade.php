@@ -25,7 +25,12 @@
             <div class="card-body">
               <h5 class="card-title">Anoucement</h5>
               <p class="card-text">This is student register beta version.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <li>For student</li>
+              <div class="container">If this is your first login, please fill your information correctly.</div>
+              @if (auth()->user()->role_id == 2) 
+                        <a href="{{route('myinfo')}}" class="btn btn-primary mt-2">Edit information</a>
+              @endif
+              
             </div>
             <div class="card-footer text-muted">
               2 days remaining

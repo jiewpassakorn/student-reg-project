@@ -37,16 +37,12 @@
                 @if (Route::has('login'))
                     <div class="hidden right-0 sm:block">
                     @auth
-                    <a class="btn btn-light" href="{{ route('first') }}"><i class="fa fa-user"></i> Registration System</a>
-                    <a class="btn btn-light" href="{{ route('home') }}"><i class="fa fa-user"></i> {{Auth::user()->name}}</a>
-                        {{-- <a href="{{ route('home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a> --}}
+                    <a class="btn btn-light" href="{{ route('first') }}"><i class="fa fa-user"></i> {{Auth::user()->name}}</a>
                     @else
                         <a class="btn btn-light" href="{{route('login')}}"><i class="fa fa-sign-in fa-lg"></i> Login</a>
-                        {{-- <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a> --}}
 
                         @if (Route::has('register'))
                             <a class="btn btn-light" href="{{route('register')}}"><i class="fa fa-id-card"></i> Register</a>
-                            {{-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a> --}}
                         @endif
                     @endauth
                     </div>
@@ -68,12 +64,13 @@
                         </ul>
                     </li>
                     <li><a href={{route('about')}}>About</a></li>
-                    <li><a href="{{route('login')}}">Login</a>
+                    <li><a href={{route('first')}}>Registration System</a></li>
+                    {{-- <li><a href="{{route('login')}}">Login</a>
                         <ul class="dropdown">
                             <li><a href={{route('login')}}>Login</a></li>
                             <li><a href={{route('register')}}>register</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </nav>
         </div>

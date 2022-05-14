@@ -54,8 +54,7 @@ Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB'
 
 
 // For Teacher
-Route::get('/teacher/login',[TeacherController::class,'login'])->name('tlog');
-Route::get('/teacher/welcome',[TeacherController::class,'welcome'])->name('t.welcome');
+Route::get('/teacher/report',[TeacherController::class,'report'])->name('t.report');
 
 // Department
 Route::get('/department/edit/{id}',[DepartmentController::class,'edit']);

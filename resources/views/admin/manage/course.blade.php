@@ -39,8 +39,8 @@
             </tbody>
         </table>
         <hr>
-        <div class="row text-center">
-        <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success mt-5" 
+        <div class="d-flex justify-content-center">
+        <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success mt-2" 
             data-bs-toggle="modal" data-bs-target="#insertClassModal">เพิ่มรายละเอียดภายในวิชา</button></a> 
         </div>
         <table class="table table-striped shadow-sm text-center mt-3">
