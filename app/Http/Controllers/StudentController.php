@@ -31,7 +31,7 @@ class StudentController extends Controller
         $classdetails = ClassDetail::all();
         $coursejoin = CourseDetail::Join('class_details', 'course_details.CourseID', '=', 'class_details.CourseID')
         ->Join('schedules', 'class_details.ClassID', '=', 'schedules.ClassID')
-        ->Join('teachers', 'schedules.TeacherID', '=', 'teachers.TeacherID')
+        ->Join('teachers', 'schedules.TeacherIDdif', '=', 'teachers.TeacherID')
         ->select('course_details.CourseID','course_details.CourseName','course_details.Credit','class_details.ClassID','class_details.Section','schedules.Room','schedules.Weekday','schedules.Time','teachers.TeacherName')
         ->get();
         $registrations = Registration::where('StudentID',Auth::user()->student_licence_number)->get();

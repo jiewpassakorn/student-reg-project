@@ -31,13 +31,16 @@
             <tbody>
                 @foreach($teachersinfo as $row)
                 <tr>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('#deleteModal').on('show.bs.modal', function (event) {
+                        $(this).find('{{$row->TeacherID}}').val();
+                        });
+                    });        
+                </script>
                     <th>{{$row->TeacherID}}</th>
                     <td>{{$row->TeacherName}}</td>
-
-
                     <td>{{$row->DepartmentName}}</td>
-
-
                     <td>{{$row->Email}}</td>
                     <td>{{$row->FacultyName}}</td>
                     <td>{{$row->DepartmentName}}</td>
