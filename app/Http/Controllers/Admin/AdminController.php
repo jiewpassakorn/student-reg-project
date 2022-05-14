@@ -90,6 +90,14 @@ class AdminController extends Controller
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
+    public function studentManage_edit($StudentID){
+        $select=$StudentID;
+        $student=Student::where('StudentID',$select)->get();
+        dd($student);
+        return view('admin.manage.student',compact('student'));
+    }
+
+
     public function studentManage_delete($StudentID){
         $select=$StudentID;
         $delete=Student::where('StudentID',$select)->delete();
