@@ -38,8 +38,7 @@
                     <td>{{$row->Semester}}</td>
                     <td>{{$registrations->where('ClassID',$row->ClassID)->count()}}</td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
-                </tr>
+                    <td><a onclick="return confirm('ยืนยันที่จะลบ คลาส {{$row->ClassID}} รายวิชา {{$row->CourseName}}')" href="{{url('/admin/SectionManage/delete/'.$row->ClassID)}}"><button class="btn ms-sm-5 mx-2 btn-danger" >ลบข้อมูล</button></a> </td>
                 @endforeach
             </tbody>
         </table>
@@ -57,20 +56,23 @@
                     <h5 class="modal-title">เพิ่มรายละเอียดคลาส</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
                 </div>
+                <form action = "{{route('sectionAdd')}}"  method="POST">
+                @csrf
                 <div class="modal-body">
                     <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label><input type="text" class="form-control" placeholder="อิงจากตารางคอร์สดีเทล (FK)" value=""></div>
-                                <div class="col-md-6 mt-2"><label class="labels">กลุ่ม</label><input type="text" class="form-control" value="" placeholder=""></div>
-                                <div class="col-md-6 mt-2"><label class="labels">ภาคการศึกษา</label><input type="text" class="form-control" placeholder="" value=""></div>
+                                <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label><input type="text" name="ClassID" class="form-control" placeholder="" value=""></div>
+                                <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label><input type="text" name="CourseID" class="form-control" placeholder="อิงจากตารางคอร์สดีเทล (FK)" value=""></div>
+                                <div class="col-md-6 mt-2"><label class="labels">กลุ่ม</label><input type="text" name="Section" class="form-control" value="" placeholder=""></div>
+                                <div class="col-md-6 mt-2"><label class="labels">ภาคการศึกษา</label><input type="text" name="Semester" class="form-control" placeholder="" value=""></div>
                             </div>
                     </div>
                 </div>
                 <div class="modal-footer mt-3">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-success">บันทึกข้อมูล</button>
+                    <input type="submit" value="บันทึกข้อมูล" class="btn btn-primary profile-button add_button">
                 </div>
+                </form>
             </div>
         </div>
     </div>

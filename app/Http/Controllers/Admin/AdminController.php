@@ -51,39 +51,6 @@ class AdminController extends Controller
     }
 
     public function studentManage_add(Request $request) {
-        // $validator = Validator::make($request->all(),[
-        //     'studentid' => 'required|unique:students',
-        //     'StudentName' => 'required',
-        //     'DOB' => 'required',
-        //     'Address' => 'required',
-        //     'DepartmentID' => 'required',
-        //     'Email' => 'required',
-        //     'Phone' => 'required',
-        //     'Status' => 'required',
-        //     'Sex' => 'required',
-        //  ]);
-
-        //  if($validator->fails())
-        //  {
-        //      return response()->json([
-        //          'status'=>400,
-                
-        //      ]);
-        //  }
-        //  else{
-        //      $data = array();
-        // $data["studentid"] = $request -> studentid;
-        // $data["StudentName"] = $request -> StudentName;
-        // $data["DOB"] = $request -> DOB;
-        // $data["Address"] = $request -> Address;
-        // $data["DepartmentID"] = $request -> DepartmentID;
-        // $data["Email"] = $request -> Email;
-        // $data["Phone"] = $request -> Phone;
-        // $data["Status"] = $request -> Status;
-        // $data["Sex"] = $request -> Sex;
-        // DB :: table('students') -> insert($data);
-
-        //  }
 
          $request->validate([
             'studentid' => 'required|unique:students',
@@ -110,7 +77,7 @@ class AdminController extends Controller
          ]
          );
         // send data to DB
-             $data = array();
+        $data = array();
         $data["studentid"] = $request -> studentid;
         $data["StudentName"] = $request -> StudentName;
         $data["DOB"] = $request -> DOB;
@@ -148,6 +115,35 @@ class AdminController extends Controller
         ->paginate(5);
         $registrations = Registration::all();
         return view('admin.manage.section',compact('classinfo','registrations'));
+    }
+
+    public function sectionAdd(Request $request){
+        $request->validate([
+            'ClassID' => 'required|unique:class_details',
+            'CourseID' => 'required',
+            'Section' => 'required',
+            'Semester' => 'required'
+         ],
+         [
+             'ClassID.required'=>"กรุณาป้อนรหัสคลาสด้วยครับ",
+             'ClassID.unique'=>"รหัสคลาสนี้มีอยู่ในระบบแล้ว",
+             'CourseID.required'=>"กรุณาป้อนรหัสวิชาด้วยครับ",
+             'Section.required'=>"กรุณาป้อนกลุ่มด้วยครับ",
+             'Semester.required'=>"กรุณาป้อนภาคการศึกษาด้วยครับ",
+         ]);
+        $data2 = array();
+        $data2["ClassID"] = $request -> ClassID;
+        $data2["CourseID"] = $request -> CourseID;
+        $data2["Section"] = $request -> Section;
+        $data2["Semester"] = $request -> Semester;    
+        DB :: table('class_details') -> insert($data2);
+        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
+    }
+
+    public function sectionDelete($ClassID){
+        $select=$ClassID;
+        $delete=ClassDetail::where('ClassID',$select)->delete();
+        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
 
     public function teacherAdd(Request $request){
