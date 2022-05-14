@@ -29,6 +29,7 @@
                     <th>{{$row->TeacherID}}</th>
                     <td>{{$row->TeacherName}}</td>
                     <td>{{$row->DepartmentName}}</td>
+
                     <td>{{$row->Email}}</td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
@@ -84,27 +85,28 @@
                     <h5 class="modal-title">เพิ่มข้อมูลอาจารย์</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
                 </div>
+                <form action = "{{route('teacherAdd')}}"  method="POST">
+                @csrf
                 <div class="modal-body">
                     <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-12"><label class="labels">Teacher ID.</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder=""></div>
+                                <div class="col-md-12"><label class="labels">Teacher ID.</label><input type="text" name="TeacherID"class="form-control" placeholder="" value=""></div>
+                                <div class="col-md-12"><label class="labels">Name</label><input type="text" name="TeacherName" class="form-control" placeholder="" value=""></div>
+                                
                             </div>
                             <div class="row">
-                                <div class="col-md-12"><label class="labels">Department ID</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Phone</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Email</label><input type="email" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Address</Address></label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Status</label><input type="text" class="form-control" placeholder="" value=""></div>
+                                <div class="col-md-12"><label class="labels mt-3">Department (required)</label><input class="ml-2" list = "Department" name="DepartmentID" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div>
+                                <div class="col-md-12"><label class="labels">Email</label><input type="text" name="Email" class="form-control" placeholder="" value=""></div>
+                                <div class="col-md-12"><label class="labels">Phone</label><input type="text" name="Phone" class="form-control" placeholder="" value=""></div>                              
+                                <div class="col-md-12"><label class="labels">Address</Address></label><input type="text" name="Address" class="form-control" placeholder="" value=""></div>
+                                
                             </div>
                     </div>
                 </div>
                 <div class="modal-footer mt-3">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                     <button class="btn btn-success">บันทึกข้อมูล</button>
-                </div>
+                </div></form>
             </div>
         </div>
     </div>

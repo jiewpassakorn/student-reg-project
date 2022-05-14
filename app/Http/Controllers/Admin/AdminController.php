@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\CourseDetail;
@@ -11,6 +12,7 @@ use App\Models\ClassDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 
 class AdminController extends Controller
 {
@@ -98,4 +100,23 @@ class AdminController extends Controller
         $delete=Student::where('StudentID',$select)->delete();
         return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
+
+    public function teacherAdd(Request $request){
+        $request->validate([
+            'TeacherID' => 'required'
+        ]);
+        
+        $teacher = new Teacher;
+        $teacher->TeacherID = $request->TeacherID;
+        $teacher->TeacherName = $request->TeacherName;
+        $teacher->Address = $request->Address;
+        $teacher->Email = $request->Email;
+        $teacher->Phone = $request->Phone;
+        $teacher->DepartmentID = $request->DepartmentID;
+        $teacher -> save();
+        
+
+    }
+
+    
 }

@@ -94,14 +94,9 @@ class StudentController extends Controller
 
     public function submit(Request $request){
         $student_id = Auth::user()->student_licence_number;
-        /* $sql = "UPDATE registrations SET RegStatus='Ready' WHERE StudentID=$student_id";
-        query($sql); */
         DB::table('registrations')->where('StudentID',$student_id)->update(array(
             'RegStatus'=>"Ready",));
-
-       
             
-
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
