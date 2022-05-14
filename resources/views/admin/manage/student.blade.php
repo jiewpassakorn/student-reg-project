@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Admin | Manage')
+@section('title','Manage | student')
 @section('content')
 
 
@@ -7,13 +7,14 @@
     <div class="container">
         <br>
         <br>
-        <h1>จัดการข้อมูลนักศึกษา</h1>
-           <div class="row d-flex">
-            <div class="col-12 mt-2 d-flex justify-content-center">
-               <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" 
+        <h1><i class="fa fa-address-card fa-xs"></i> จัดการข้อมูลนักศึกษา</h1>
+        <hr>
+            <div class="row d-flex">
+                <div class="col-12 mt-2 d-flex justify-content-center">
+                    <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" 
                 data-bs-toggle="modal" data-bs-target="#insertModal">เพิ่มข้อมูลนักศึกษา</button></a> 
-           </div>
-           <table class="table table-striped shadow-sm text-center mt-3" style="border-radius: 10px">
+            </div>
+            <table class="table table-striped shadow-sm text-center mt-3" style="border-radius: 10px">
             <thead class="table table-dark">
                 <tr>
                     <th>รหัสนักศึกษา</th>

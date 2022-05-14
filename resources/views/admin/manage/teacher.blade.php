@@ -1,12 +1,13 @@
 @extends('layouts.default')
-@section('title','Admin | Manage')
+@section('title','Manage | teacher')
 @section('content')
 
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
         <br>
         <br>
-        <h1>จัดการข้อมูลอาจารย์</h1>
+        <h1><i class="fa fa-address-book fa-xs"></i> จัดการข้อมูลอาจารย์</h1>
+        <hr>
            <div class="row d-flex">
             <div class="col-12 mt-2 d-flex justify-content-center">
                <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" 

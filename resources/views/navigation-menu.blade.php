@@ -24,7 +24,7 @@
 
                 @can('manage-users')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('admin.users.dashboard') }}" :active="request()->routeIs('admin.users.dashboard')">
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                             {{ __('Users') }}
                         </x-jet-nav-link>
                     </div>

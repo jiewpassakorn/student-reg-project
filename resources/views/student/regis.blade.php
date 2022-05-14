@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row mt-5 p-2">
                 <div class="col-sm-12 mt-3 pt-3">
-                    <h4> ลงทะเบียนเรียน </h4></button>
+                    <h4><i class="fa-solid fa-book-open fa-xs"></i> ลงทะเบียนเรียน </h4>
                 </div>
             </div>
             <hr>

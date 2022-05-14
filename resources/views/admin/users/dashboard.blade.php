@@ -1,7 +1,7 @@
 @extends('layouts.default')
-@section('title','Student | Schedule')
+@section('title','Admin | dashboard')
 @section('content')
-
+<link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
 
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
@@ -9,7 +9,7 @@
         <br>
 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Welcome, {{Auth::user()->name}}
+            <i class="fa fa-tachometer fa-sm"></i> Dashboard, {{Auth::user()->name}}
 
             <b class="float-end">จำนวนผู้ใช้ระบบ <span>{{count($users)}}</span> คน</b>
         </h2>

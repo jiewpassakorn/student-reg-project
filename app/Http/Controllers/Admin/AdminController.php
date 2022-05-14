@@ -27,4 +27,8 @@ class AdminController extends Controller
     function courseManage(){
         return view('admin.manage.course');
     }
+
+    function sectionManage(){
+        return view('admin.manage.section');
+    }
 }
