@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\CourseDetail;
@@ -12,6 +13,7 @@ use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 
 class AdminController extends Controller
 {
@@ -24,32 +26,29 @@ class AdminController extends Controller
     function studentManage(){
         $studentsinfo = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
         ->select('students.*','departments.DepartmentName','departments.FacultyName')
-        ->get();
+        ->paginate(10);
         return view('admin.manage.student',compact('studentsinfo'));
     }
 
     function teacherManage(){
         $teachersinfo = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
         ->select('teachers.TeacherID','teachers.TeacherName','teachers.Email','departments.DepartmentName','departments.FacultyName')
-        ->get();
+        ->paginate(10);
         return view('admin.manage.teacher',compact('teachersinfo'));
     }
 
     function courseManage(){
         $courseinfo = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
         ->select('course_details.CourseID','course_details.CourseName','course_details.Credit','departments.DepartmentName','departments.FacultyName')
-        ->get();
+        ->paginate(5);
         $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
         ->select('course_details.CourseID','course_details.CourseName','class_details.ClassID','class_details.Section','class_details.Semester')
         ->get();
         $registrations = Registration::all();
-        return view('admin.manage.course',compact('courseinfo','classinfo','registrations'));
+        return view('admin.manage.course',compact('courseinfo','classinfo'));
     }
 
     public function studentManage_add(Request $request) {
-
-        
-
         $request->validate([
             'studentid' => 'required|unique:students',
             'StudentName' => 'required',
@@ -104,7 +103,54 @@ class AdminController extends Controller
         return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
 
+
     function sectionManage(){
-        return view('admin.manage.section');
+        $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
+        ->select('course_details.CourseID','course_details.CourseName','class_details.ClassID','class_details.Section','class_details.Semester')
+        ->paginate(5);
+        $registrations = Registration::all();
+        return view('admin.manage.section',compact('classinfo','registrations'));
     }
+
+    public function teacherAdd(Request $request){
+        $request->validate([
+            'TeacherID' => 'required|unique:students',
+            'TeacherName' => 'required',
+            'Address' => 'required',
+            'DepartmentID' => 'required',
+            'Email' => 'required',
+            'Phone' => 'required',
+
+         ],
+         [
+             'TeacherID.required'=>"กรุณาป้อนรหัสอาจารย์ด้วยครับ",
+             'TeacherID.unique'=>"รหัสอาจารย์นี้มีอยู่ในระบบแล้ว",
+             'TeacherName.required'=>"กรุณาป้อนชื่ออาจารย์ด้วยครับ",
+             'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
+             'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
+             'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
+             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
+
+         ]);
+        
+        $teacher = new Teacher;
+        $teacher->TeacherID = $request->TeacherID;
+        $teacher->TeacherName = $request->TeacherName;
+        $teacher->Address = $request->Address;
+        $teacher->Email = $request->Email;
+        $teacher->Phone = $request->Phone;
+        $teacher->DepartmentID = $request->DepartmentID;
+        $teacher -> save();
+        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
+        
+
+    }
+    
+    public function teacherDelete($TeacherID){
+        $select=$TeacherID;
+        $delete=Teacher::where('TeacherID',$select)->delete();
+        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+    }
+
+
 }
