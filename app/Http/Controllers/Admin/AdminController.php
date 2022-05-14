@@ -103,8 +103,24 @@ class AdminController extends Controller
 
     public function teacherAdd(Request $request){
         $request->validate([
-            'TeacherID' => 'required'
-        ]);
+            'TeacherID' => 'required|unique:students',
+            'TeacherName' => 'required',
+            'Address' => 'required',
+            'DepartmentID' => 'required',
+            'Email' => 'required',
+            'Phone' => 'required',
+
+         ],
+         [
+             'TeacherID.required'=>"กรุณาป้อนรหัสอาจารย์ด้วยครับ",
+             'TeacherID.unique'=>"รหัสอาจารย์นี้มีอยู่ในระบบแล้ว",
+             'TeacherName.required'=>"กรุณาป้อนชื่ออาจารย์ด้วยครับ",
+             'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
+             'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
+             'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
+             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
+
+         ]);
         
         $teacher = new Teacher;
         $teacher->TeacherID = $request->TeacherID;
@@ -117,6 +133,12 @@ class AdminController extends Controller
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
         
 
+    }
+    
+    public function teacherDelete($TeacherID){
+        $select=$TeacherID;
+        $delete=Teacher::where('TeacherID',$select)->delete();
+        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
 
     
