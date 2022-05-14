@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Admin | Manage')
+@section('title','Manage | student')
 @section('content')
 
 
@@ -7,7 +7,7 @@
     <div class="container">
         <br>
         <br>
-        <h1>จัดการข้อมูลนักศึกษา</h1>
+        <h1><i class="fa fa-address-card fa-xs"></i> จัดการข้อมูลนักศึกษา</h1>
         <div class="row d-flex">
             <div class="col-12 mt-2 d-flex justify-content-center">
                 <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" data-bs-toggle="modal" data-bs-target="#insertModal">เพิ่มข้อมูลนักศึกษา</button></a>
@@ -102,54 +102,88 @@
                     <form action="{{route('studentManage_add')}}" method="POST">
                         @csrf
                         <div class="row">
-                            <div class="col-md-12"><label class="labels">Student ID.</label>
-                            @error('studentid')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input type="text" class="form-control" placeholder="" value="" name="studentid"></div>
-                            
+                            <div class="col-md-6"><label class="labels">Student ID.</label>
+                                @error('studentid')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" class="form-control" placeholder="" value="" name="studentid">
+                            </div>
+                            <div class="col-md-6"><label class="labels">Name</label>
+                                @error('StudentName')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="StudentName" class="form-control" value="">
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12"><label class="labels">Name</label>
-                            @error('StudentName')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input type="text" name="StudentName" class="form-control" value=""></div>
-                           
-                            <div class="col-md-12"><label class="labels mt-2">DOB (required)</label>
-                            @error('DOB')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input type="date" name="DOB" class="form-control" placeholder="enter dob" value=""></div>
-                            
-                            <div class="col-md-12"><label class="labels mt-2">Address</label>
-                            @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input type="text" name="Address" class="form-control" value="{{Auth::user()->Address}}"></div>
-                            
-                            <div class="col-md-12"><label class="labels mt-3">Department (required)</label>
-                            @error('DepartmentID')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input class="ml-2" list="Department" name="DepartmentID"><datalist id="Department">
-                                    <option value="101">CPE
-                                    <option value="102">ME
-                                    <option value="111">Maths
-                                </datalist></div>
-                           
-                            <div class="col-md-12"><label class="labels mt-2">Email</label>
-                            @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input type="email" name="Email" class="form-control" value=""></div>
-                            
-                            <div class="col-md-12"><label class="labels mt-2">Phone (required)</label>
-                            @error('Phone')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input type="text" name="Phone" class="form-control" placeholder="enter phone number" value=""></div>
-                            
-                            <div class="col-md-12"><label class="labels mt-2">Status (required)</label>
-                            @error('Status')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input type="text" name="Status" class="form-control" placeholder="status" value=""></div>
-                            
-                            <div class="col-md-12"><label class="labels mt-3">Sex</label>
-                            @error('Sex')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input class="ml-2" list="Sex" name="Sex"><datalist id="Sex">
-                                    <option value="M">Male
-                                    <option value="F">Female
-                                    <option value="U">Undefined
-                                </datalist></div>
-                                
-                            <div class="col-md-12"><label class="labels mt-2">Advisor</label>
-                            <input type="text" name="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
+
+
+                            <div class="col-md-5"><label class="labels mt-2">DOB (required)</label>
+                                @error('DOB')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="date" name="DOB" class="form-control" placeholder="enter dob" value="">
+                            </div>
+
+                            <div class="col-md-7"><label class="labels mt-2">Address</label>
+                                @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="Address" class="form-control" value="{{Auth::user()->Address}}">
+                            </div>
+
+
+
+                            <div class="col-md-4"><label class="labels mt-2">
+                                    Department (required)</label>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="DepartmentID"></label>
+                                    <select class="form-select" id="DepartmentID" name="DepartmentID">
+                                        <option selected value="">Choose...</option>
+                                        <option value="101">CPE</option>
+                                        <option value="102">ME</option>
+                                        <option value="111">Maths</option>
+                                    </select>
+                                    @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-8"><label class="labels mt-2">Email</label>
+                                @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="email" name="Email" class="form-control" value="">
+                            </div>
+
+                            <div class="col-md-4"><label class="labels mt-0">Phone (required)</label>
+
+                                <input type="text" name="Phone" class="form-control" placeholder="enter phone number" value="">
+                                @error('Phone')<span class="text-danger py-0">({{$message}})</span>@enderror
+                            </div>
+
+
+                            <div class="col-md-4"><label class="labels mt-0">
+                                    Status (required)</label>
+                                <div class="input-group mb-2">
+                                    <label class="input-group-text" for="Status"></label>
+                                    <select class="form-select" id="Status" name="Status">
+                                        <option selected value="">Choose...</option>
+                                        <option value="Normal">Normal</option>
+                                        <option value="Drop">Drop</option>
+                                        <option value="Retire">Retire</option>
+                                    </select>
+                                    @error('Status')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4"><label class="labels mt-0">
+                                    Sex </label>
+                                @error('Sex')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                <div class="input-group mb-4">
+                                    <label class="input-group-text" for="Sex"></label>
+                                    <select class="form-select" id="Sex" name="Sex">
+                                        <option selected value="">Choose...</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                        <option value="U">Undefined</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12"><label class="labels mt-0">Advisor</label>
+                                <input type="text" name="Advisor" class="form-control" placeholder="Advisor name" value="" disabled>
+                            </div>
                         </div>
                         <div class="modal-footer mt-3">
                             <input type="submit" value="Save Profile" class="btn btn-primary profile-button">

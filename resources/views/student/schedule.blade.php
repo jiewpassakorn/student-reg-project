@@ -7,7 +7,7 @@
     <div class="container">
             <div class="row mt-5 p-2">
                 <div class="col-sm-12 mt-3 pt-3 justify-content-center">
-                    <h4> ตารางเรียนนักศึกษา </h4></button> 
+                    <h4><i class="fa-solid fa-calendar ps-1 fa-sm"></i> ตารางเรียนนักศึกษา</h4>
                 </div>
             </div>
             <hr>

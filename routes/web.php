@@ -28,7 +28,8 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    return view('homepage');
+    $users=User::all();
+    return view('homepage', compact('users'));
 })->name('home');
 
 Route::get('/welcomeByLaravel', function () {
@@ -42,9 +43,10 @@ Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin
 Route::get('/admin/studentManage',[AdminController::class,'studentManage'])->name('studentManage');
 Route::get('/admin/teacherManage',[AdminController::class,'teacherManage'])->name('teacherManage');
 Route::get('/admin/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
+Route::get('/admin/sectionManage',[AdminController::class,'sectionManage'])->name('sectionManage');
 
-Route::post('/admin/studentManage/add',[AdminController::class,'store'])->name('studentManage_add');
-Route::get('/admin/studentManage/delete/{StudentID}',[AdminController::class,'delete']);
+Route::post('/admin/studentManage/add',[AdminController::class,'studentManage_add'])->name('studentManage_add');
+Route::get('/admin/studentManage/delete/{StudentID}',[AdminController::class,'studentManage_delete']);
 //function delete Route::get
 // For Student
 
@@ -55,9 +57,9 @@ Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB'
 Route::get('/teacher/login',[TeacherController::class,'login'])->name('tlog');
 Route::get('/teacher/welcome',[TeacherController::class,'welcome'])->name('t.welcome');
 
- //Department
- Route::get('/department/edit/{id}',[DepartmentController::class,'edit']);
- Route::post('/department/update/{id}',[DepartmentController::class,'update']);
+// Department
+Route::get('/department/edit/{id}',[DepartmentController::class,'edit']);
+Route::post('/department/update/{id}',[DepartmentController::class,'update']);
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {

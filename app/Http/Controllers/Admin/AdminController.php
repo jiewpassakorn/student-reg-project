@@ -46,7 +46,10 @@ class AdminController extends Controller
         return view('admin.manage.course',compact('courseinfo','classinfo','registrations'));
     }
 
-    public function store(Request $request) {
+    public function studentManage_add(Request $request) {
+
+        
+
         $request->validate([
             'studentid' => 'required|unique:students',
             'StudentName' => 'required',
@@ -87,9 +90,13 @@ class AdminController extends Controller
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
-    public function delete($StudentID){
+    public function studentManage_delete($StudentID){
         $select=$StudentID;
         $delete=Student::where('StudentID',$select)->delete();
         return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+    }
+
+    function sectionManage(){
+        return view('admin.manage.section');
     }
 }

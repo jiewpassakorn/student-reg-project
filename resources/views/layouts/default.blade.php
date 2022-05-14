@@ -10,7 +10,6 @@
     <title>@yield('title')</title>
 
     {{-- styles --}}
-    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styleforTest.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -34,7 +33,7 @@
         <!-- Dropdown button -->
         <div class="dropdown" style="margin-left: 80%">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-offset="5,10" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ Auth::user()->name }}
+                <i class="fa fa-user"></i> {{ Auth::user()->name }}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <div class="block px-4 py-2 text-sm text-gray-400">
@@ -42,17 +41,18 @@
                 </div>
                 
                 @if (auth()->user()->role_id == 1)
-                    <li><a class="dropdown-item px-4 py-2" href="{{ route('profile.show') }}">Profile</a></li>
-                    {{-- <li><hr class="dropdown-divider"></li> --}}
+                    <li><a class="dropdown-item px-4 py-2" href="{{ route('profile.show') }}">
+                        <i class="fa fa-user"></i> {{ __('Profile') }}
+                    </a></li>
                 @endif
-               
-               <!-- Authentication -->
-               <li><form method="POST" action="{{ route('logout') }}" x-data>
+            
+            <!-- Authentication -->
+            <li><form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
 
                     <a class="dropdown-item px-4 py-2" href="{{ route('logout') }}"
-                             @click.prevent="$root.submit();">
-                        {{ __('Log Out') }}
+                            @click.prevent="$root.submit();">
+                            <i class="fa fa-sign-out"></i> {{ __('Log Out') }}
                     </a>
                 </form></li>
             </ul>
@@ -63,7 +63,15 @@
     {{-- sidebar --}}
     <div class="l-navbar bg-dark" id="nav-bar">
         <nav class="nav">
-            <div> <p class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">จัดการทะเบียนเรียน</span> </p>
+            <div> 
+                {{-- <a class="nav_logo" href="{{route('home')}}"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">จัดการทะเบียนเรียน</span> </a> --}}
+                <form method="POST" action="{{ route('logout') }}" x-data>
+                    @csrf
+                    <a class="nav_logo" href="{{ route('logout') }}"
+                        @click.prevent="$root.submit();"> 
+                        <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">จัดการทะเบียนเรียน</span> 
+                    </a>
+                </form>
                 <div class="nav_list"> 
                     
                     {{-- Menu defaults --}}
@@ -74,7 +82,7 @@
                     <a href="{{route('studentManage')}}" class="nav_link {{ Request::routeis('studentManage') ? 'active' : '' }}"> <i class="fa fa-address-card"></i> <span class="nav_name">จัดการข้อมูลนักศึกษา</span> </a>
                     <a href="{{route('teacherManage')}}" class="nav_link {{ Request::routeis('teacherManage') ? 'active' : '' }}"> <i class="fa fa-address-book"></i> <span class="nav_name">จัดการข้อมูลอาจารย์</span> </a>
                     <a href="{{route('courseManage')}}" class="nav_link {{ Request::routeis('courseManage') ? 'active' : '' }}"> <i class="fa fa-book"></i> <span class="nav_name">จัดการข้อมูลรายวิชา</span> </a>
-                    {{-- <a href="{{route('dashboard')}}" class="nav_link {{ Request::routeis('dashboard') ? 'active' : '' }}"> <i class="fa fa-tachometer"></i> <span class="nav_name">Dashboard</span> </a> --}}
+                    <a href="{{route('sectionManage')}}" class="nav_link {{ Request::routeis('sectionManage') ? 'active' : '' }}"> <i class="fa fa-bars"></i> <span class="nav_name">จัดการข้อมูลห้องเรียน</span> </a>
                     <a href="{{route('admin.dashboard')}}" class="nav_link {{ Request::routeis('admin.dashboard') ? 'active' : '' }}"> <i class="fa fa-tachometer"></i> <span class="nav_name">Dashboard</span> </a>
                     @endif
 
@@ -100,15 +108,15 @@
     <br>
 
     {{-- footer --}}
-    {{-- <footer style="margin-left: -100px;">
+    <footer style="margin-left: -100px;">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark text-white fixed-bottom">
-          <div id="fake_footer" class="container d-grid justify-content-center">
-             <p>King Mongkut's University of Techonology Thonburi (KMUTT) Student Registration</p> 
-          <div>
+        <div id="fake_footer" class="container d-grid justify-content-center">
+            <p>King Mongkut's University of Techonology Thonburi (KMUTT) Student Registration</p> 
+        <div>
         </nav>
-    </footer> --}}
+    </footer>
 
-    <footer class=" position-relative">
+    {{-- <footer class=" position-relative">
         <br>
         <div class="container">
             <div class="row">
@@ -153,7 +161,7 @@
                 </div>
             </div>
         </div>     
-    </footer>
+    </footer> --}}
     
 </body>
 

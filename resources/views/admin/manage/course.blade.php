@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Admin | Manage')
+@section('title','Manage | course')
 @section('content')
 
 
@@ -7,13 +7,14 @@
     <div class="container">
         <br>
         <br>
-        <h1>จัดการข้อมูลรายวิชา</h1>
-           <div class="row d-flex">
-            <div class="col-12 mt-2 d-flex justify-content-center">
-               <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" 
-                data-bs-toggle="modal" data-bs-target="#insertCourseModal">เพิ่มวิชาเรียน</button></a> 
-           </div>
-           <table class="table table-striped shadow-sm text-center mt-3">
+        <h1><i class="fa fa-book fa-xs"></i> จัดการข้อมูลรายวิชา</h1>
+    <div class="row d-flex">
+        <hr>
+        <div class="col-12 mt-2 d-flex justify-content-center">
+            <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" 
+            data-bs-toggle="modal" data-bs-target="#insertCourseModal">เพิ่มวิชาเรียน</button></a> 
+        </div>
+        <table class="table table-striped shadow-sm text-center mt-3">
             <thead class="table table-dark">
                 <tr>
                     <th>เลขคอร์ส</th>

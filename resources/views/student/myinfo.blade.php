@@ -6,7 +6,7 @@
     <div class="container">
             <div class="row mt-5 p-2">
                 <div class="col-sm-12 mt-3 pt-3 justify-content-center">
-                    <h4> ประวัตินักศึกษา</h4></button> 
+                    <h4><i class="fa-solid fa-address-card fa-sm"></i> ประวัตินักศึกษา</h4>
                 </div>
             </div>
             <hr>
@@ -58,11 +58,9 @@
                         <div class="col-md-12"><label class="labels mt-3">Sex</label><input class="ml-2" list="Sex" name = "Sex"><datalist id="Sex"><option value="M">Male<option value="F">Female<option value="U">Undefined</datalist></div>
                         <div class="col-md-12"><label class="labels mt-2">Advisor</label><input type="text" name ="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
                     </div>
-                    <div class="mt-5 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
-                </form>
-
+                    <div class="mt-4 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
+                </form>        
             </div>
-        </div>
-           
+        </div>           
     </div>
 </div>
