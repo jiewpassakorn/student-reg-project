@@ -10,15 +10,7 @@
                 </div>
             </div>
             <hr>
-            {{-- <div class="row d-grid justify-content-center">
-                 <div class="container mt-3">
-                   <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded" >
-                        <p>ระบบลงทะเบียนเรียน version ทดสอบ
-                        </p>
-                   </div>
-                 </div>
-           </div> --}}
-           <div class="card">
+          <div class="card">
             <div class="card-header">
               Update
             </div>

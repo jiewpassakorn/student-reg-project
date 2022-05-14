@@ -32,7 +32,7 @@
 <header class="header-section">
     <nav class="navbar navbar-dark sticky-top" style="background-color: #1b1c1d;">
         <div class="container-fluid"> 
-            <a class="navbar-brand" href="" ><img src="/images/kmutt-logo-2.png" alt="" width="60" height="60" class="d-inline-block align-text-center">KMUTT Student Information System</a>
+            <a class="navbar-brand" href="" ><img src="/images/kmutt-logo-2.png" alt="" width="60" height="70" class="d-inline-block align-text-center">KMUTT Student Information System</a>
             <div class="d-flex">
                 @if (Route::has('login'))
                     <div class="hidden right-0 sm:block">
