@@ -19,36 +19,22 @@
                     <th>รหัสอาจารย์</th>
                     <th>ชื่อ-สกุล</th>
                     <th>สาขา</th>
-                    <th>อีเมลล์</th>
+                    <th>Email</th>
                     <th> </th>
                     <th> </th>
                 </tr>
             </thead>
             <tbody>
+                @foreach($teachersinfo as $row)
                 <tr>
-                    <td>001000555</td>
-                    <td>sommai</td>
-                    <td>gingmangkud</td>
-                    <td>gg@gmail.com</td>
+                    <th>{{$row->TeacherID}}</th>
+                    <td>{{$row->TeacherName}}</td>
+                    <td>{{$row->DepartmentName}}</td>
+                    <td>{{$row->Email}}</td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
                 </tr>
-                <tr>
-                    <td>001000555</td>
-                    <td>sommai</td>
-                    <td>gingmangkud</td>
-                    <td>gg@gmail.com</td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
-                </tr>
-                <tr>
-                    <td>001000555</td>
-                    <td>sommai</td>
-                    <td>gingmangkud</td>
-                    <td>gg@gmail.com</td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
