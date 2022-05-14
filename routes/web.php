@@ -47,12 +47,18 @@ Route::get('/admin/teacherManage/delete/{TeacherID}',[AdminController::class,'te
 
 
 Route::get('/admin/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
+Route::post('/admin/courseManage/add',[AdminController::class,'courseManage_add'])->name('courseManage_add');
+Route::get('/admin/courseManage/delete/{CourseID}',[AdminController::class,'courseManage_delete']);
+
+
 Route::get('/admin/sectionManage',[AdminController::class,'sectionManage'])->name('sectionManage');
 
 Route::post('/admin/studentManage/add',[AdminController::class,'studentManage_add'])->name('studentManage_add');
 Route::get('/admin/studentManage/delete/{StudentID}',[AdminController::class,'studentManage_delete']);
 Route::get('/admin/studentManage/edit/{StudentID}',[AdminController::class,'studentManage_edit']);
 Route::post('/service/update/{id}',[StudentController::class,'studentManage_edit'])->name('studentManage_edit');
+
+
 //function delete Route::get
 // For Student
 

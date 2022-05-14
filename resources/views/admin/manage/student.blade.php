@@ -51,7 +51,7 @@
                         <!-- <td><a href="{{url('/admin/studentManage/edit/'.$row->StudentID)}}#" class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</a></td> -->
                         <!-- <td><button type="button" value="1" class="btn btn-primary editbtn btn-sm">Edit</button></td> -->
                         <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger delete_student studentid" value="{{$row->StudentID}}" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td> -->
-                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger" >ลบข้อมูล</a></td>
+                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a></td>
 
 
                     </tr>
