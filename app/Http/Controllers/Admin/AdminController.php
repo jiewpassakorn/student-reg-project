@@ -24,32 +24,25 @@ class AdminController extends Controller
     function studentManage(){
         $studentsinfo = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
         ->select('students.*','departments.DepartmentName','departments.FacultyName')
-        ->get();
+        ->paginate(10);
         return view('admin.manage.student',compact('studentsinfo'));
     }
 
     function teacherManage(){
         $teachersinfo = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
         ->select('teachers.TeacherID','teachers.TeacherName','teachers.Email','departments.DepartmentName','departments.FacultyName')
-        ->get();
+        ->paginate(10);
         return view('admin.manage.teacher',compact('teachersinfo'));
     }
 
     function courseManage(){
         $courseinfo = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
         ->select('course_details.CourseID','course_details.CourseName','course_details.Credit','departments.DepartmentName','departments.FacultyName')
-        ->get();
-        $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
-        ->select('course_details.CourseID','course_details.CourseName','class_details.ClassID','class_details.Section','class_details.Semester')
-        ->get();
-        $registrations = Registration::all();
-        return view('admin.manage.course',compact('courseinfo','classinfo','registrations'));
+        ->paginate(5);
+        return view('admin.manage.course',compact('courseinfo'));
     }
 
     public function studentManage_add(Request $request) {
-
-        
-
         $request->validate([
             'studentid' => 'required|unique:students',
             'StudentName' => 'required',
@@ -97,6 +90,10 @@ class AdminController extends Controller
     }
 
     function sectionManage(){
-        return view('admin.manage.section');
+        $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
+        ->select('course_details.CourseID','course_details.CourseName','class_details.ClassID','class_details.Section','class_details.Semester')
+        ->paginate(5);
+        $registrations = Registration::all();
+        return view('admin.manage.section',compact('classinfo','registrations'));
     }
 }

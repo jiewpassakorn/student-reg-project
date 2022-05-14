@@ -6,7 +6,10 @@
     <div class="container">
         <br>
         <br>
-        <h1><i class="fa fa-address-book fa-xs"></i> จัดการข้อมูลอาจารย์</h1>
+        <h1>
+            <i class="fa fa-address-book fa-xs"></i> จัดการข้อมูลอาจารย์
+            <font size = "5">จำนวนอาจารย์ <span>{{count($teachersinfo)}}</span> คน</font>
+        </h1>
         <hr>
            <div class="row d-flex">
             <div class="col-12 mt-2 d-flex justify-content-center">
@@ -39,6 +42,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$teachersinfo->links()}}
     </div>
 </div>
 </div>
