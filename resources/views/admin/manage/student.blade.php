@@ -27,10 +27,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php($i=1)
                     @foreach($studentsinfo as $row)
                     <tr>
-                        <th>{{$i++}}</th>
+                        <th>{{$row->StudentID}}</th>
                         <td>{{$row->StudentName}}</td>
                         <td>{{$row->DepartmentName}}</td>
                         <td>
