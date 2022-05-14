@@ -7,10 +7,11 @@
     <div class="container">
         <br>
         <br>
-        <h1>
-            <i class="fa fa-address-card fa-xs"></i> จัดการข้อมูลนักศึกษา
-            <font size = "5">จำนวนนักศึกษา <span>{{count($studentsinfo)}}</span> คน</font>
-        </h1>
+        <div class="d-flex bd-highlight">
+            <div class=""><h1><i class="fa fa-address-card fa-xs"></i> จัดการข้อมูลนักศึกษา</h1></div>
+            <div class="ms-auto p-2 bd-highlight"><font size = "5">จำนวนนักศึกษา <span>{{count($studentsinfo)}}</span> คน</font></div>
+        </div>
+        <hr>
         <div class="row d-flex">
             <div class="col-12 mt-2 d-flex justify-content-center">
                 <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" data-bs-toggle="modal" data-bs-target="#insertModal">เพิ่มข้อมูลนักศึกษา</button></a>
@@ -22,8 +23,8 @@
                         <th>ชื่อ-สกุล</th>
                         <th>ภาควิชา</th>
                         <th>สถานะ</th>
-                        <th> </th>
-                        <th> </th>
+                        <th>แก้ไขข้อมูล</th>
+                        <th>ลบข้อมูล</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,9 +43,8 @@
                             @endif
                         </td>
 
-                        <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                        <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td> -->
-                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger">ลบข้อมูล</a></td>
+                        <td><a href="#"><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
+                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn btn-danger">ลบข้อมูล</a></td>
 
                     </tr>
                     @endforeach
@@ -67,7 +67,7 @@
             <div class="modal-body">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-12"><label class="labels">Student ID.</label><input type="text" class="form-control" placeholder="id before" value=""></div>
+                        <div class="col-md-12"><label class="labels">Student ID</label><input type="text" class="form-control" placeholder="id before" value=""></div>
                         <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name before" value=""></div>
                         <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname before"></div>
                     </div>
@@ -105,7 +105,7 @@
                     <form action="{{route('studentManage_add')}}" method="POST">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6"><label class="labels">Student ID.</label>
+                            <div class="col-md-6"><label class="labels">Student ID</label>
                                 @error('studentid')<span class="text-danger py-2">({{$message}})</span>@enderror
                                 <input type="text" class="form-control" placeholder="" value="" name="studentid">
                             </div>
@@ -117,7 +117,7 @@
                         <div class="row">
 
 
-                            <div class="col-md-5"><label class="labels mt-2">DOB (required)</label>
+                            <div class="col-md-5"><label class="labels mt-2">DOB</label>
                                 @error('DOB')<span class="text-danger py-2">({{$message}})</span>@enderror
                                 <input type="date" name="DOB" class="form-control" placeholder="enter dob" value="">
                             </div>
@@ -129,8 +129,7 @@
 
 
 
-                            <div class="col-md-4"><label class="labels mt-2">
-                                    Department (required)</label>
+                            <div class="col-md-4"><label class="labels mt-2">Department (required)</label>
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="DepartmentID"></label>
                                     <select class="form-select" id="DepartmentID" name="DepartmentID">
@@ -141,7 +140,6 @@
                                     </select>
                                     @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 </div>
-
                             </div>
 
                             <div class="col-md-8"><label class="labels mt-2">Email</label>

@@ -12,19 +12,19 @@
             <hr>
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Anoucement</h5>
-                  <p class="card-text">This is student register beta version.</p>
+                    <h5 class="card-title">Anoucement</h5>
+                    <p class="card-text">This is student register beta version.</p>
                 </div>
                 <div class="card-footer text-muted">
-                  2 days remaining
+                    2 days remaining
                 </div>
-              </div>
-           <div class="row d-flex">
-               <div class="col-12 mt-2 d-flex justify-content-center">
-                  <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-success">เพิ่มข้อมูล</button></a> 
-                  <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-secondary">แก้ไขข้อมูล</button></a> 
-               </div>
-           </div>
+            </div>
+            <div class="row d-flex">
+                <div class="col-12 mt-2 d-flex justify-content-center">
+                    <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-success">เพิ่มข้อมูล</button></a> 
+                    <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-secondary">แก้ไขข้อมูล</button></a> 
+                </div>
+            </div>
 
     <!-- test form -->
     <div class="container rounded bg-white mt-5 mb-5 shadow-lg">
@@ -51,7 +51,6 @@
                         <div class="col-md-12"><label class="labels">Name</label><input type="text" name="StudentName" class="form-control" value="{{Auth::user()->name}}"></div>             
                         <div class="col-md-12"><label class="labels mt-2">DOB (required)</label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
                         <div class="col-md-12"><label class="labels mt-2">Address</label><input type="text" name = "Address" class="form-control" value="{{Auth::user()->Address}}"></div>
-                        {{-- <div class="col-md-12"><label class="labels mt-3">Department (required)</label><input class="ml-2" list = "Department" name="DepartmentID" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div> --}}
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-3">
@@ -61,15 +60,13 @@
                                         <option value="101">Computer Engineering</option>
                                         <option value="102">ME</option>
                                         <option value="111">Maths</option>
-                                      </select>
+                                    </select>
                                 </div>
                             </div>                            
                         </div>
                         <div class="col-md-12"><label class="labels mt-2">Email</label><input type="email" name ="Email" class="form-control" value="{{Auth::user()->email}}" readonly></div>
                         <div class="col-md-12"><label class="labels mt-2">Phone (required)</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
 
-                        {{-- <div class="col-md-12"><label class="labels mt-2">Status (required)</label><input type="text" name ="Status" class="form-control" placeholder="status" value="" ></div> --}}
-                        {{-- <div class="col-md-12"><label class="labels mt-3">Sex</label><input class="ml-2" list="Sex" name = "Sex"><datalist id="Sex"><option value="M">Male<option value="F">Female<option value="U">Undefined</datalist></div> --}}
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-6">
@@ -79,7 +76,7 @@
                                         <option value="M">Male</option>
                                         <option value="F">Female</option>
                                         <option value="U">Undefined</option>
-                                      </select>
+                                    </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="mt-2">Status (required)</label>
@@ -89,7 +86,7 @@
                                         <option value="2">Drop</option>
                                         <option value="3">Retired</option>
                                         <option value="4">Graduated</option>
-                                      </select>
+                                    </select>
                                 </div>
                             </div>                            
                         </div>
