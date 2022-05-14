@@ -8,8 +8,7 @@
             </div>
             {{-- <x-jet-authentication-card-logo /> --}}
         </x-slot>
-
-        
+                
         <x-jet-validation-errors class="mb-4" />
 
         @if (session('status'))
@@ -20,6 +19,8 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
+
+            <div class="text-center text-lg">Login</div>
 
             <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />                

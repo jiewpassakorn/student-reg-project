@@ -6,7 +6,7 @@
     <div class="container">
             <div class="row mt-5 p-2">
                 <div class="col-sm-12 mt-3 pt-3 justify-content-center">
-                    <h4> ประวัตินักศึกษา</h4></button> 
+                    <h4><i class="fa-solid fa-address-card fa-sm"></i> ประวัตินักศึกษา</h4>
                 </div>
             </div>
             <hr>
@@ -54,15 +54,13 @@
                         <div class="col-md-12"><label class="labels mt-3">Department (required)</label><input class="ml-2" list = "Department" name="DepartmentID" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div>
                         <div class="col-md-12"><label class="labels mt-2">Email</label><input type="email" name ="Email" class="form-control" value="{{Auth::user()->email}}" readonly></div>
                         <div class="col-md-12"><label class="labels mt-2">Phone (required)</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
-                        <div class="col-md-12"><label class="labels mt-2">Status (required)</label><input type="text" name ="Status" class="form-control" placeholder="status" value="" ></div>
+                        <div class="col-md-12"><label class="labels mt-2">Status (required)</label><input class="ml-2" list = "Status" name="Status" ><datalist id="Status"><option value="Normal" >Normal<option value="Drop">Drop<option value="Retire">Retire</datalist></div>
                         <div class="col-md-12"><label class="labels mt-3">Sex</label><input class="ml-2" list="Sex" name = "Sex"><datalist id="Sex"><option value="M">Male<option value="F">Female<option value="U">Undefined</datalist></div>
                         <div class="col-md-12"><label class="labels mt-2">Advisor</label><input type="text" name ="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
                     </div>
-                    <div class="mt-5 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
-                </form>
-
+                    <div class="mt-4 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
+                </form>        
             </div>
-        </div>
-           
+        </div>           
     </div>
 </div>
