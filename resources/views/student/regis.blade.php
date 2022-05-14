@@ -31,9 +31,9 @@
                             <b>สถานะ:</b>
                             @if ($studentsinfo->status == "Normal")
                                 <font color="green">Normal</font>
-                            @elseif (Auth::user()->students->Status == "Drop")
+                            @elseif ($studentsinfo->status == "Drop")
                                 <font color="red">Drop</font>
-                            @elseif (Auth::user()->students->Status == "Retire")
+                            @elseif ($studentsinfo->status == "Retire")
                                 <font color="red">Retire</font>
                             @endif
                         </div>
@@ -108,7 +108,6 @@
                         @endforeach
                     </tbody>
                 </table>
-
                 <font size = "4" align = 'right'>จำนวนวิชาที่ลงทะเบียน <span>{{count($registrations)}}</span> วิชา</font>
                 <font size = "4" align = 'right'>หน่วยกิตทั้งหมด <span>{{$credit}}</span> หน่วยกิต</font>
                 <br>

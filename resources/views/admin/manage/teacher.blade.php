@@ -40,7 +40,6 @@
                 </script>
                     <th>{{$row->TeacherID}}</th>
                     <td>{{$row->TeacherName}}</td>
-                    <td>{{$row->DepartmentName}}</td>
                     <td>{{$row->Email}}</td>
                     <td>{{$row->FacultyName}}</td>
                     <td>{{$row->DepartmentName}}</td>
