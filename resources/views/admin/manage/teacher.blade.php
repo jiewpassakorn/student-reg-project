@@ -31,8 +31,16 @@
             <tbody>
                 @foreach($teachersinfo as $row)
                 <tr>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('#deleteModal').on('show.bs.modal', function (event) {
+                        $(this).find('{{$row->TeacherID}}').val();
+                        });
+                    });        
+                </script>
                     <th>{{$row->TeacherID}}</th>
                     <td>{{$row->TeacherName}}</td>
+                    <td>{{$row->DepartmentName}}</td>
                     <td>{{$row->Email}}</td>
                     <td>{{$row->FacultyName}}</td>
                     <td>{{$row->DepartmentName}}</td>
@@ -91,27 +99,48 @@
                     <h5 class="modal-title">เพิ่มข้อมูลอาจารย์</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
                 </div>
+                <form action = "{{route('teacherAdd')}}"  method="POST">
+                @csrf
                 <div class="modal-body">
                     <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-12"><label class="labels">Teacher ID.</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder=""></div>
+                                <div class="col-md-12"><label class="labels">Teacher ID.</label>
+                                @error('TeacherID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="TeacherID"class="form-control" placeholder="" value=""></div>
+                                
+                                <div class="col-md-12"><label class="labels">Name</label>
+                                @error('TeacherName')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="TeacherName" class="form-control" placeholder="" value=""></div>
+                                
                             </div>
                             <div class="row">
-                                <div class="col-md-12"><label class="labels">Department ID</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Phone</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Email</label><input type="email" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Address</Address></label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Status</label><input type="text" class="form-control" placeholder="" value=""></div>
+                                <div class="col-md-12"><label class="labels mt-3">Department (required)</label>
+                                @error('DepartmentID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                    <input class="ml-2" list = "Department" name="DepartmentID" >
+                                    <datalist id="Department">
+                                        <option value="101" >CPE<option value="102">ME<option value="111">Maths
+                                    </datalist>
+                                </div>
+
+                                <div class="col-md-12"><label class="labels">Email</label>
+                                @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="Email" class="form-control" placeholder="" value=""></div>
+
+                                <div class="col-md-12"><label class="labels">Phone</label>
+                                @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="Phone" class="form-control" placeholder="" value=""></div>    
+
+                                <div class="col-md-12"><label class="labels">Address</Address></label>
+                                @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="Address" class="form-control" placeholder="" value=""></div>
+                                
                             </div>
                     </div>
                 </div>
                 <div class="modal-footer mt-3">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                     <button class="btn btn-success">บันทึกข้อมูล</button>
-                </div>
+                </div></form>
             </div>
         </div>
     </div>
@@ -125,11 +154,11 @@
                     <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
                 </div>
                 <div class="modal-body">
-                    คุณต้องการที่จะลบรายวิชานี้หรือไม่
+                    คุณต้องการที่จะลบอาจารย์ท่านนี้หรือไม่
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-danger">ตกลง</button>
+                    <td><a href="{{url('/admin/teacherManage/delete/'.$row->TeacherID)}}" class="btn ms-sm-5 mx-2 btn-danger">ยืนยัน</a></td>
                 </div>
             </div>
         </div>

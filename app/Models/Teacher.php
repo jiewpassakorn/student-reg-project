@@ -15,6 +15,7 @@ class Teacher extends Model
         'Email',
         'Phone',
         'DepartmentID',
-        'Password'
+        
     ];
+    public $timestamps = false;
 }
