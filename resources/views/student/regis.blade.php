@@ -31,9 +31,9 @@
                             <b>สถานะ:</b>
                             @if ($studentsinfo->status == "Normal")
                                 <font color="green">Normal</font>
-                            @elseif (Auth::user()->students->Status == "Drop")
+                            @elseif ($studentsinfo->status == "Drop")
                                 <font color="red">Drop</font>
-                            @elseif (Auth::user()->students->Status == "Retire")
+                            @elseif ($studentsinfo->status == "Retire")
                                 <font color="red">Retire</font>
                             @endif
                         </div>
@@ -81,7 +81,6 @@
                         <th>กลุ่ม</th>
                         <th>แก้ไข</th>
                         <th>สถานะ</th>
-                        </tr>
                     </thead>
                     <tbody>
                         @php($i=1)
@@ -109,8 +108,10 @@
                     </tbody>
                 </table>
 
-                <font size = "4" align = 'right'>จำนวนวิชาที่ลงทะเบียน <span>{{count($registrations)}}</span> วิชา</font>
-                <font size = "4" align = 'right'>หน่วยกิตทั้งหมด <span>{{$credit}}</span> หน่วยกิต</font>
+                <div class="text-end">
+                    <font size = "4">จำนวนวิชาที่ลงทะเบียน <span>{{count($registrations)}}</span> วิชา</font>
+                    <font size = "4">หน่วยกิตทั้งหมด <span>{{$credit}}</span> หน่วยกิต</font>
+                </div>
                 <br>
                 <!-- button -->
                 <div class="row text-center">
@@ -122,15 +123,9 @@
                     
                     <div class="col-sm-2"><form action="{{route('submit')}}" method="post"> @csrf
                         <a href="#insertModal"><button id="editButton" class="btn  btn-secondary mt-2 p-2 px-3">ยืนยัน</button></a>
-                     </form></div>
+                    </form></div>
                 
                 </div>
-                <div class="col-sm-8">
-                </div>
-                    
-                <div class="col-sm-2"><form action="{{route('submit')}}" method="post"> @csrf
-                    <a href="#insertModal"><button id="editButton" class="btn  btn-secondary mt-2 p-2 px-3">ยืนยัน</button></a>
-                </form></div>
 
             </div>
 
