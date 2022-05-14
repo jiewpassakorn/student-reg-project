@@ -5,6 +5,9 @@
 
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
         <br>
         <br>
         <div class="d-flex bd-highlight">
@@ -29,6 +32,13 @@
                 </thead>
                 <tbody>
                     @foreach($studentsinfo as $row)
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#editModal').on('show.bs.modal', function(event) {
+                                $(this).find('{{$row->StudentID}}').val();
+                            });
+                        });
+                    </script>
                     <tr>
                         <th>{{$row->StudentID}}</th>
                         <td>{{$row->StudentName}}</td>
@@ -43,8 +53,12 @@
                             @endif
                         </td>
 
-                        <td><a href="#"><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn btn-danger">ลบข้อมูล</a></td>
+                        <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td> -->
+                        <td><a href="{{url('/admin/studentManage/edit/'.$row->StudentID)}}#" class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</a></td>
+                        <!-- <td><button type="button" value="1" class="btn btn-primary editbtn btn-sm">Edit</button></td> -->
+                        <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td> -->
+                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger">ลบข้อมูล</a></td>
+
 
                     </tr>
                     @endforeach
@@ -217,3 +231,15 @@
         </div>
     </div>
 </div>
+
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.editbtn', function() {
+            //var stu_id = $(this).val;
+            alert("1");
+            // $('editModal').modal(show);
+        });
+    });
+</script>
+@endsection

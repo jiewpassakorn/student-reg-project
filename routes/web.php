@@ -42,11 +42,16 @@ Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
 Route::get('/admin/studentManage',[AdminController::class,'studentManage'])->name('studentManage');
 Route::get('/admin/teacherManage',[AdminController::class,'teacherManage'])->name('teacherManage');
+Route::post('/admin/teacherManage/add',[AdminController::class,'teacherAdd'])->name('teacherAdd');
+Route::get('/admin/teacherManage/delete/{TeacherID}',[AdminController::class,'teacherDelete']);
+
+
 Route::get('/admin/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
 Route::get('/admin/sectionManage',[AdminController::class,'sectionManage'])->name('sectionManage');
 
 Route::post('/admin/studentManage/add',[AdminController::class,'studentManage_add'])->name('studentManage_add');
 Route::get('/admin/studentManage/delete/{StudentID}',[AdminController::class,'studentManage_delete']);
+Route::get('/admin/studentManage/edit/{StudentID}',[AdminController::class,'studentManage_edit']);
 //function delete Route::get
 // For Student
 
