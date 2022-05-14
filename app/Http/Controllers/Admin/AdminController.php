@@ -42,7 +42,7 @@ class AdminController extends Controller
         return view('admin.manage.course',compact('courseinfo','classinfo'));
     }
 
-    public function store(Request $request) {
+    public function studentManage_add(Request $request) {
 
         
 
@@ -93,7 +93,7 @@ class AdminController extends Controller
 
     }
 
-    public function delete($StudentID){
+    public function studentManage_delete($StudentID){
         $select=$StudentID;
         $delete=Student::where('StudentID',$select)->delete();
         return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
