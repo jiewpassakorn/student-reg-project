@@ -53,6 +53,47 @@ class AdminController extends Controller
         return view('admin.manage.course', compact('courseinfo', 'classinfo'));
     }
 
+
+    public function studentManage_add(Request $request) {
+
+         $request->validate([
+            'studentid' => 'required|unique:students',
+            'StudentName' => 'required',
+            'DOB' => 'required',
+            'Address' => 'required',
+            'DepartmentID' => 'required',
+            'Email' => 'required',
+            'Phone' => 'required',
+            'Status' => 'required',
+            'Sex' => 'required',
+         ],
+         [
+             'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
+             'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว",
+             'StudentName.required'=>"กรุณาป้อนชื่อนักศึกษาด้วยครับ",
+             'DOB.required'=>"กรุณาป้อนวันเกิดด้วยครับ",
+             'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
+             'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
+             'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
+             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
+             'Status.required'=>"กรุณาป้อนสถานภาพด้วยครับ",
+             'Sex.required'=>"กรุณาระบุด้วยครับ",
+         ]
+         );
+        // send data to DB
+        $data = array();
+        $data["studentid"] = $request -> studentid;
+        $data["StudentName"] = $request -> StudentName;
+        $data["DOB"] = $request -> DOB;
+        $data["Address"] = $request -> Address;
+        $data["DepartmentID"] = $request -> DepartmentID;
+        $data["Email"] = $request -> Email;
+        $data["Phone"] = $request -> Phone;
+        $data["Status"] = $request -> Status;
+        $data["Sex"] = $request -> Sex;
+        DB :: table('students') -> insert($data);
+        
+
     public function courseManage_add(Request $request)
     {
         // dd($request);
@@ -81,6 +122,7 @@ class AdminController extends Controller
         $coursedetail->Credit = $request->Credit;
 
          $coursedetail->save();
+
         
         return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
     }
@@ -165,29 +207,56 @@ class AdminController extends Controller
         return view('admin.manage.section', compact('classinfo', 'registrations'));
     }
 
-    public function teacherAdd(Request $request)
-    {
-        $request->validate(
-            [
-                'TeacherID' => 'required|unique:students',
-                'TeacherName' => 'required',
-                'Address' => 'required',
-                'DepartmentID' => 'required',
-                'Email' => 'required',
-                'Phone' => 'required',
+    public function sectionAdd(Request $request){
+        $request->validate([
+            'ClassID' => 'required|unique:class_details',
+            'CourseID' => 'required',
+            'Section' => 'required',
+            'Semester' => 'required'
+         ],
+         [
+             'ClassID.required'=>"กรุณาป้อนรหัสคลาสด้วยครับ",
+             'ClassID.unique'=>"รหัสคลาสนี้มีอยู่ในระบบแล้ว",
+             'CourseID.required'=>"กรุณาป้อนรหัสวิชาด้วยครับ",
+             'Section.required'=>"กรุณาป้อนกลุ่มด้วยครับ",
+             'Semester.required'=>"กรุณาป้อนภาคการศึกษาด้วยครับ",
+         ]);
+        $data2 = array();
+        $data2["ClassID"] = $request -> ClassID;
+        $data2["CourseID"] = $request -> CourseID;
+        $data2["Section"] = $request -> Section;
+        $data2["Semester"] = $request -> Semester;    
+        DB :: table('class_details') -> insert($data2);
+        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
+    }
 
-            ],
-            [
-                'TeacherID.required' => "กรุณาป้อนรหัสอาจารย์ด้วยครับ",
-                'TeacherID.unique' => "รหัสอาจารย์นี้มีอยู่ในระบบแล้ว",
-                'TeacherName.required' => "กรุณาป้อนชื่ออาจารย์ด้วยครับ",
-                'Address.required' => "กรุณาป้อนที่อยู่ด้วยครับ",
-                'DepartmentID.required' => "กรุณาเลือกคณะด้วยครับ",
-                'Email.required' => "กรุณาระบุอีเมลด้วยครับ",
-                'Phone.required' => "กรุณาป้อนเบอร์ด้วยครับ",
+    public function sectionDelete($ClassID){
+        $select=$ClassID;
+        $delete=ClassDetail::where('ClassID',$select)->delete();
+        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+    }
 
-            ]
-        );
+    public function teacherAdd(Request $request){
+        $request->validate([
+            'TeacherID' => 'required|unique:students',
+            'TeacherName' => 'required',
+            'Address' => 'required',
+            'DepartmentID' => 'required',
+            'Email' => 'required',
+            'Phone' => 'required',
+
+         ],
+         [
+             'TeacherID.required'=>"กรุณาป้อนรหัสอาจารย์ด้วยครับ",
+             'TeacherID.unique'=>"รหัสอาจารย์นี้มีอยู่ในระบบแล้ว",
+             'TeacherName.required'=>"กรุณาป้อนชื่ออาจารย์ด้วยครับ",
+             'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
+             'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
+             'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
+             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
+
+         ]);
+        
 
         $teacher = new Teacher;
         $teacher->TeacherID = $request->TeacherID;
