@@ -41,6 +41,7 @@ Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
 Route::get('/admin/studentManage',[AdminController::class,'studentManage'])->name('studentManage');
 Route::get('/admin/teacherManage',[AdminController::class,'teacherManage'])->name('teacherManage');
+Route::post('/admin/teacherManage/add',[AdminController::class,'teacherAdd'])->name('teacherAdd');
 Route::get('/admin/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
 
 // For Student
