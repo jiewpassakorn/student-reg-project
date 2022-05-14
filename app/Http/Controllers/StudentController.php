@@ -97,7 +97,8 @@ class StudentController extends Controller
         $registration->save();
         
        
-        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
+        return redirect() -> back() -> with('wait', "รอยืนยัน");
+        // return redirect() -> back() -> with('success', "รอยืนยัน");
         
 
     }
@@ -118,7 +119,9 @@ class StudentController extends Controller
     public function delete($ClassID){
         $select=$ClassID;
         $delete=Registration::where('ClassID',$select)->delete();
-        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+
+        return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
+        // return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
 
     public function join(){
