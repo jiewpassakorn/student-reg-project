@@ -9,6 +9,7 @@ use App\Models\Teacher;
 use App\Models\CourseDetail;
 use App\Models\ClassDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\facades\DB;
 
 class AdminController extends Controller
 {
@@ -38,5 +39,25 @@ class AdminController extends Controller
         ->select('course_details.CourseID','course_details.CourseName','class_details.ClassID','class_details.Section','class_details.Semester')
         ->get();
         return view('admin.manage.course',compact('courseinfo','classinfo'));
+    }
+
+    public function store(Request $request) {
+        //send data to DB
+        $data = array();
+        $data["studentid"] = $request -> studentid;
+        $data["StudentName"] = $request -> StudentName;
+        $data["DOB"] = $request -> DOB;
+        $data["Address"] = $request -> Address;
+
+        $data["DepartmentID"] = $request -> DepartmentID;
+        $data["Email"] = $request -> Email;
+        $data["Phone"] = $request -> Phone;
+        $data["Status"] = $request -> Status;
+        $data["Sex"] = $request -> Sex;
+        
+
+        DB :: table('students') -> insert($data);
+        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
+
     }
 }
