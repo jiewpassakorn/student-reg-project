@@ -10,6 +10,7 @@ use App\Models\CourseDetail;
 use App\Models\ClassDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -42,6 +43,24 @@ class AdminController extends Controller
     }
 
     public function store(Request $request) {
+
+        $request->validate([
+            'studentid' => 'required|unique:students',
+            'StudentName' => 'required',
+            'DOB' => 'required',
+            'Address' => 'required',
+            'DepartmentID' => 'required',
+            'Email' => 'required',
+            'Phone' => 'required',
+            'Status' => 'required',
+            'Sex' => 'required',
+
+         ],
+         [
+             'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
+             'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว"
+         ]
+         );
         //send data to DB
         $data = array();
         $data["studentid"] = $request -> studentid;
@@ -59,5 +78,11 @@ class AdminController extends Controller
         DB :: table('students') -> insert($data);
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
 
+    }
+
+    public function delete($StudentID){
+        $select=$StudentID;
+        $delete=Student::where('StudentID',$select)->delete();
+        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
 }

@@ -44,6 +44,8 @@ Route::get('/admin/teacherManage',[AdminController::class,'teacherManage'])->nam
 Route::get('/admin/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
 
 Route::post('/admin/studentManage/add',[AdminController::class,'store'])->name('studentManage_add');
+Route::get('/admin/studentManage/delete/{StudentID}',[AdminController::class,'delete']);
+//function delete Route::get
 // For Student
 
 Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB');
