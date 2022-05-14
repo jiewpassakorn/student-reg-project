@@ -16,7 +16,7 @@
            <table class="table table-striped shadow-sm text-center mt-3">
             <thead class="table table-dark">
                 <tr>
-                    <th>คอร์สไอดี</th>
+                    <th>เลขคอร์ส</th>
                     <th>ชื่อคอร์ส</th>
                     <th>หน่วยกิต</th>
                     <th>สาขา</th>
@@ -25,22 +25,16 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($courseinfo as $row)
                 <tr>
-                    <td>CPE101</td>
-                    <td>คอมโปร</td>
-                    <td>3</td>
-                    <td>วิศวกรรมคอมพิวเตอร์</td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editCourseModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCourseModal">ลบข้อมูล</button></a> </td>
+                    <th>{{$row->CourseID}}</th>
+                    <td>{{$row->CourseName}}</td>
+                    <td>{{$row->Credit}}</td>
+                    <td>{{$row->DepartmentName}}</td>
+                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
+                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
                 </tr>
-                <tr>
-                    <td>CPE102</td>
-                    <td>คอมโปรสอง</td>
-                    <td>3</td>
-                    <td>วิศวกรรมคอมพิวเตอร์</td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editCourseModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCourseModal">ลบข้อมูล</button></a> </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
         <hr>
@@ -52,30 +46,26 @@
             <thead class="table table-dark">
                 <tr>
                     <th>เลขคลาส</th>
-                    <th>คอร์สไอดี</th>
-                    <th>กรุ๊ป</th>
+                    <th>เลขคอร์ส</th>
+                    <th>ชื่อคอร์ส</th>
+                    <th>กลุ่ม</th>
                     <th>ภาคการศึกษา</th>
                     <th> </th>
                     <th> </th>
                 </tr>
             </thead>
             <tbody>
+                @foreach($classinfo as $row)
                 <tr>
-                    <td>007CPE101</td>
-                    <td>CPE101</td>
-                    <td>Thai section</td>
-                    <td>1/65</td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editClassModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteClassModal">ลบข้อมูล</button></a> </td>
+                    <th>{{$row->ClassID}}</th>
+                    <td>{{$row->CourseID}}</td>
+                    <td>{{$row->CourseName}}</td>
+                    <td>{{$row->Section}}</td>
+                    <td>{{$row->Semester}}</td>
+                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
+                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
                 </tr>
-                <tr>
-                    <td>007CPE102</td>
-                    <td>CPE102</td>
-                    <td>National section</td>
-                    <td>1/65</td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editClassModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteClassModal">ลบข้อมูล</button></a> </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

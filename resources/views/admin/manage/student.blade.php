@@ -17,34 +17,31 @@
             <thead class="table table-dark">
                 <tr>
                     <th>รหัสนักศึกษา</th>
-                    <th>ชื่อ</th>
-                    <th>สกุล</th>
+                    <th>ชื่อ-สกุล</th>
+                    <th>สถานะ</th>
                     <th> </th>
                     <th> </th>
                 </tr>
             </thead>
             <tbody>
+                @php($i=1)
+                @foreach($students as $row)
                 <tr>
-                    <td>63070500001</td>
-                    <td>sommai</td>
-                    <td>gingmangkud</td>
+                    <th>{{$i++}}</th>
+                    <td>{{$row->StudentName}}</td>
+                    <td>
+                        @if ($row->Status == "Normal")
+                            <font color="green">Normal</font>
+                        @elseif ($row->Status == "Drop")
+                            <font color="red">Drop</font>
+                        @elseif ($row->Status == "Retire")
+                            <font color="red">Retire</font>
+                        @endif
+                    </td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
                 </tr>
-                <tr>
-                    <td>63070500001</td>
-                    <td>sommai</td>
-                    <td>gingmangkud</td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
-                </tr>
-                <tr>
-                    <td>63070500001</td>
-                    <td>sommai</td>
-                    <td>gingmangkud</td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
