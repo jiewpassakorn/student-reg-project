@@ -90,15 +90,35 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-12"><label class="labels">Teacher ID.</label><input type="text" name="TeacherID"class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Name</label><input type="text" name="TeacherName" class="form-control" placeholder="" value=""></div>
+                                <div class="col-md-12"><label class="labels">Teacher ID.</label>
+                                @error('TeacherID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="TeacherID"class="form-control" placeholder="" value=""></div>
+                                
+                                <div class="col-md-12"><label class="labels">Name</label>
+                                @error('TeacherName')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="TeacherName" class="form-control" placeholder="" value=""></div>
                                 
                             </div>
                             <div class="row">
-                                <div class="col-md-12"><label class="labels mt-3">Department (required)</label><input class="ml-2" list = "Department" name="DepartmentID" ><datalist id="Department"><option value="101" >CPE<option value="102">ME<option value="111">Maths</datalist></div>
-                                <div class="col-md-12"><label class="labels">Email</label><input type="text" name="Email" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12"><label class="labels">Phone</label><input type="text" name="Phone" class="form-control" placeholder="" value=""></div>                              
-                                <div class="col-md-12"><label class="labels">Address</Address></label><input type="text" name="Address" class="form-control" placeholder="" value=""></div>
+                                <div class="col-md-12"><label class="labels mt-3">Department (required)</label>
+                                @error('DepartmentID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                    <input class="ml-2" list = "Department" name="DepartmentID" >
+                                    <datalist id="Department">
+                                        <option value="101" >CPE<option value="102">ME<option value="111">Maths
+                                    </datalist>
+                                </div>
+
+                                <div class="col-md-12"><label class="labels">Email</label>
+                                @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="Email" class="form-control" placeholder="" value=""></div>
+
+                                <div class="col-md-12"><label class="labels">Phone</label>
+                                @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="Phone" class="form-control" placeholder="" value=""></div>    
+
+                                <div class="col-md-12"><label class="labels">Address</Address></label>
+                                @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="Address" class="form-control" placeholder="" value=""></div>
                                 
                             </div>
                     </div>
@@ -124,7 +144,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-danger">ตกลง</button>
+                    <td><a href="{{url('/admin/teacherManage/delete/'.$row->TeacherID)}}" class="btn ms-sm-5 mx-2 btn-danger">ยืนยัน</a></td>
                 </div>
             </div>
         </div>
