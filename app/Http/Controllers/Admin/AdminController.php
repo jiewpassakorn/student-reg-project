@@ -98,4 +98,8 @@ class AdminController extends Controller
         $delete=Student::where('StudentID',$select)->delete();
         return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
+
+    function sectionManage(){
+        return view('admin.manage.section');
+    }
 }

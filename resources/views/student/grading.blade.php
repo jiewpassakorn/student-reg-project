@@ -6,7 +6,7 @@
     <div class="container">
             <div class="row mt-5 p-2">
                 <div class="col-sm-12 mt-3 pt-3 justify-content-center">
-                    <h4> ผลการเรียน</h4></button> 
+                    <h4><i class="fa-solid fa-graduation-cap fa-xs"></i> ผลการเรียน</h4></button> 
                 </div>
             </div>
             <hr>
