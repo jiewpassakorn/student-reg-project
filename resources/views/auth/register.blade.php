@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
+
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -17,6 +19,15 @@
             <div class="text-center text-lg ">Registration</div>
 
             <div>
+                <x-jet-label for="role_id" value="{{ __('Register as:') }}" />
+                <select name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-red-700 focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="1">Admin</option>
+                    <option value="2">Student</option>
+                    <option value="3">Teacher</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
@@ -36,23 +47,24 @@
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="role_id" value="{{ __('Register as:') }}" />
-                <select name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-red-700 focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                    <option value="1">Admin</option>
-                    <option value="2">Student</option>
-                    <option value="3">Teacher</option>
+            <div class="mt-4" x-show="role_id != 1">
+                <x-jet-label for="DepartmentID" value="{{ __('Department:') }}" />
+                <select name="DepartmentID" x-model="DepartmentID" class="block mt-1 w-full border-gray-300 focus:border-red-700 focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option selected>Choose department...</option>
+                    <option value="101">Computer Engineering</option>
+                    <option value="102">ME</option>
+                    <option value="111">Maths</option>
                 </select>
+            </div>
+            
+            <div class="mt-4" x-show="role_id == 2">
+                <x-jet-label for="student_licence_number" value="{{ __('Licence Number') }}" />
+                <x-jet-input id="student_licence_number" class="block mt-1 w-full" type="text" :value="old('student_licence_number')" name="student_licence_number" />
             </div>
 
             <div class="mt-4" x-show="role_id == 2">
                 <x-jet-label for="student_address" value="{{ __('Address') }}" />
                 <x-jet-input id="student_address" class="block mt-1 w-full" type="text" :value="old('student_address')" name="student_address" />
-            </div>
-
-            <div class="mt-4" x-show="role_id == 2">
-                <x-jet-label for="student_licence_number" value="{{ __('Licence Number') }}" />
-                <x-jet-input id="student_licence_number" class="block mt-1 w-full" type="text" :value="old('student_licence_number')" name="student_licence_number" />
             </div>
 
             <div class="mt-4" x-show="role_id == 3">

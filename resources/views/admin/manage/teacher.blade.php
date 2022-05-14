@@ -18,7 +18,27 @@
                 <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" 
                 data-bs-toggle="modal" data-bs-target="#insertModal">เพิ่มข้อมูลอาจารย์</button></a> 
             </div>
-            <table class="table table-striped shadow-sm text-center mt-3">
+
+            {{-- alert message --}}
+            @if(Session::has('success'))
+            <div class="d-inline-flex">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                    {{Session::get('success')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>                  
+            </div>
+            @elseif(Session::has('delete'))      
+                <div class="d-inline-flex">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        {{Session::get('delete')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+
+            <table class="table table-striped shadow-sm text-center mt-2">
             <thead class="table table-dark">
                 <tr>
                     <th>รหัสอาจารย์</th>
@@ -42,12 +62,12 @@
                 </script>
                     <th>{{$row->TeacherID}}</th>
                     <td>{{$row->TeacherName}}</td>
-                    <td>{{$row->DepartmentName}}</td>
                     <td>{{$row->Email}}</td>
                     <td>{{$row->FacultyName}}</td>
                     <td>{{$row->DepartmentName}}</td>
                     <td><a href="#"><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a href="#"><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
+                    <td><a href="{{url('/admin/teacherManage/delete/'.$row->TeacherID)}}"><button class="btn btn-danger">ลบข้อมูล</button></a> </td>
+                    {{-- <td><a href="{{url('/admin/teacherManage/delete/'.$row->TeacherID)}}"><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td> --}}
                 </tr>
                 @endforeach
             </tbody>
@@ -101,6 +121,7 @@
                     <h5 class="modal-title">เพิ่มข้อมูลอาจารย์</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
                 </div>
+
                 <form action = "{{route('teacherAdd')}}"  method="POST">
                 @csrf
                 <div class="modal-body">
@@ -118,21 +139,27 @@
                             <div class="row">
                                 <div class="col-md-12"><label class="labels mt-3">Department (required)</label>
                                 @error('DepartmentID')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                    <input class="ml-2" list = "Department" name="DepartmentID" >
+                                    {{-- <input class="ml-2" list = "Department" name="DepartmentID" >
                                     <datalist id="Department">
                                         <option value="101" >CPE<option value="102">ME<option value="111">Maths
-                                    </datalist>
+                                    </datalist> --}}
+                                    <select name="DepartmentID" class="form-select">
+                                        <option selected>Choose department...</option>
+                                        <option value="101">Computer Engineering</option>
+                                        <option value="102">ME</option>
+                                        <option value="111">Maths</option>
+                                    </select>
                                 </div>
 
-                                <div class="col-md-12"><label class="labels">Email</label>
+                                <div class="col-md-12 mt-2"><label class="labels">Email</label>
                                 @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
                                 <input type="text" name="Email" class="form-control" placeholder="" value=""></div>
 
-                                <div class="col-md-12"><label class="labels">Phone</label>
+                                <div class="col-md-12 mt-2"><label class="labels">Phone</label>
                                 @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
                                 <input type="text" name="Phone" class="form-control" placeholder="" value=""></div>    
 
-                                <div class="col-md-12"><label class="labels">Address</Address></label>
+                                <div class="col-md-12 mt-2"><label class="labels">Address</Address></label>
                                 @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
                                 <input type="text" name="Address" class="form-control" placeholder="" value=""></div>
                                 
@@ -152,7 +179,7 @@
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">ยืนยันการลบวิชา</h5>
+                    <h5 class="modal-title">ยืนยันการลบอาจารย์</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
                 </div>
                 <div class="modal-body">
@@ -160,7 +187,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <td><a href="{{url('/admin/teacherManage/delete/'.$row->TeacherID)}}" class="btn ms-sm-5 mx-2 btn-danger">ยืนยัน</a></td>
+                    <td><a href="" class="btn ms-sm-5 mx-2 btn-danger">ยืนยัน</a></td>
                 </div>
             </div>
         </div>

@@ -29,12 +29,14 @@
                         </div>
                         <div class="col-md-12 p-2">
                             <b>สถานะ:</b>
-                            @if ($studentsinfo->status == "Normal")
+                            @if ($studentsinfo->status == "1")
                                 <font color="green">Normal</font>
-                            @elseif (Auth::user()->students->Status == "Drop")
+                            @elseif (Auth::user()->students->Status == "2")
                                 <font color="red">Drop</font>
-                            @elseif (Auth::user()->students->Status == "Retire")
+                            @elseif (Auth::user()->students->Status == "3")
                                 <font color="red">Retire</font>
+                            @elseif (Auth::user()->students->Status == "4")
+                                <font color="red">Graduated</font>
                             @endif
                         </div>
                     </div>
@@ -203,7 +205,7 @@
                     <div class="container bg-light p-1 shadow-sm">
                         <div class="row ms-2">
                             <div class="col-md-6 p-2">
-                                <b>รหัสวิชา:</b> {{$row->CourseID}}
+                                <b>รหัสวิชา:</b> 
                             </div>
                             <div class="col-md-6 p-2">
                                 <b>หน่วยกิต: 3</b>
