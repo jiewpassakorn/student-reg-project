@@ -8,12 +8,12 @@
     <div class="container">
     <br>
     <br>
-    <h1><i class="fa fa-bars fa-xs"></i> จัดการข้อมูล section</h1>
+    <h1><i class="fa fa-bars fa-xs"></i> จัดการข้อมูลห้องเรียน</h1>
     <div class="row d-flex">    
         <hr>
         <div class="col-12 mt-2 d-flex justify-content-center">
             <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" 
-            data-bs-toggle="modal" data-bs-target="#insertClassModal">เพิ่มรายละเอียด section</button></a> 
+            data-bs-toggle="modal" data-bs-target="#insertClassModal">เพิ่มรายละเอียดห้องเรียน</button></a> 
         </div>
         <table class="table table-striped shadow-sm text-center mt-3">
             <thead class="table table-dark">
