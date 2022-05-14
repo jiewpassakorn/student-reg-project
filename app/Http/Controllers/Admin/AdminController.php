@@ -31,7 +31,6 @@ class AdminController extends Controller
 
     public function store(Request $request) {
         //send data to DB
-        dd($request);
         $data = array();
         $data["studentid"] = $request -> studentid;
         $data["StudentName"] = $request -> StudentName;
