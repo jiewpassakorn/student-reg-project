@@ -93,9 +93,21 @@
                                 @error('CourseID')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 <input name="CourseID" type="text" class="form-control" placeholder="" value="">
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
+                                    <select name="DepartmentID" class="form-select">
+                                        <option selected>Choose department...</option>
+                                        <option value="101">CPE</option>
+                                        <option value="102">ME</option>
+                                        <option value="111">MTH</option>
+                                    </select>
+                                </div>
+
                             <div class="col-md-6 mt-2"><label class="labels">ชื่อวิชา</label>
                                 @error('CourseName')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 <input name="CourseName" type="text" class="form-control" placeholder="" value="">
+
                             </div>
                             <div class="col-md-6 mt-2"><label class="labels">หน่วยกิต</label>
                                 @error('Credit')<span class="text-danger py-0">({{$message}})</span>@enderror

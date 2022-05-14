@@ -7,6 +7,7 @@ use App\Models\CourseDetail;
 use App\Models\ClassDetail;
 use App\Models\Department;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\facades\DB;
@@ -19,13 +20,13 @@ class StudentController extends Controller
     } 
 
     function myinfo() {
-
+        $users = User::all();
         $students = Student::all();
 
         $departments = Department::where('DepartmentID',Auth::user()->DepartmentID)
         ->select('departments.DepartmentID','departments.DepartmentName')->first();
 
-        return view('student.myinfo',compact('students','departments'));
+        return view('student.myinfo',compact('users','students','departments'));
     }
 
     function welcome () {

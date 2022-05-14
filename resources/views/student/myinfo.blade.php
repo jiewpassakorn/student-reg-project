@@ -79,7 +79,7 @@
                                 <div class="col-md-9"><label class="labels mt-2">DOB (required)</label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
                             </div>                            
                         </div>
-                        <div class="col-md-12"><label class="labels mt-2">Address</label><input type="text" name = "Address" class="form-control" value=""></div>
+                        <div class="col-md-12"><label class="labels mt-2">Address</label><input type="text" name = "Address" class="form-control" value="{{Auth::user()->student_address}}" readonly></div>
                         
                         <div class="col-md-12"><label class="labels mt-2">Email</label><input type="email" name ="Email" class="form-control" value="{{Auth::user()->email}}" readonly></div>
                         <div class="col-md-12"><label class="labels mt-2">Phone (required)</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="mt-2">Status (required)</label>
-                                    <select class="form-select" aria-label="Default select example" name ="Status" >
+                                    <select class="form-select" aria-label="Default select example" name ="Status">
                                         <option >Open this select menu</option>
                                         <option value="1" selected>Normal</option>
                                         <option value="2">Drop</option>

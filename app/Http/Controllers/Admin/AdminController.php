@@ -56,7 +56,7 @@ class AdminController extends Controller
 
     public function studentManage_add(Request $request) {
 
-         $request->validate([
+        $request->validate([
             'studentid' => 'required|unique:students',
             'StudentName' => 'required',
             'DOB' => 'required',
@@ -245,17 +245,17 @@ class AdminController extends Controller
             'Email' => 'required',
             'Phone' => 'required',
 
-         ],
-         [
-             'TeacherID.required'=>"กรุณาป้อนรหัสอาจารย์ด้วยครับ",
-             'TeacherID.unique'=>"รหัสอาจารย์นี้มีอยู่ในระบบแล้ว",
-             'TeacherName.required'=>"กรุณาป้อนชื่ออาจารย์ด้วยครับ",
-             'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
-             'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
-             'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
-             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
+        ],
+        [
+            'TeacherID.required'=>"กรุณาป้อนรหัสอาจารย์ด้วยครับ",
+            'TeacherID.unique'=>"รหัสอาจารย์นี้มีอยู่ในระบบแล้ว",
+            'TeacherName.required'=>"กรุณาป้อนชื่ออาจารย์ด้วยครับ",
+            'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
+            'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
+            'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
+            'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
 
-         ]);
+        ]);
         
 
         $teacher = new Teacher;
