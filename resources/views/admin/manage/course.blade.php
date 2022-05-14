@@ -50,6 +50,7 @@
                     <th>ชื่อคอร์ส</th>
                     <th>กลุ่ม</th>
                     <th>ภาคการศึกษา</th>
+                    <th>จำนวนนักศึกษา</th>
                     <th> </th>
                     <th> </th>
                 </tr>
@@ -62,6 +63,7 @@
                     <td>{{$row->CourseName}}</td>
                     <td>{{$row->Section}}</td>
                     <td>{{$row->Semester}}</td>
+                    <td>{{$registrations->where('ClassID',$row->ClassID)->count()}}</td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
                 </tr>

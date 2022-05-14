@@ -8,6 +8,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\CourseDetail;
 use App\Models\ClassDetail;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -21,8 +22,10 @@ class AdminController extends Controller
     }
 
     function studentManage(){
-        $students = Student::all();
-        return view('admin.manage.student',compact('students'));
+        $studentsinfo = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('students.*','departments.DepartmentName','departments.FacultyName')
+        ->get();
+        return view('admin.manage.student',compact('studentsinfo'));
     }
 
     function teacherManage(){
@@ -39,13 +42,11 @@ class AdminController extends Controller
         $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
         ->select('course_details.CourseID','course_details.CourseName','class_details.ClassID','class_details.Section','class_details.Semester')
         ->get();
-        return view('admin.manage.course',compact('courseinfo','classinfo'));
+        $registrations = Registration::all();
+        return view('admin.manage.course',compact('courseinfo','classinfo','registrations'));
     }
 
     public function store(Request $request) {
-
-        
-
         $request->validate([
             'studentid' => 'required|unique:students',
             'StudentName' => 'required',
@@ -56,12 +57,10 @@ class AdminController extends Controller
             'Phone' => 'required',
             'Status' => 'required',
             'Sex' => 'required',
-
          ],
          [
              'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
              'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว",
-
              'StudentName.required'=>"กรุณาป้อนชื่อนักศึกษาด้วยครับ",
              'DOB.required'=>"กรุณาป้อนวันเกิดด้วยครับ",
              'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
@@ -79,18 +78,13 @@ class AdminController extends Controller
         $data["StudentName"] = $request -> StudentName;
         $data["DOB"] = $request -> DOB;
         $data["Address"] = $request -> Address;
-
         $data["DepartmentID"] = $request -> DepartmentID;
         $data["Email"] = $request -> Email;
         $data["Phone"] = $request -> Phone;
         $data["Status"] = $request -> Status;
         $data["Sex"] = $request -> Sex;
-        
-         
-
         DB :: table('students') -> insert($data);
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
-
     }
 
     public function delete($StudentID){

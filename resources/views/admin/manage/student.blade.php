@@ -17,6 +17,7 @@
                     <tr>
                         <th>รหัสนักศึกษา</th>
                         <th>ชื่อ-สกุล</th>
+                        <th>ภาควิชา</th>
                         <th>สถานะ</th>
                         <th> </th>
                         <th> </th>
@@ -24,10 +25,11 @@
                 </thead>
                 <tbody>
                     @php($i=1)
-                    @foreach($students as $row)
+                    @foreach($studentsinfo as $row)
                     <tr>
                         <th>{{$i++}}</th>
                         <td>{{$row->StudentName}}</td>
+                        <td>{{$row->DepartmentName}}</td>
                         <td>
                             @if ($row->Status == "Normal")
                             <font color="green">Normal</font>
