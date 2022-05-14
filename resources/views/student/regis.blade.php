@@ -85,13 +85,13 @@
                     </thead>
                     <tbody>
                         @php($i=1)
-                        @foreach($registrations as $row)
+                        @foreach($registrationsinfo as $row)
                         <tr>
                             <th>{{$i++}}</th>
-                            <td>{{$row->classdetails->courseDetails->CourseID}}</td>
-                            <td>{{$row->classdetails->courseDetails->CourseName}}</td>
-                            <td>{{$row->classdetails->courseDetails->Credit}}</td>
-                            <td>{{$row->classdetails->Section}}</td>
+                            <td>{{$row->CourseID}}</td>
+                            <td>{{$row->CourseName}}</td>
+                            <td>{{$row->Credit}}</td>
+                            <td>{{$row->Section}}</td>
                             <form action="{{route('student.destroy', $row->ClassID)}}" method="post">
                                 @csrf
                                 @method('PUT')
@@ -108,12 +108,22 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
 
-            <!-- button -->
-            <div class="row text-center">
-                <div class="col-sm-2">
-                    <a href="#insertModal"><button id="insertButton" class="btn btn-success mt-2 p-2 px-3" data-bs-toggle="modal" data-bs-target="#insertModal">เลือกวิชา</button></a>
+                <font size = "4" align = 'right'>จำนวนวิชาที่ลงทะเบียน <span>{{count($registrations)}}</span> วิชา</font>
+                <font size = "4" align = 'right'>หน่วยกิตทั้งหมด <span>{{$credit}}</span> หน่วยกิต</font>
+                <br>
+                <!-- button -->
+                <div class="row text-center">
+                    <div class="col-sm-2">
+                        <a href="#insertModal"><button id="insertButton" class="btn btn-success mt-2 p-2 px-3" data-bs-toggle="modal" data-bs-target="#insertModal">เลือกวิชา</button></a>
+                    </div>
+                    <div class="col-sm-8">
+                    </div>
+                    
+                    <div class="col-sm-2"><form action="{{route('submit')}}" method="post"> @csrf
+                        <a href="#insertModal"><button id="editButton" class="btn  btn-secondary mt-2 p-2 px-3">ยืนยัน</button></a>
+                     </form></div>
+                
                 </div>
                 <div class="col-sm-8">
                 </div>

@@ -6,7 +6,10 @@
     <div class="container">
         <br>
         <br>
-        <h1><i class="fa fa-address-book fa-xs"></i> จัดการข้อมูลอาจารย์</h1>
+        <h1>
+            <i class="fa fa-address-book fa-xs"></i> จัดการข้อมูลอาจารย์
+            <font size = "5">จำนวนอาจารย์ <span>{{count($teachersinfo)}}</span> คน</font>
+        </h1>
         <hr>
            <div class="row d-flex">
             <div class="col-12 mt-2 d-flex justify-content-center">
@@ -18,8 +21,9 @@
                 <tr>
                     <th>รหัสอาจารย์</th>
                     <th>ชื่อ-สกุล</th>
-                    <th>สาขา</th>
                     <th>Email</th>
+                    <th>คณะ</th>
+                    <th>สาขา</th>
                     <th> </th>
                     <th> </th>
                 </tr>
@@ -29,14 +33,16 @@
                 <tr>
                     <th>{{$row->TeacherID}}</th>
                     <td>{{$row->TeacherName}}</td>
-                    <td>{{$row->DepartmentName}}</td>
                     <td>{{$row->Email}}</td>
+                    <td>{{$row->FacultyName}}</td>
+                    <td>{{$row->DepartmentName}}</td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        {{$teachersinfo->links()}}
     </div>
 </div>
 </div>
