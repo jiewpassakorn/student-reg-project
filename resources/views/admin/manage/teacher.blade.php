@@ -6,17 +6,19 @@
     <div class="container">
         <br>
         <br>
-        <h1>
-            <i class="fa fa-address-book fa-xs"></i> จัดการข้อมูลอาจารย์
-            <font size = "5">จำนวนอาจารย์ <span>{{count($teachersinfo)}}</span> คน</font>
-        </h1>
+        <div class="d-flex bd-highlight">
+            <div class=""><h1><i class="fa fa-address-book fa-xs"></i> จัดการข้อมูลอาจารย์</h1></div>
+            <div class="ms-auto p-2 bd-highlight"><font size = "5">จำนวนอาจารย์ <span>{{count($teachersinfo)}}</span> คน</font></div>
+        </div>
+
         <hr>
-           <div class="row d-flex">
+
+        <div class="row d-flex">
             <div class="col-12 mt-2 d-flex justify-content-center">
-               <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" 
+                <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" 
                 data-bs-toggle="modal" data-bs-target="#insertModal">เพิ่มข้อมูลอาจารย์</button></a> 
-           </div>
-           <table class="table table-striped shadow-sm text-center mt-3">
+            </div>
+            <table class="table table-striped shadow-sm text-center mt-3">
             <thead class="table table-dark">
                 <tr>
                     <th>รหัสอาจารย์</th>
@@ -24,8 +26,8 @@
                     <th>Email</th>
                     <th>คณะ</th>
                     <th>สาขา</th>
-                    <th> </th>
-                    <th> </th>
+                    <th>แก้ไขข้อมูล</th>
+                    <th>ลบข้อมูล</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,12 +36,13 @@
 
                     <th>{{$row->TeacherID}}</th>
                     <td>{{$row->TeacherName}}</td>
-                    <td>{{$row->DepartmentName}}</td>
                     <td>{{$row->Email}}</td>
                     <td>{{$row->FacultyName}}</td>
                     <td>{{$row->DepartmentName}}</td>
+
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
                     <td><a href="{{url('/admin/teacherManage/delete/'.$row->TeacherID)}}"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td>
+
                 </tr>
                 @endforeach
             </tbody>
@@ -83,7 +86,7 @@
             </div>
         </div>
     </div>
-  </div>
+</div>
 
     <!-- insert Modal -->
     <div class="modal fade" id="insertModal">

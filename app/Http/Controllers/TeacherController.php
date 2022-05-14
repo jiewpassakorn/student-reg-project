@@ -6,15 +6,11 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    function login() {
-        return view('teacher.login');
-    }    
-
-    function welcome() {
+    function index() {
         return view('teacher.welcome');
     }
 
-    function index() {
-        return view('teacher.welcome');
+    function report() {
+        return view('teacher.report');
     }
 }

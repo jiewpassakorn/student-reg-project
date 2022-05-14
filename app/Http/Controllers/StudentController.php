@@ -34,12 +34,22 @@ class StudentController extends Controller
         ->Join('teachers', 'schedules.TeacherIDdif', '=', 'teachers.TeacherID')
         ->select('course_details.CourseID','course_details.CourseName','course_details.Credit','class_details.ClassID','class_details.Section','schedules.Room','schedules.Weekday','schedules.Time','teachers.TeacherName')
         ->get();
+        $registrationsinfo = Registration::where('StudentID',Auth::user()->student_licence_number)
+        ->Join('class_details', 'registrations.ClassID', '=', 'class_details.ClassID')
+        ->Join('course_details', 'class_details.CourseID', '=', 'course_details.CourseID')
+        ->select('registrations.StudentID','registrations.RegStatus','registrations.ClassID','class_details.Section','course_details.CourseID','course_details.CourseName','course_details.Credit')
+        ->get();
         $registrations = Registration::where('StudentID',Auth::user()->student_licence_number)->get();
+        $credit = Registration::where('StudentID',Auth::user()->student_licence_number)
+        ->Join('class_details', 'registrations.ClassID', '=', 'class_details.ClassID')
+        ->Join('course_details', 'class_details.CourseID', '=', 'course_details.CourseID')
+        ->select('course_details.Credit')
+        ->sum('course_details.Credit');
         $studentsinfo = Student::where('StudentID',Auth::user()->student_licence_number)
         ->Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
         ->select('students.StudentID','students.StudentName','students.Email','students.status','departments.DepartmentName','departments.FacultyName')
         ->first();
-        return view('student.regis',compact('coursedetails','classdetails','registrations','coursejoin','studentsinfo'));
+        return view('student.regis',compact('coursedetails','classdetails','registrationsinfo','registrations','coursejoin','studentsinfo','credit'));
     }
 
     function schedule() {
@@ -87,7 +97,8 @@ class StudentController extends Controller
         $registration->save();
         
        
-        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
+        return redirect() -> back() -> with('wait', "รอยืนยัน");
+        // return redirect() -> back() -> with('success', "รอยืนยัน");
         
 
     }
@@ -103,7 +114,9 @@ class StudentController extends Controller
     public function delete($ClassID){
         $select=$ClassID;
         $delete=Registration::where('ClassID',$select)->delete();
-        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+
+        return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
+        // return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
 
     public function join(){

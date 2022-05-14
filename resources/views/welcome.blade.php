@@ -10,22 +10,19 @@
                 </div>
             </div>
             <hr>
-            {{-- <div class="row d-grid justify-content-center">
-                 <div class="container mt-3">
-                   <div class="col-sm-12 justify-content-around shadow p-4  mb-4 bg-body rounded" >
-                        <p>ระบบลงทะเบียนเรียน version ทดสอบ
-                        </p>
-                   </div>
-                 </div>
-           </div> --}}
-           <div class="card">
+          <div class="card">
             <div class="card-header">
               Update
             </div>
             <div class="card-body">
               <h5 class="card-title">Anoucement</h5>
               <p class="card-text">This is student register beta version.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <li>For student</li>
+              <div class="container">If this is your first login, please fill your information correctly.</div>
+              @if (auth()->user()->role_id == 2) 
+                        <a href="{{route('myinfo')}}" class="btn btn-primary mt-2">Edit information</a>
+              @endif
+              
             </div>
             <div class="card-footer text-muted">
               2 days remaining

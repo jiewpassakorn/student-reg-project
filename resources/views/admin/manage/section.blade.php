@@ -18,9 +18,9 @@
         <table class="table table-striped shadow-sm text-center mt-3">
             <thead class="table table-dark">
                 <tr>
-                    <th>เลขคลาส</th>
-                    <th>เลขคอร์ส</th>
-                    <th>ชื่อคอร์ส</th>
+                    <th>รหัสคลาส</th>
+                    <th>รหัสวิชา</th>
+                    <th>ชื่อวิชา</th>
                     <th>กลุ่ม</th>
                     <th>ภาคการศึกษา</th>
                     <th>จำนวนนักศึกษา</th>
@@ -60,9 +60,9 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-12 mt-2"><label class="labels">คลาสไอดี</label><input type="text" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12 mt-2"><label class="labels">คอร์สไอดี</label><input type="text" class="form-control" placeholder="อิงจากตารางคอร์สดีเทล (FK)" value=""></div>
-                                <div class="col-md-6 mt-2"><label class="labels">กรุ๊ป</label><input type="text" class="form-control" value="" placeholder=""></div>
+                                <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label><input type="text" class="form-control" placeholder="" value=""></div>
+                                <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label><input type="text" class="form-control" placeholder="อิงจากตารางคอร์สดีเทล (FK)" value=""></div>
+                                <div class="col-md-6 mt-2"><label class="labels">กลุ่ม</label><input type="text" class="form-control" value="" placeholder=""></div>
                                 <div class="col-md-6 mt-2"><label class="labels">ภาคการศึกษา</label><input type="text" class="form-control" placeholder="" value=""></div>
                             </div>
                     </div>
@@ -86,9 +86,9 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-12 mt-2"><label class="labels">คลาสไอดี</label><input type="text" class="form-control" placeholder="คลาสไอดีเดิม" value=""></div>
-                                <div class="col-md-12 mt-2"><label class="labels">คอร์สไอดี</label><input type="text" class="form-control" placeholder="แก้ไม่ได้ เป็น(PK) ของตารางคอร์สดีเทล" value="" disabled></div>
-                                <div class="col-md-6 mt-2"><label class="labels">กรุ๊ป</label><input type="text" class="form-control" value="" placeholder="กรุ๊ปเดิม"></div>
+                                <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label><input type="text" class="form-control" placeholder="คลาสไอดีเดิม" value=""></div>
+                                <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label><input type="text" class="form-control" placeholder="แก้ไม่ได้ เป็น(PK) ของตารางคอร์สดีเทล" value="" disabled></div>
+                                <div class="col-md-6 mt-2"><label class="labels">กลุ่ม</label><input type="text" class="form-control" value="" placeholder="กรุ๊ปเดิม"></div>
                                 <div class="col-md-6 mt-2"><label class="labels">ภาคการศึกษา</label><input type="text" class="form-control" placeholder="ภาคการศึกษาเดิม" value=""></div>
                             </div>
                     </div>

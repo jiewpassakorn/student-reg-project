@@ -51,6 +51,8 @@ Route::get('/admin/sectionManage',[AdminController::class,'sectionManage'])->nam
 
 Route::post('/admin/studentManage/add',[AdminController::class,'studentManage_add'])->name('studentManage_add');
 Route::get('/admin/studentManage/delete/{StudentID}',[AdminController::class,'studentManage_delete']);
+Route::get('/admin/studentManage/edit/{StudentID}',[AdminController::class,'studentManage_edit']);
+Route::post('/service/update/{id}',[StudentController::class,'studentManage_edit'])->name('studentManage_edit');
 //function delete Route::get
 // For Student
 
@@ -58,8 +60,7 @@ Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB'
 
 
 // For Teacher
-Route::get('/teacher/login',[TeacherController::class,'login'])->name('tlog');
-Route::get('/teacher/welcome',[TeacherController::class,'welcome'])->name('t.welcome');
+Route::get('/teacher/report',[TeacherController::class,'report'])->name('t.report');
 
 // Department
 Route::get('/department/edit/{id}',[DepartmentController::class,'edit']);

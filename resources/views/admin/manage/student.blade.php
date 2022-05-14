@@ -5,12 +5,16 @@
 
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+
         <br>
         <br>
-        <h1>
-            <i class="fa fa-address-card fa-xs"></i> จัดการข้อมูลนักศึกษา
-            <font size = "5">จำนวนนักศึกษา <span>{{count($studentsinfo)}}</span> คน</font>
-        </h1>
+        <div class="d-flex bd-highlight">
+            <div class=""><h1><i class="fa fa-address-card fa-xs"></i> จัดการข้อมูลนักศึกษา</h1></div>
+            <div class="ms-auto p-2 bd-highlight"><font size = "5">จำนวนนักศึกษา <span>{{count($studentsinfo)}}</span> คน</font></div>
+        </div>
+        <hr>
         <div class="row d-flex">
             <div class="col-12 mt-2 d-flex justify-content-center">
                 <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" data-bs-toggle="modal" data-bs-target="#insertModal">เพิ่มข้อมูลนักศึกษา</button></a>
@@ -22,12 +26,13 @@
                         <th>ชื่อ-สกุล</th>
                         <th>ภาควิชา</th>
                         <th>สถานะ</th>
-                        <th> </th>
-                        <th> </th>
+                        <th>แก้ไขข้อมูล</th>
+                        <th>ลบข้อมูล</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($studentsinfo as $row)
+                    
                     <tr>
                         <th>{{$row->StudentID}}</th>
                         <td>{{$row->StudentName}}</td>
@@ -42,9 +47,12 @@
                             @endif
                         </td>
 
-                        <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                        <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td> -->
-                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger">ลบข้อมูล</a></td>
+                        <td><a href="#"><button value="{{$row->StudentID}}" class="btn ms-sm-5 editbtn mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
+                        <!-- <td><a href="{{url('/admin/studentManage/edit/'.$row->StudentID)}}#" class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</a></td> -->
+                        <!-- <td><button type="button" value="1" class="btn btn-primary editbtn btn-sm">Edit</button></td> -->
+                        <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger delete_student studentid" value="{{$row->StudentID}}" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td> -->
+                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger" >ลบข้อมูล</a></td>
+
 
                     </tr>
                     @endforeach
@@ -60,6 +68,7 @@
 <div class="modal fade" id="editModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+
             <div class="modal-header">
                 <h5 class="modal-title">แก้ไขข้อมูลนักศึกษา</h5>
                 <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
@@ -67,7 +76,7 @@
             <div class="modal-body">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-12"><label class="labels">Student ID.</label><input type="text" class="form-control" placeholder="id before" value=""></div>
+                        <div class="col-md-12"><label class="labels">Student ID</label><input type="text" class="form-control" placeholder="id before" value=""></div>
                         <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name before" value=""></div>
                         <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname before"></div>
                     </div>
@@ -105,19 +114,19 @@
                     <form action="{{route('studentManage_add')}}" method="POST">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6"><label class="labels">Student ID.</label>
+                            <div class="col-md-6"><label class="labels">Student ID</label>
                                 @error('studentid')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" class="form-control" placeholder="" value="" name="studentid">
+                                <input type="text" class="form-control" placeholder="" value="{{$row->StudentID}}" name="studentid">
                             </div>
                             <div class="col-md-6"><label class="labels">Name</label>
                                 @error('StudentName')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="StudentName" class="form-control" value="">
+                                <input type="text" name="StudentName" class="form-control" value="{{$row->StudentName}}">
                             </div>
                         </div>
                         <div class="row">
 
 
-                            <div class="col-md-5"><label class="labels mt-2">DOB (required)</label>
+                            <div class="col-md-5"><label class="labels mt-2">DOB</label>
                                 @error('DOB')<span class="text-danger py-2">({{$message}})</span>@enderror
                                 <input type="date" name="DOB" class="form-control" placeholder="enter dob" value="">
                             </div>
@@ -129,8 +138,7 @@
 
 
 
-                            <div class="col-md-4"><label class="labels mt-2">
-                                    Department (required)</label>
+                            <div class="col-md-4"><label class="labels mt-2">Department (required)</label>
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="DepartmentID"></label>
                                     <select class="form-select" id="DepartmentID" name="DepartmentID">
@@ -141,7 +149,6 @@
                                     </select>
                                     @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 </div>
-
                             </div>
 
                             <div class="col-md-8"><label class="labels mt-2">Email</label>
@@ -189,7 +196,117 @@
                             </div>
                         </div>
                         <div class="modal-footer mt-3">
-                            <input type="submit" value="Save Profile" class="btn btn-primary profile-button">
+                            <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- insert Modal -->
+<div class="modal fade" id="insertModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">เพิ่มข้อมูลนักศึกษา</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <form action="{{route('studentManage_add')}}" method="POST" id="addform">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6"><label class="labels">Student ID.</label>
+                                @error('studentid')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" class="form-control studentid" placeholder="" value="" name="studentid">
+                            </div>
+                            <div class="col-md-6"><label class="labels">Name</label>
+                                @error('StudentName')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="StudentName" class="form-control StudentName" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+
+
+                            <div class="col-md-5"><label class="labels mt-2">DOB (required)</label>
+                                @error('DOB')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="date" name="DOB" class="form-control DOB" placeholder="enter dob" value="">
+                            </div>
+
+                            <div class="col-md-7"><label class="labels mt-2">Address</label>
+                                @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="Address" class="form-control Address" value="{{Auth::user()->Address}}">
+                            </div>
+
+
+
+                            <div class="col-md-4"><label class="labels mt-2">
+                                    Department (required)</label>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="DepartmentID"></label>
+                                    <select class="form-select DepartmentID" id="DepartmentID" name="DepartmentID">
+                                        <option selected value="">Choose...</option>
+                                        <option value="101">CPE</option>
+                                        <option value="102">ME</option>
+                                        <option value="111">Maths</option>
+                                    </select>
+                                    @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-8"><label class="labels mt-2">Email</label>
+                                @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="email" name="Email" class="form-control Email" value="">
+                            </div>
+
+                            <div class="col-md-4"><label class="labels mt-0">Phone (required)</label>
+
+                                <input type="text" name="Phone" class="form-control Phone" placeholder="enter phone number" value="">
+                                @error('Phone')<span class="text-danger py-0">({{$message}})</span>@enderror
+                            </div>
+
+
+                            <div class="col-md-4"><label class="labels mt-0">
+                                    Status (required)</label>
+                                <div class="input-group mb-2">
+                                    <label class="input-group-text" for="Status"></label>
+                                    <select class="form-select Status" id="Status" name="Status">
+                                        <option selected value="">Choose...</option>
+                                        <option value="Normal">Normal</option>
+                                        <option value="Drop">Drop</option>
+                                        <option value="Retire">Retire</option>
+                                    </select>
+                                    @error('Status')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4"><label class="labels mt-0">
+                                    Sex </label>
+                                @error('Sex')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                <div class="input-group mb-4">
+                                    <label class="input-group-text" for="Sex"></label>
+                                    <select class="form-select Sex" id="Sex" name="Sex">
+                                        <option selected value="">Choose...</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                        <option value="U">Undefined</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12"><label class="labels mt-0">Advisor</label>
+                                <input type="text" name="Advisor" class="form-control Advisor" placeholder="Advisor name" value="" disabled>
+                            </div>
+                        </div>
+                        <div class="modal-footer mt-3">
+                            <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_student">
                         </div>
                     </form>
                 </div>
@@ -214,8 +331,99 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                <button class="btn btn-danger">ตกลง</button>
+                <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn btn-danger">ตกลง</a></td>
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.add_student', function(e) {
+            e.preventDefault();
+            // console.log("hello");
+            var data = {
+                'studentid': $('.studentid').val(),
+                'StudentName': $('.StudentName').val(),
+                'DOB': $('.DOB').val(),
+                'Address': $('.Address').val(),
+                'DepartmentID': $('.DepartmentID').val(),
+                'Email': $('.Email').val(),
+                'Status': $('.Status').val(),
+                'Sex': $('.Sex').val(),
+            };
+            console.log(data);
+            
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/admin/studentManage/add",
+                data: $('#addform').serialize(),
+                success: function(response) {
+                    console.log(response)
+                    
+                    $('#insertModal').modal('hide')
+                    alert("Data save");
+                    // location.reload();
+                },
+                error: function(error){
+                    console.log(error);
+                    alert("Data not save");
+                }
+
+            });
+
+        });
+
+        $(document).on('click', '.delete_student' ,function(e) {
+
+            e.preventDefault();
+            // console.log("hello");
+            var data = {
+                'studentid': $('.studentid').val(),
+                
+            };
+            console.log(data);
+            
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/admin/studentManage/",
+                data: $('#addform').serialize(),
+                success: function(response) {
+                    console.log(response)
+                    
+                    $('#insertModal').modal('hide')
+                    alert("Data save");
+                    // location.reload();
+                },
+                error: function(error){
+                    console.log(error);
+                    alert("Data not save");
+                }
+
+            });
+
+
+
+        })
+
+    });
+</script>
+@endsection

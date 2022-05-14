@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>@yield('title')</title>
 
@@ -83,6 +84,7 @@
                     <a href="{{route('teacherManage')}}" class="nav_link {{ Request::routeis('teacherManage') ? 'active' : '' }}"> <i class="fa fa-address-book"></i> <span class="nav_name">จัดการข้อมูลอาจารย์</span> </a>
                     <a href="{{route('courseManage')}}" class="nav_link {{ Request::routeis('courseManage') ? 'active' : '' }}"> <i class="fa fa-book"></i> <span class="nav_name">จัดการข้อมูลรายวิชา</span> </a>
                     <a href="{{route('sectionManage')}}" class="nav_link {{ Request::routeis('sectionManage') ? 'active' : '' }}"> <i class="fa fa-bars"></i> <span class="nav_name">จัดการข้อมูลห้องเรียน</span> </a>
+                    <a href="{{route('t.report')}}" class="nav_link {{ Request::routeis('t.report') ? 'active' : '' }}"> <i class="fa fa-bar-chart"></i> <span class="nav_name">รายงานสถิติ</span> </a>
                     <a href="{{route('admin.dashboard')}}" class="nav_link {{ Request::routeis('admin.dashboard') ? 'active' : '' }}"> <i class="fa fa-tachometer"></i> <span class="nav_name">Dashboard</span> </a>
                     @endif
 
@@ -96,7 +98,8 @@
                     {{-- Menu for teacher --}}                    
                     @if (auth()->user()->role_id == 3)
                         <a href="{{route('courseManage')}}" class="nav_link {{ Request::routeis('courseManage') ? 'active' : '' }}"> <i class="fa fa-book"></i> <span class="nav_name">จัดการข้อมูลรายวิชา</span> </a>
-                        <a href="#" class="nav_link"> <i class="fa fa-book"></i> <span class="nav_name">รายงานสถิติ</span> </a>
+                        <a href="{{route('sectionManage')}}" class="nav_link {{ Request::routeis('sectionManage') ? 'active' : '' }}"> <i class="fa fa-bars"></i> <span class="nav_name">จัดการข้อมูลห้องเรียน</span> </a>
+                        <a href="{{route('t.report')}}" class="nav_link {{ Request::routeis('t.report') ? 'active' : '' }}"> <i class="fa fa-bar-chart"></i> <span class="nav_name">รายงานสถิติ</span> </a>
                     @endif
                     
                 </div>
@@ -104,6 +107,10 @@
         </nav>
     </div>
 
+    
+    
+    
+    
     <br>
     <br>
 
@@ -115,55 +122,18 @@
         <div>
         </nav>
     </footer>
-
-    {{-- <footer class=" position-relative">
-        <br>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="footer-left">
-                        <div >
-                            <a href="#">CPE231 Final Project</a>
-                        </div>
-                        <ul>
-                            <li>Address: KMUTT Bangkok, Thailand</li>
-                            <li>Department: Computer Engineering</li>
-                            <li>Email: xxxxxxxx@mail.kmutt.ac.th</li>
-                        </ul>
-                        <div class="footer-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 offset-lg-1">
-                    <div class="footer-widget">
-                        <h5 style="color: #FA4616">Information</h5>
-                        <ul>
-                            <li><a href={{route('about')}}>About Us</a></li>
-                            <li><a href="#">Checkout</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Serivius</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="newslatter-item">
-                        <h5>Join Our Newsletter Now</h5>
-                        <p>Get E-mail updates about our latest course and anoucement.</p>
-                        <form action="#" class="subscribe-form">
-                            <input type="text" placeholder="Enter Your Mail" />
-                            <button type="button">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>     
-    </footer> --}}
     
 </body>
-
-
 </html>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+</svg>
