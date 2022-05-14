@@ -44,6 +44,8 @@ class AdminController extends Controller
 
     public function store(Request $request) {
 
+        
+
         $request->validate([
             'studentid' => 'required|unique:students',
             'StudentName' => 'required',
@@ -58,10 +60,20 @@ class AdminController extends Controller
          ],
          [
              'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
-             'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว"
+             'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว",
+
+             'StudentName.required'=>"กรุณาป้อนชื่อนักศึกษาด้วยครับ",
+             'DOB.required'=>"กรุณาป้อนวันเกิดด้วยครับ",
+             'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
+             'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
+             'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
+             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
+             'Status.required'=>"กรุณาป้อนสถานภาพด้วยครับ",
+             'Sex.required'=>"กรุณาระบุด้วยครับ",
          ]
          );
         //send data to DB
+        
         $data = array();
         $data["studentid"] = $request -> studentid;
         $data["StudentName"] = $request -> StudentName;
@@ -74,6 +86,7 @@ class AdminController extends Controller
         $data["Status"] = $request -> Status;
         $data["Sex"] = $request -> Sex;
         
+         
 
         DB :: table('students') -> insert($data);
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");

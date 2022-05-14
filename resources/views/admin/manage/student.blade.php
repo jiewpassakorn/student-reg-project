@@ -37,11 +37,11 @@
                             <font color="red">Retire</font>
                             @endif
                         </td>
-                        
+
                         <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
                         <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td> -->
                         <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger">ลบข้อมูล</a></td>
-                       
+
                     </tr>
                     @endforeach
                 </tbody>
@@ -90,45 +90,72 @@
 <div class="modal fade" id="insertModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form action="{{route('studentManage_add')}}" method="POST">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title">เพิ่มข้อมูลนักศึกษา</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
-                </div>
-                <div class="modal-body">
-                    <div class="col-md-12">
+
+            <div class="modal-header">
+                <h5 class="modal-title">เพิ่มข้อมูลนักศึกษา</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <form action="{{route('studentManage_add')}}" method="POST">
+                        @csrf
                         <div class="row">
-                            <div class="col-md-12"><label class="labels">Student ID.</label><input type="text" class="form-control" placeholder="" value="" name="studentid"></div>
-                            @error('studentid')
-                                <span class="text-danger py-2">{{$message}}</span>
-                            @enderror
+                            <div class="col-md-12"><label class="labels">Student ID.</label>
+                            @error('studentid')<span class="text-danger py-2">({{$message}})</span>@enderror
+                            <input type="text" class="form-control" placeholder="" value="" name="studentid"></div>
+                            
                         </div>
                         <div class="row">
-                            <div class="col-md-12"><label class="labels">Name</label><input type="text" name="StudentName" class="form-control" value=""></div>
-                            <div class="col-md-12"><label class="labels mt-2">DOB (required)</label><input type="date" name="DOB" class="form-control" placeholder="enter dob" value=""></div>
-                            <div class="col-md-12"><label class="labels mt-2">Address</label><input type="text" name="Address" class="form-control" value="{{Auth::user()->Address}}"></div>
-                            <div class="col-md-12"><label class="labels mt-3">Department (required)</label><input class="ml-2" list="Department" name="DepartmentID"><datalist id="Department">
+                            <div class="col-md-12"><label class="labels">Name</label>
+                            @error('StudentName')<span class="text-danger py-2">({{$message}})</span>@enderror
+                            <input type="text" name="StudentName" class="form-control" value=""></div>
+                           
+                            <div class="col-md-12"><label class="labels mt-2">DOB (required)</label>
+                            @error('DOB')<span class="text-danger py-2">({{$message}})</span>@enderror
+                            <input type="date" name="DOB" class="form-control" placeholder="enter dob" value=""></div>
+                            
+                            <div class="col-md-12"><label class="labels mt-2">Address</label>
+                            @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
+                            <input type="text" name="Address" class="form-control" value="{{Auth::user()->Address}}"></div>
+                            
+                            <div class="col-md-12"><label class="labels mt-3">Department (required)</label>
+                            @error('DepartmentID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                            <input class="ml-2" list="Department" name="DepartmentID"><datalist id="Department">
                                     <option value="101">CPE
                                     <option value="102">ME
                                     <option value="111">Maths
                                 </datalist></div>
-                            <div class="col-md-12"><label class="labels mt-2">Email</label><input type="email" name="Email" class="form-control" value=""></div>
-                            <div class="col-md-12"><label class="labels mt-2">Phone (required)</label><input type="text" name="Phone" class="form-control" placeholder="enter phone number" value=""></div>
-                            <div class="col-md-12"><label class="labels mt-2">Status (required)</label><input type="text" name="Status" class="form-control" placeholder="status" value=""></div>
-                            <div class="col-md-12"><label class="labels mt-3">Sex</label><input class="ml-2" list="Sex" name="Sex"><datalist id="Sex">
+                           
+                            <div class="col-md-12"><label class="labels mt-2">Email</label>
+                            @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
+                            <input type="email" name="Email" class="form-control" value=""></div>
+                            
+                            <div class="col-md-12"><label class="labels mt-2">Phone (required)</label>
+                            @error('Phone')<span class="text-danger py-2">({{$message}})</span>@enderror
+                            <input type="text" name="Phone" class="form-control" placeholder="enter phone number" value=""></div>
+                            
+                            <div class="col-md-12"><label class="labels mt-2">Status (required)</label>
+                            @error('Status')<span class="text-danger py-2">({{$message}})</span>@enderror
+                            <input type="text" name="Status" class="form-control" placeholder="status" value=""></div>
+                            
+                            <div class="col-md-12"><label class="labels mt-3">Sex</label>
+                            @error('Sex')<span class="text-danger py-2">({{$message}})</span>@enderror
+                            <input class="ml-2" list="Sex" name="Sex"><datalist id="Sex">
                                     <option value="M">Male
                                     <option value="F">Female
                                     <option value="U">Undefined
                                 </datalist></div>
-                            <div class="col-md-12"><label class="labels mt-2">Advisor</label><input type="text" name="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
+                                
+                            <div class="col-md-12"><label class="labels mt-2">Advisor</label>
+                            <input type="text" name="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
                         </div>
-                    </div>
+                        <div class="modal-footer mt-3">
+                            <input type="submit" value="Save Profile" class="btn btn-primary profile-button">
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer mt-3">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <input type="submit" value="Save Profile" class="btn btn-primary profile-button">
-                </div>
+            </div>
+
 
             </form>
         </div>
