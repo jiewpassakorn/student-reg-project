@@ -104,49 +104,50 @@
                                     </select>
                                 </div>
 
-                            <div class="col-md-6 mt-2"><label class="labels">ชื่อวิชา</label>
-                                @error('CourseName')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <input name="CourseName" type="text" class="form-control" placeholder="" value="">
+                                <div class="col-md-6 mt-2"><label class="labels">ชื่อวิชา</label>
+                                    @error('CourseName')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                    <input name="CourseName" type="text" class="form-control" placeholder="" value="">
 
+                                </div>
+                                <div class="col-md-6 mt-2"><label class="labels">หน่วยกิต</label>
+                                    @error('Credit')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                    <input name="Credit" type="text" class="form-control" value="" placeholder="">
+                                </div>
                             </div>
-                            <div class="col-md-6 mt-2"><label class="labels">หน่วยกิต</label>
-                                @error('Credit')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <input name="Credit" type="text" class="form-control" value="" placeholder="">
+                            <div class="row">
+                                <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
+                                    @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                    <input name="DepartmentID" type="text" class="form-control" placeholder="" value="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
-                                @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <input name="DepartmentID" type="text" class="form-control" placeholder="" value="">
+                            <div class="modal-footer mt-3">
+                                <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
                             </div>
-                        </div>
-                        <div class="modal-footer mt-3">
-                            <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
                         </div>
                     </form>
+
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
 
-<!-- ลบคอร์ส -->
-<div class="modal fade" id="deleteCourseModal">
-    <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">ยืนยันการลบวิชา</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
-            </div>
-            <div class="modal-body">
-                คุณต้องการที่จะลบรายวิชานี้หรือไม่
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                <button class="btn btn-danger">ตกลง</button>
+        <!-- ลบคอร์ส -->
+        <div class="modal fade" id="deleteCourseModal">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">ยืนยันการลบวิชา</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
+                    </div>
+                    <div class="modal-body">
+                        คุณต้องการที่จะลบรายวิชานี้หรือไม่
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button class="btn btn-danger">ตกลง</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
