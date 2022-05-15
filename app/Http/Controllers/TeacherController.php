@@ -30,7 +30,7 @@ class TeacherController extends Controller
         $reportstudent = Student::Join('registrations', 'students.StudentID', '=', 'registrations.StudentID')
         ->select('students.StudentID', 'students.StudentName')
         ->groupBy('students.StudentID','students.studentName')
-        ->get();
+        ->paginate(10);
         
         return view('teacher.report', compact('reportinfo', 'registrations', 'reportavg', 'coursedetails','reportstudent'));
     }

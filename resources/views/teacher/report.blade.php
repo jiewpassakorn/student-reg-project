@@ -40,26 +40,31 @@
                 <table class="table table-striped shadow-sm text-center mt-2">
                     ตารางแสดงเกรดเฉลี่ย<thead class="table table-dark">
                         <tr>
+                            <th>ลำดับ</th>
                             <th>รหัสนักศึกษา</th>
                             <th>ชื่อ</th>
                             <th>GPA</th>
-                            
-                           
+                            <th>สถานะ<th> 
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($reportstudent as $row)
                         <tr>
+                            <th>{{$reportstudent->firstItem()+$loop->index}}</th>
                             <th>{{$row->StudentID}}</th>
                             <td>{{$row->StudentName}}</td>
                             <td>{{ROUND($reportavg->where('StudentID',$row->StudentID)->avg('Grade'),2)}}</td>
-                           <!--  {{ROUND($reportavg->where('ClassID',$row->ClassID)->avg('Grade'),2)}}
-                             -->
-                           
+                            <td>@if( $reportavg->where('StudentID',$row->StudentID)->avg('Grade') > 2 )
+                                <font color="green">Normal</font>
+                                @else
+                                <font color="red">Probation</font>
+                                @endif
+                            </td>                
                         </tr>  
                         @endforeach
                     </tbody>
                 </table>
+                {{$reportstudent->links()}}
         </div>
     </div>
 </div>
