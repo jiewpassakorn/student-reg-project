@@ -64,13 +64,6 @@ Route::post('/service/update/{id}',[StudentController::class,'studentManage_edit
 
 Route::get('/admin/scheduleManage',[AdminController::class,'scheduleManage'])->name('scheduleManage');
 
-
-//function delete Route::get
-// For Student
-
-// Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB');
-
-
 // For Teacher
 Route::get('/teacher/report',[TeacherController::class,'report'])->name('t.report');
 

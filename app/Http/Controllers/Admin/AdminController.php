@@ -60,7 +60,7 @@ class AdminController extends Controller
         return view('admin.manage.course', compact('courseinfo', 'classinfo','departments'));
     }
 
-    function scheduleManage() {
+    public function scheduleManage() {
 
         return view('admin.manage.schedule');
     }
