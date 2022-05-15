@@ -27,7 +27,7 @@
                                 
                             </div>
                             <div class="row">
-                                <div class="col-md-12"><label class="labels mt-3">ภาควิชา (required)</label>
+                                <div class="col-md-12"><label class="labels mt-3">ภาควิชา</label><label class="labels mt-3 text-danger">(required)</label>
                                 @error('DepartmentID')<span class="text-danger py-2">({{$message}})</span>@enderror
                                     <select name="DepartmentID" class="form-select">
                                         <option value="">Select department...</option>
