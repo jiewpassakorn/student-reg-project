@@ -22,7 +22,7 @@
 
                         <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label>
                             @error('ClassID')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input type="text" name="ClassID" class="form-control" placeholder="" value="{{$classshow->ClassID}}">
+                            <input type="text" name="ClassID" class="form-control" placeholder="" value="{{$classshow->ClassID}}" readonly>
                         </div>
                                 
                                 
