@@ -69,8 +69,8 @@
                         <td>{{$row->CourseName}}</td>
                         <td>{{$row->Section}}</td>
                         <td>{{$row->Semester}}</td>
-                        <td><a href="{{url('/admin/sectionManage/edit/'.$row->ClassID)}}"><button class="btn btn-info" >แก้ไขข้อมูล</button></a>
-                            <a onclick="return confirm('ยืนยันที่จะลบ คลาส {{$row->ClassID}} รายวิชา {{$row->CourseName}}')" href="{{url('/admin/SectionManage/delete/'.$row->ClassID)}}"><button class="btn btn-danger">ลบข้อมูล</button></a>
+                        <td><a href="{{url('/sectionManage/edit/'.$row->ClassID)}}"><button class="btn btn-info" >แก้ไขข้อมูล</button></a>
+                            <a onclick="return confirm('ยืนยันที่จะลบ คลาส {{$row->ClassID}} รายวิชา {{$row->CourseName}}')" href="{{url('/SectionManage/delete/'.$row->ClassID)}}"><button class="btn btn-danger">ลบข้อมูล</button></a>
                         </td>
                     </tr>
                     @endforeach

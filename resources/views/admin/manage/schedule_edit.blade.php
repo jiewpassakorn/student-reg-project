@@ -1,12 +1,13 @@
 @extends('layouts.default')
-@section('title','Manage | course')
+@section('title','Manage | schedule')
 @section('content')
+<link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
 
 <br>
 <br>
 
 <div class="container mr-3">
-    <button class="btn btn-secondary" onclick="history.back()">กลับ</button>
+    <a class="btn btn-secondary" href="{{route('scheduleManage')}}">กลับ</a>
 </div>
 <div class="container rounded bg-white mt-2 mb-5 shadow-lg">
     <div class="pt-3">
@@ -32,7 +33,7 @@
                                 @error('TeacherIDdif')<span class="text-danger py-0">({{$message}})</span>@enderror
 
                                 <select name="TeacherIDdif" class="form-select">
-                                    <option value="" selected>Select teacher...</option>
+                                    <option value="{{$schedules->TeacherIDdif }}" selected>เดิม...{{$schedules->TeacherIDdif }}</option>
                                     @foreach($teachers as $row)
                                     <option value="{{$row->TeacherID}}">{{$row->TeacherID}} : {{$row->TeacherName}}</option>
                                     @endforeach
@@ -52,7 +53,7 @@
                             <div class="col-md-4 mt-2"><label class="labels">วัน</label>
                                 @error('Weekday')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 <select name="Weekday" class="form-select">
-                                    <option value="" selected>Select day...</option>
+                                    <option value="{{$schedules->Weekday}}" selected>เดิม...{{$schedules->Weekday}}</option>
                                     <option value="Mon">Mon</option>
                                     <option value="Tue">Tue</option>
                                     <option value="Wed">Wed</option>

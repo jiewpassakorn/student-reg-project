@@ -1,14 +1,17 @@
 @extends('layouts.default')
-@section('title','Student | information')
+@section('title','Manage | student')
 @section('content')
+<link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
+
+
 <br>
 <br>
 <div class="container ">
-    <button class="btn btn-secondary" onclick="history.back()">กลับ</button>
+    <a class="btn btn-secondary" href="{{route('studentManage')}}">กลับ</a>
 </div>
 <div class="container rounded bg-white mt-2 mb-5 shadow-lg">
     <div class="pt-3">
-        <h2>แบบฟอร์มแก้ไขข้อมูล</h2>
+        <h2>แก้ไขข้อมูลนักศึกษา</h2>
     </div>
     <hr>
 
@@ -17,13 +20,13 @@
         <div class="row">
             <div class="col-md-6"><label class="labels">Student ID</label>
                 @error('studentid')<span class="text-danger py-2">({{$message}})</span>@enderror
-                <input type="text" class="form-control" placeholder="Student ID" value="{{$students->StudentID}}" name="studentid">
-               
+                <input type="text" class="form-control" placeholder="Student ID" value="{{$students->StudentID}}" name="studentid" readonly>
+            
             </div>
             <div class="col-md-6"><label class="labels">Name</label>
                 @error('StudentName')<span class="text-danger py-2">({{$message}})</span>@enderror
                 <input type="text" name="StudentName" class="form-control" value="{{$students->StudentName}}" placeholder="Name">
-               
+                
             </div>
         </div>
         <div class="row">
@@ -37,7 +40,7 @@
             <div class="col-md-7"><label class="labels mt-2">Address</label>
                 @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
                 <input type="text" name="Address" class="form-control" value="{{$students->Address}}" placeholder="Address">
-           
+            
             </div>
 
 
@@ -47,9 +50,9 @@
                 <div class="mb-3">
                     <label class="" for="DepartmentID"></label>
                     <select class="form-select" id="DepartmentID" name="DepartmentID">
-                        <option selected value="">Select department...</option>
+                        <option selected value="{{$students->DepartmentID}}">เดิม...{{$students->DepartmentID}}</option>
                         @foreach($departments as $row)
-                        <option value="{{$row->DepartmentID}}">{{$row->DepartmentName}}</option>
+                        <option value="{{$row->DepartmentID}}">{{$row->DepartmentID}}: {{$row->DepartmentName}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -71,7 +74,7 @@
                 <div class="mb-2">
                     <label class="" for="Status"></label>
                     <select class="form-select" id="Status" name="Status">
-                        <option selected value="">Choose...</option>
+                        <option selected value="{{$students->Status}}">{{$students->Status}}</option>
                         <option value="1">Normal</option>
                         <option value="2">Drop</option>
                         <option value="3">Retire</option>
@@ -87,7 +90,7 @@
                 <div>
                     <label class="" for="Sex"></label>
                     <select class="form-select" id="Sex" name="Sex">
-                        <option selected value="">Choose...</option>
+                        <option selected value="{{$students->Sex}}">Select...</option>
                         <option value="M">Male</option>
                         <option value="F">Female</option>
                         <option value="U">Undefined</option>
@@ -104,8 +107,11 @@
                 </select>
             </div>
         </div>
-        <div class="modal-footer mt-3">
-            <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
+        
+        <div class="d-flex justify-content-center">
+            <div class="py-3">
+                <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
+            </div>
         </div>
 
 

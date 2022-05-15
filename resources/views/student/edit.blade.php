@@ -1,6 +1,7 @@
 @extends('layouts.default')
 @section('title','Student | information')
 @section('content')
+<link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
 
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
@@ -126,7 +127,7 @@
                                 <label class="mt-2">Status</label>
                                 <font color="red">(required)</font>
                                     <select class="form-select" aria-label="Default select example" name ="Status">
-                                        <option >Open this select menu</option>
+                                        <option >Select...</option>
                                         <option value="1" selected>Normal</option>
                                         <option value="2">Drop</option>
                                         <option value="3">Retired</option>
@@ -147,7 +148,10 @@
                                         </select>                                        
                         </div> 
                     </div>
-                    <div align="center"><input type="submit" value="บันทึกประวัติ" class="btn btn-primary profile-button" ></div>
+                    <div align="center">
+                        <a class="btn btn-secondary" href="{{route('myinfo')}}">กลับ</a>
+                        <input type="submit" value="บันทึกประวัติ" class="btn btn-primary" >
+                    </div>
                 </form>       
             </div>
             

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('title','Manage | student')
 @section('content')
-
+<link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
 
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">

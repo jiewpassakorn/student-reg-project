@@ -46,40 +46,32 @@ Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin
 Route::get('/teacherManage',[AdminController::class,'teacherManage'])->name('teacherManage');
 Route::post('/teacherManage/add',[AdminController::class,'teacherAdd'])->name('teacherAdd');
 Route::get('/teacherManage/delete/{TeacherID}',[AdminController::class,'teacherDelete']);
-Route::get('/admin/teacherManage/edit/{TeacherID}',[AdminController::class,'teacherManage_edit']);
-Route::post('/admin/teacherManage/update/{TeacherID}',[AdminController::class,'teacherManage_update']);
-Route::get('//admin/teacherManage/delete/{TeacherID}',[AdminController::class,'teacherDelete']);
-
+Route::get('/teacherManage/edit/{TeacherID}',[AdminController::class,'teacherManage_edit'])->name('teacherManage_edit');
+Route::post('/teacherManage/update/{TeacherID}',[AdminController::class,'teacherManage_update']);
 
 Route::get('/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
 Route::post('/courseManage/add',[AdminController::class,'courseManage_add'])->name('courseManage_add');
 Route::get('/courseManage/delete/{CourseID}',[AdminController::class,'courseManage_delete']);
-Route::get('/courseManage/edit/{CourseID}',[AdminController::class,'courseManage_edit']);
-
-Route::get('/admin/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
-Route::post('/admin/courseManage/add',[AdminController::class,'courseManage_add'])->name('courseManage_add');
-Route::get('/admin/courseManage/delete/{CourseID}',[AdminController::class,'courseManage_delete']);
-Route::get('/admin/courseManage/edit/{CourseID}',[AdminController::class,'courseManage_edit']);
-Route::post('/admin/courseManage/update/{CourseID}',[AdminController::class,'courseManage_update']);
+Route::get('/courseManage/edit/{CourseID}',[AdminController::class,'courseManage_edit'])->name('courseManage_edit');
 
 Route::get('/sectionManage',[AdminController::class,'sectionManage'])->name('sectionManage');
 Route::post('/sectionManage/add',[AdminController::class,'sectionAdd'])->name('sectionAdd');
-Route::get('/admin/sectionManage/edit/{ClassID}',[AdminController::class,'sectionEdit'])->name('sectionEdit');
-Route::post('/admin/sectionManage/update/{ClassID}',[AdminController::class,'sectionUpdate'])->name('sectionUpdate');
+Route::get('/sectionManage/edit/{ClassID}',[AdminController::class,'sectionEdit'])->name('sectionManage_edit');
+Route::post('/sectionManage/update/{ClassID}',[AdminController::class,'sectionUpdate'])->name('sectionUpdate');
 Route::get('/SectionManage/delete/{ClassID}',[AdminController::class,'SectionDelete']);
 
 Route::get('/studentManage',[AdminController::class,'studentManage'])->name('studentManage');
 Route::post('/studentManage/add',[AdminController::class,'studentManage_add'])->name('studentManage_add');
 Route::get('/studentManage/delete/{StudentID}',[AdminController::class,'studentManage_delete']);
-Route::get('/admin/studentManage/edit/{StudentID}',[AdminController::class,'studentManage_edit']);
+Route::get('/admin/studentManage/edit/{StudentID}',[AdminController::class,'studentManage_edit'])->name('studentManage_edit');
 Route::post('/admin/studentManage/update/{StudentID}',[AdminController::class,'studentManage_update']);
 
 
-Route::get('/admin/scheduleManage',[AdminController::class,'scheduleManage'])->name('scheduleManage');
-Route::post('/admin/scheduleManage/add',[AdminController::class,'scheduleManage_add'])->name('scheduleManage_add');
-Route::get('/admin/scheduleManage/delete/{ScheduleID}',[AdminController::class,'scheduleManage_delete']);
-Route::get('/admin/scheduleManage/edit/{ScheduleID}',[AdminController::class,'scheduleManage_edit']);
-Route::post('/admin/scheduleManage/update/{ScheduleID}',[AdminController::class,'scheduleManage_update']);
+Route::get('/scheduleManage',[AdminController::class,'scheduleManage'])->name('scheduleManage');
+Route::post('/scheduleManage/add',[AdminController::class,'scheduleManage_add'])->name('scheduleManage_add');
+Route::get('/scheduleManage/delete/{ScheduleID}',[AdminController::class,'scheduleManage_delete']);
+Route::get('/scheduleManage/edit/{ScheduleID}',[AdminController::class,'scheduleManage_edit'])->name('scheduleManage_edit');
+Route::post('/scheduleManage/update/{ScheduleID}',[AdminController::class,'scheduleManage_update']);
 
 
 //function delete Route::get
@@ -152,10 +144,9 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
  //Service
- Route::get('/service/all',[StudentController::class,'index'])->name('services');
- Route::post('/service/add',[StudentController::class,'store'])->name('addService');
-
- Route::get('/service/edit/{id}',[StudentController::class,'edit']);
- Route::post('/service/update/{id}',[StudentController::class,'update']);
- Route::get('/service/delete/{id}',[StudentController::class,'delete']);
+Route::get('/service/all',[StudentController::class,'index'])->name('services');
+Route::post('/service/add',[StudentController::class,'store'])->name('addService');
+Route::get('/service/edit/{id}',[StudentController::class,'edit']);
+Route::post('/service/update/{id}',[StudentController::class,'update']);
+Route::get('/service/delete/{id}',[StudentController::class,'delete']);
 
