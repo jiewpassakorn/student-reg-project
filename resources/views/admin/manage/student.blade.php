@@ -39,15 +39,25 @@
                 </div>
             @endif
 
+            @if ($errors->any())
+                <div class="d-inline-flex mt-3">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        {{'กรุณากรอกข้อมูลให้ถูกต้อง'}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+
             <table class="table table-striped shadow-sm text-center mt-2" style="border-radius: 10px">
                 <thead class="table table-dark">
                     <tr>
                         <th>รหัสนักศึกษา</th>
                         <th>ชื่อ-สกุล</th>
                         <th>ภาควิชา</th>
+                        <th>อาจารย์ที่ปรึกษา</th>
                         <th>สถานะ</th>
-                        <th>แก้ไขข้อมูล</th>
-                        <th>ลบข้อมูล</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,6 +67,7 @@
                         <th>{{$row->StudentID}}</th>
                         <td>{{$row->StudentName}}</td>
                         <td>{{$row->DepartmentName}}</td>
+                        <td>{{$row->TeacherID}}</td>
                         <td>
                             @if ($row->Status == "Normal")
                             <font color="green">Normal</font>
@@ -78,10 +89,12 @@
                         </td>
                         
                         <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td> -->
-                        <td><a href="{{url('/admin/studentManage/edit/'.$row->StudentID)}}#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</a></td>
+                        <td>
+                            <a href="{{url('/admin/studentManage/edit/'.$row->StudentID)}}#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</a>
+                            <a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a>
+                        </td>
                         <!-- <td><button type="button" value="1" class="btn btn-primary editbtn btn-sm">Edit</button></td> -->
                         <!-- <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-danger delete_student studentid" value="{{$row->StudentID}}" data-bs-toggle="modal" data-bs-target="#deleteModal">ลบข้อมูล</button></a> </td> -->
-                        <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn ms-sm-5 mx-2 btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a></td>
 
 
                     </tr>
@@ -146,12 +159,12 @@
                         <div class="row">
                             <div class="col-md-6"><label class="labels">Student ID</label>
                                 @error('studentid')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" class="form-control" placeholder="Student ID" value="" name="studentid">
+                                <input type="text" class="form-control" style="text-transform: uppercase" placeholder="Student ID" value="{{old('studentid')}}" name="studentid">
                                 {{-- <input type="text" class="form-control" placeholder="" value="{{$row->StudentID}}" name="studentid"> --}}
                             </div>
                             <div class="col-md-6"><label class="labels">Name</label>
                                 @error('StudentName')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="StudentName" class="form-control" value="" placeholder="Name">
+                                <input type="text" name="StudentName" class="form-control" value="{{old('StudentName')}}" placeholder="Name">
                                 {{-- <input type="text" name="StudentName" class="form-control" value="{{$row->StudentName}}"> --}}
                             </div>
                         </div>
@@ -160,18 +173,19 @@
 
                             <div class="col-md-5"><label class="labels mt-2">DOB</label>
                                 @error('DOB')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="date" name="DOB" class="form-control" placeholder="enter dob" value="">
+                                <input type="date" name="DOB" class="form-control" placeholder="enter dob" value="{{old('DOB')}}">
                             </div>
 
                             <div class="col-md-7"><label class="labels mt-2">Address</label>
                                 @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="Address" class="form-control" value="" placeholder="Address">
+                                <input type="text" name="Address" class="form-control" value="{{old('Address')}}" placeholder="Address">
                                 {{-- <input type="text" name="Address" class="form-control" value="{{Auth::user()->Address}}"> --}}
                             </div>
 
 
 
-                            <div class="col-md-4"><label class="labels mt-2">Department (required)</label>
+                            <div class="col-md-4"><label class="labels mt-2">Department</label>
+                                @error('DepartmentID')<font size="2" class="text-danger py-0">({{$message}})</font>@enderror
                                 <div class="mb-3">
                                     <label class="" for="DepartmentID"></label>
                                     <select class="form-select" id="DepartmentID" name="DepartmentID">
@@ -180,23 +194,22 @@
                                             <option value="{{$row->DepartmentID}}">{{$row->DepartmentName}}</option>
                                         @endforeach
                                     </select>
-                                    @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 </div>
                             </div>
 
                             <div class="col-md-8"><label class="labels mt-2">Email</label>
                                 @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="email" name="Email" class="form-control" value="" placeholder="Enter email">
+                                <input type="email" name="Email" class="form-control" value="{{old('Email')}}" placeholder="Enter email">
                             </div>
 
-                            <div class="col-md-4"><label class="labels mt-0">Phone (required)</label>
-
-                                <input type="text" name="Phone" class="form-control" placeholder="Enter phone number" value="">
-                                @error('Phone')<span class="text-danger py-0">({{$message}})</span>@enderror
+                            <div class="col-md-4"><label class="labels mt-0">Phone</label>
+                                @error('Phone')<font size="2" class="text-danger py-0">({{$message}})</font>@enderror
+                                <input type="text" name="Phone" class="form-control" placeholder="Enter phone number" value="{{old('Phone')}}">
                             </div>
 
 
-                            <div class="col-md-4"><label class="labels mt-0">Status (required)</label>
+                            <div class="col-md-4"><label class="labels mt-0">Status</label>
+                                @error('Status')<font size="2" class="text-danger py-0">({{$message}})</font>@enderror
                                 <div class="mb-2">
                                     <label class="" for="Status"></label>
                                     <select class="form-select" id="Status" name="Status">
@@ -206,7 +219,6 @@
                                         <option value="3">Retire</option>
                                         <option value="4">Graduated</option>
                                     </select>
-                                    @error('Status')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 </div>
 
                             </div>

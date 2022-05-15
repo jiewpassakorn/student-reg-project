@@ -34,6 +34,16 @@
                 </div>
             </div>
         @endif
+
+        @if ($errors->any())
+            <div class="d-inline-flex mt-3">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                    {{'กรุณากรอกข้อมูลให้ถูกต้อง'}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
         
         <table class="table table-striped shadow-sm text-center mt-3">
             <thead class="table table-dark">
@@ -43,9 +53,9 @@
                     <th>ชื่อวิชา</th>
                     <th>กลุ่ม</th>
                     <th>ภาคการศึกษา</th>
+                    <th>อาจารย์ผู้สอน</th>
                     <th>จำนวนนักศึกษา</th>
-                    <th>แก้ไขข้อมูล</th>
-                    <th>ลบข้อมูล</th>
+                    <th> </th>
                 </tr>
             </thead>
             <tbody>
@@ -56,11 +66,13 @@
                     <td>{{$row->CourseName}}</td>
                     <td>{{$row->Section}}</td>
                     <td>{{$row->Semester}}</td>
+                    <td>{{$row->TeacherIDdif}}</td>
                     <td>{{$registrations->where('ClassID',$row->ClassID)->count()}}</td>
-
-                    <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-                    <td><a onclick="return confirm('ยืนยันที่จะลบ คลาส {{$row->ClassID}} รายวิชา {{$row->CourseName}}')" href="{{url('/admin/SectionManage/delete/'.$row->ClassID)}}"><button class="btn ms-sm-5 mx-2 btn-danger" >ลบข้อมูล</button></a> </td>
-
+                    <td>
+                        <a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> 
+                        <a onclick="return confirm('ยืนยันที่จะลบ คลาส {{$row->ClassID}} รายวิชา {{$row->CourseName}}')" href="{{url('/admin/SectionManage/delete/'.$row->ClassID)}}"><button class="btn ms-sm-5 mx-2 btn-danger" >ลบข้อมูล</button></a>
+                    </td>
+                
                 @endforeach
             </tbody>
         </table>
@@ -83,6 +95,7 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                             <div class="row">
+
                                 <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label>
                                 @error('CourseID')<span class="text-danger py-2">({{$message}})</span>@enderror
                                 <input type="text" name="ClassID" class="form-control" placeholder="" value=""></div>
@@ -98,6 +111,7 @@
                                 <div class="col-md-6 mt-2"><label class="labels">ภาคการศึกษา</label>
                                 @error('Semester')<span class="text-danger py-2">({{$message}})</span>@enderror
                                 <input type="text" name="Semester" class="form-control" placeholder="" value=""></div>
+
                             </div>
                     </div>
                 </div>

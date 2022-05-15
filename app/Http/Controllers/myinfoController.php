@@ -8,6 +8,14 @@ use Illuminate\Support\facades\DB;
 class myinfoController extends Controller
 {
     public function store(Request $request) {
+
+        $request->validate([
+            'studentid' => 'unique:students'
+        ],[
+            'studentid.unique' => "พบประวัตินักศึกษาในระบบแล้ว"
+        ]
+         );
+
         //send data to DB
         $data = array();
         $data["studentid"] = $request -> studentid;
@@ -39,7 +47,7 @@ class myinfoController extends Controller
             return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
         } */
         DB :: table('students') -> insert($data);
-            return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
+        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
 
             
         
@@ -80,6 +88,7 @@ class myinfoController extends Controller
             return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
 
             
+
         
     }
 }

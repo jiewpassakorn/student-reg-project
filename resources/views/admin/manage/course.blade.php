@@ -45,6 +45,16 @@
                 </div>
                 @endif
                 
+            @if ($errors->any())
+                <div class="d-inline-flex mt-3">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        {{'กรุณากรอกข้อมูลให้ถูกต้อง'}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+                
                 {{-- table --}}
                 <thead class="table table-dark">
                     <tr>
@@ -60,13 +70,13 @@
                 <tbody>
                     @foreach($courseinfo as $row)
                     <tr>
-                        <th>{{$row->CourseID}}</th>
+                        <th style="text-transform: uppercase">{{$row->CourseID}}</th>
                         <td>{{$row->CourseName}}</td>
                         <td>{{$row->Credit}}</td>
                         <td>{{$row->DepartmentName}}</td>
                         <td>{{$classinfo->where('CourseID',$row->CourseID)->count()}}</td>
-                        <td><a href="#"><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-
+                        
+                        <td><a href="{{url('/admin/courseManage/edit/'.$row->CourseID)}}" class="btn ms-sm-5 mx-2 btn-danger" >แก้ไขข้อมูล</a></td>
                         <td><a href="{{url('/admin/courseManage/delete/'.$row->CourseID)}}" class="btn ms-sm-5 mx-2 btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a></td>
                     </tr>
                     @endforeach
@@ -94,7 +104,7 @@
                         <div class="row">
                             <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label>
                                 @error('CourseID')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <input name="CourseID" type="text" class="form-control" placeholder="" value="">
+                                <input name="CourseID" style="text-transform: uppercase" type="text" class="form-control" placeholder="" value="">
                             </div>
                             
                             <div class="row">
@@ -103,7 +113,7 @@
                                 @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
 
                                     <select name="DepartmentID" class="form-select">
-                                        <option selected>Choose department...</option>
+                                        <option value="" selected>Choose department...</option>
                                         @foreach($departments as $row)
                                             <option value="{{$row->DepartmentID}}">{{$row->DepartmentName}}</option>
                                         @endforeach
