@@ -24,9 +24,14 @@ class TeacherController extends Controller
         ->get();
         $coursedetails = CourseDetail::all();
         $reportavg = Registration::where('RegStatus','Complete')
-        ->select('registrations.ClassID', 'registrations.Grade')
+        ->select('registrations.ClassID', 'registrations.Grade', 'registrations.StudentID')
         ->get();
         $registrations = Registration::all();
-        return view('teacher.report', compact('reportinfo', 'registrations', 'reportavg', 'coursedetails'));
+        $reportstudent = Student::Join('registrations', 'students.StudentID', '=', 'registrations.StudentID')
+        ->select('students.StudentID', 'students.StudentName')
+        ->groupBy('students.StudentID','students.studentName')
+        ->paginate(10);
+        
+        return view('teacher.report', compact('reportinfo', 'registrations', 'reportavg', 'coursedetails','reportstudent'));
     }
 }
