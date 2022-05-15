@@ -25,4 +25,8 @@ class Student extends Model
     public function departments(){
         return $this->hasOne(Department::class,'DepartmentID','DepartmentID');
     }
+
+    public function teachers(){
+        return $this->hasOne(Teacher::class,'TeacherID','TeacherID5');
+    }
 }

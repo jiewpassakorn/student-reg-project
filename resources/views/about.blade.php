@@ -56,7 +56,7 @@
 
 			<div class="slider-card">
                 <div class="d-flex justify-content-center align-items-center mb-4">
-                    <img src="assets/img/insta-2.jpg" class="card-img-top" alt="...">
+                    <img src="assets/img/FF1.jpg" class="card-img-top" alt="...">
                 </div>
                 <div class="container">
                     <h5><b>63070501028</b></h5>
@@ -98,7 +98,7 @@
 
 			<div class="slider-card">
                 <div class="d-flex justify-content-center align-items-center mb-4">
-                    <img src="assets/img/insta-3.jpg" class="card-img-top" alt="...">
+                    <img src="assets/img/jiew3.jpg" class="card-img-top" alt="...">
                 </div>
                 <div class="container">
                     <h5><b>63070501048</b></h5>

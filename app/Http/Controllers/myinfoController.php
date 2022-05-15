@@ -25,7 +25,7 @@ class myinfoController extends Controller
 
         DB :: table('students') -> insert($data);
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
-
+        
     }
 }
 
