@@ -12,6 +12,7 @@ use Faker\Guesser\Name;
 
 use App\Http\Controllers\Teachers\CourseController;
 use App\Models\User;
+use App\Models\Student;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -84,8 +85,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
     Route::get('/welcome', function () {
         $users=User::all();
-        return view('welcome', compact('users'));
+        $studentsinfo = Student::where('StudentID',Auth::user()->student_licence_number)
+        ->select('students.StudentID')
+        ->first();
+        return view('welcome', compact('users','studentsinfo'));
     })->name('first');
+
     Route::get('/student/login',[StudentController::class,'login'])->name('s.login');
     Route::get('/student/information',[StudentController::class,'myinfo'])->name('myinfo');
     Route::get('/student/register',[StudentController::class,'regis'])->name('regis');

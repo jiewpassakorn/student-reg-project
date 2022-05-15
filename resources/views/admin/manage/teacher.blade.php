@@ -141,10 +141,9 @@
                                         <option value="101" >CPE<option value="102">ME<option value="111">Maths
                                     </datalist> --}}
                                     <select name="DepartmentID" class="form-select">
-                                        <option selected>Choose department...</option>
-                                        <option value="101">CPE</option>
-                                        <option value="102">ME</option>
-                                        <option value="111">Maths</option>
+                                        @foreach($departments as $row)
+                                            <option value="{{$row->DepartmentID}}">{{$row->DepartmentName}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 

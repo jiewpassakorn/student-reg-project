@@ -11,6 +11,14 @@
             </div>
         </div>
         <hr>
+        @if(is_null($studentsinfo))
+        <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">ไม่พบข้อมูลประวัตินักศึกษา</h4>
+                <p>โปรดกรอกข้อมูลประวัตินักศึกษา</p>
+                <hr>
+                <p class="mb-0">ไปที่ <b>ข้อมูลประวัตินักศึกษา</b> <a href="/student/information" class="btn btn-primary btn-sm">ข้อมูลประวัตินักศึกษา</a></p>
+        </div>
+        @else
         <div class="row">
             <div class="container mt-3">
                 <div class="col-sm-12 justify-content-around shadow p-4 mb-4 bg-body rounded">
@@ -130,9 +138,8 @@
                 </div>
 
             </div>
-
-
         </div>
+        @endif
     </div>
 <!--Container Main end-->
 

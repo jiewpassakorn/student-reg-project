@@ -74,7 +74,6 @@
             </table>
             {{$courseinfo->links()}}
         </div>
-
     </div>
 </div>
 <!--Container Main end-->
@@ -100,12 +99,14 @@
                             
                             <div class="row">
                                 <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
-                                    @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
+
+                                @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
+
                                     <select name="DepartmentID" class="form-select">
                                         <option selected>Choose department...</option>
-                                        <option value="101">CPE</option>
-                                        <option value="102">ME</option>
-                                        <option value="111">MTH</option>
+                                        @foreach($departments as $row)
+                                            <option value="{{$row->DepartmentID}}">{{$row->DepartmentName}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -118,16 +119,11 @@
                                     @error('Credit')<span class="text-danger py-0">({{$message}})</span>@enderror
                                     <input name="Credit" type="text" class="form-control" value="" placeholder="">
                                 </div>
+                            </div>                            
+                            <div class="modal-footer mt-3">
+                                <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
                             </div>
-                            {{-- <div class="row">
-                                <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
-                                    @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                    <input name="DepartmentID" type="text" class="form-control" placeholder="" value="">
-                                </div>
-                            </div> --}}
-                        </div>
-                        <div class="modal-footer mt-3">
-                            <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
+
                         </div>
                     </form>
                 </div>
@@ -138,21 +134,21 @@
 </div>
 
 
-<!-- ลบคอร์ส -->
-<div class="modal fade" id="deleteCourseModal">
-    <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">ยืนยันการลบวิชา</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
-            </div>
-            <div class="modal-body">
-                คุณต้องการที่จะลบรายวิชานี้หรือไม่
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                <button class="btn btn-danger">ตกลง</button>
+        <!-- ลบคอร์ส -->
+        <div class="modal fade" id="deleteCourseModal">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">ยืนยันการลบวิชา</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
+                    </div>
+                    <div class="modal-body">
+                        คุณต้องการที่จะลบรายวิชานี้หรือไม่
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button class="btn btn-danger">ตกลง</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
