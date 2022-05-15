@@ -31,7 +31,7 @@ class TeacherController extends Controller
         ->select('students.StudentID', 'students.StudentName')
         ->groupBy('students.StudentID','students.studentName')
         ->paginate(10);
-        $department = Department::all;
+        $department = Department::all();
         return view('teacher.report', compact('reportinfo', 'registrations', 'reportavg', 'coursedetails','reportstudent','department'));
     }
 }
