@@ -52,6 +52,7 @@ Route::get('/admin/courseManage',[AdminController::class,'courseManage'])->name(
 Route::post('/admin/courseManage/add',[AdminController::class,'courseManage_add'])->name('courseManage_add');
 Route::get('/admin/courseManage/delete/{CourseID}',[AdminController::class,'courseManage_delete']);
 Route::get('/admin/courseManage/edit/{CourseID}',[AdminController::class,'courseManage_edit']);
+Route::post('/admin/courseManage/update/{CourseID}',[AdminController::class,'courseManage_update']);
 
 
 

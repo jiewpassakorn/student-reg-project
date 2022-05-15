@@ -7,7 +7,7 @@
 <h5>แบบฟอร์มแก้ไขข้อมูล</h5>
 
     <div class="col-md-12">
-        <form action="" method="POST">
+        <form action="{{url('/admin/courseManage/update/'.$coursedetails->CourseID)}}" method="POST">
             @csrf
         
 
