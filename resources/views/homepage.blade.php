@@ -204,17 +204,17 @@
                 </div>
                 <div class="logo-item">
                     <div class="tablecell-inner">
-                        <img src="assets/img/logo-3.png" alt="" />
+                        <img src="assets/img/logo-2.png" alt="" />
                     </div>
                 </div>
                 <div class="logo-item">
                     <div class="tablecell-inner">
-                        <img src="assets/img/logo-4.png" alt="" />
+                        <img src="assets/img/logo-2.png" alt="" />
                     </div>
                 </div>
                 <div class="logo-item">
                     <div class="tablecell-inner">
-                        <img src="assets/img/logo-5.png" alt="" />
+                        <img src="assets/img/logo-2.png" alt="" />
                     </div>
                 </div>
             </div>
@@ -266,22 +266,6 @@
             </div>
         </div>
     </div>
-    {{-- <div class="copyright-reserved">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="copyright-text">
-                                            
-Copyright &copy;2021 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by CPE Silent
-
-                    </div>
-                    <div class="payment-pic">
-                        <img src="assets/img/payment-method.png" alt="" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 </footer>
 
 </body>

@@ -72,8 +72,8 @@
                         <td><a href="{{url('/admin/sectionManage/edit/'.$row->ClassID)}}"><button class="btn btn-info" >แก้ไขข้อมูล</button></a>
                             <a onclick="return confirm('ยืนยันที่จะลบ คลาส {{$row->ClassID}} รายวิชา {{$row->CourseName}}')" href="{{url('/admin/SectionManage/delete/'.$row->ClassID)}}"><button class="btn btn-danger">ลบข้อมูล</button></a>
                         </td>
-
-                        @endforeach
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
             {{$classinfo->links()}}
@@ -87,7 +87,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">เพิ่มรายละเอียดคลาส</h5>
+                <h5 class="modal-title">เพิ่มรายละเอียดห้องเรียน</h5>
                 <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
             </div>
             <form action="{{route('sectionAdd')}}" method="POST">
