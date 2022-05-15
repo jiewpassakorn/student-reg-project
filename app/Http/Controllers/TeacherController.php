@@ -31,6 +31,8 @@ class TeacherController extends Controller
         ->select('students.StudentID', 'students.StudentName')
         ->groupBy('students.StudentID','students.studentName')
         ->paginate(10);
+
+        
         
         return view('teacher.report', compact('reportinfo', 'registrations', 'reportavg', 'coursedetails','reportstudent'));
     }
