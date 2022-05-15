@@ -6,7 +6,15 @@
     <div class="container">
             <div class="row mt-5 p-2">
                 <div class="col-sm-12 mt-3 pt-3 justify-content-center">
-                    <h2> Welcome, {{Auth::user()->name}} </h2> 
+
+                  @if(Auth::user()->role_id == '1')
+                    <h1>ระบบลงทะเบียนสำหรับแอดมิน</h1>        
+                  @elseif(Auth::user()->role_id == '2')
+                    <h1>ระบบลงทะเบียนสำหรับอาจารย์</h1> 
+                  @elseif(Auth::user()->role_id == '3')
+                    <h1>ระบบลงทะเบียนสำหรับนักศึกษา</h1>
+                  @endif
+                  <h2>Welcome, {{Auth::user()->name}} </h2> 
                 </div>
             </div>
             <hr>

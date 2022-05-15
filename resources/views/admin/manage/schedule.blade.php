@@ -105,7 +105,6 @@
                 <div class="col-md-12">
                     <form action="{{route('scheduleManage_add')}}" method="POST">
                         @csrf
-
                         <div class="col-md-12 mt-2"><label class="labels">รหัสตารางสอน</label>
                             @error('ScheduleID')<span class="text-danger py-0">({{$message}})</span>@enderror
                             <input name="ScheduleID" type="text" class="form-control" placeholder="ScheduleID" value="">
@@ -130,6 +129,7 @@
                             <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label>
                                 @error('ClassID')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 <input name="ClassID" type="text" class="form-control" placeholder="ClassID" value="">
+
                             </div>
 
                             <div class="col-md-4 mt-2"><label class="labels">ห้องเรียน</label>
