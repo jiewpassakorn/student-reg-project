@@ -27,7 +27,21 @@ class AdminController extends Controller
         return view('admin.users.dashboard', compact('users'));
     }
 
-    
+    function studentManage()
+    {
+        $studentsinfo = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
+        ->paginate(10);
+        $studentscount = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
+        ->get();
+        $departments = Department::all();
+        $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
+        ->get();
+        $teachersinfo2 = Teacher::all();
+        return view('admin.manage.student', compact('studentsinfo','departments','teacherselect','studentscount','teachersinfo2'));
+    }
 
     
 
@@ -246,20 +260,6 @@ class AdminController extends Controller
 
     }
 
-    function studentManage()
-    {
-        $studentsinfo = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
-        ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
-        ->paginate(10);
-        $studentscount = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
-        ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
-        ->get();
-        $departments = Department::all();
-        $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
-        ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
-        ->get();
-        return view('admin.manage.student', compact('studentsinfo','departments','teacherselect','studentscount'));
-    }
 
 
     public function studentManage_add(Request $request) 
@@ -405,6 +405,40 @@ class AdminController extends Controller
         $data2["Semester"] = $request -> Semester;   
         DB :: table('class_details') -> insert($data2);
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
+        
+    }
+
+    public function sectionEdit($ClassID){
+        $select = $ClassID;
+        $CourseInfo = CourseDetail::all();
+        $classshow  = ClassDetail::where('ClassID', $select)->first();
+        /* dd($classshow); */
+
+        return view('admin.manage.section_edit', compact('CourseInfo','classshow'));
+
+    }
+
+    public function sectionUpdate(Request $request, $ClassID)
+    {
+        $request->validate([
+            'ClassID' => 'required',
+            'CourseID' => 'required',
+            'Section' => 'required',
+            'Semester' => 'required'
+        ],
+        [
+            'ClassID.required'=>"กรุณาป้อนรหัสคลาสด้วยครับ",
+            'CourseID.required'=>"กรุณาป้อนรหัสวิชาด้วยครับ",
+            'Section.required'=>"กรุณาป้อนกลุ่มด้วยครับ",
+            'Semester.required'=>"กรุณาป้อนภาคการศึกษาด้วยครับ",
+        ]);
+        $data = array();
+        $data["ClassID"] = $request -> ClassID;
+        $data["CourseID"] = $request -> CourseID;
+        $data["Section"] = $request -> Section;
+        $data["Semester"] = $request -> Semester;   
+        DB::table('class_details')->where('classid',$data["ClassID"])->update($data); 
+        return redirect('/sectionManage') -> with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
     public function sectionDelete($ClassID)
