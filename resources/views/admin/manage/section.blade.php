@@ -53,8 +53,9 @@
                     <th>ชื่อวิชา</th>
                     <th>กลุ่ม</th>
                     <th>ภาคการศึกษา</th>
-                    <th> </th>
-                    <th> </th>
+                    <th>อาจารย์ผู้สอน</th>
+                    <th>จำนวนนักศึกษา</th>
+                    <th>แก้ไข</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,6 +68,7 @@
                     <td>{{$row->Semester}}</td>
                     <td><a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
                     <td><a onclick="return confirm('ยืนยันที่จะลบ คลาส {{$row->ClassID}} รายวิชา {{$row->CourseName}}')" href="{{url('/admin/SectionManage/delete/'.$row->ClassID)}}"><button class="btn ms-sm-5 mx-2 btn-danger" >ลบข้อมูล</button></a></td>
+
                 @endforeach
             </tbody>
         </table>
