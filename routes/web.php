@@ -68,7 +68,19 @@ Route::get('/studentManage/edit/{StudentID}',[AdminController::class,'studentMan
 Route::post('/studentManage/edit',[AdminController::class,'studentManage_edit']);
 Route::post('/service/update/{id}',[StudentController::class,'studentManage_edit'])->name('studentManage_edit');
 
-Route::get('/scheduleManage',[AdminController::class,'scheduleManage'])->name('scheduleManage');
+
+Route::get('/admin/scheduleManage',[AdminController::class,'scheduleManage'])->name('scheduleManage');
+
+
+//function delete Route::get
+// For Student
+
+
+Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB');
+Route::post('/myinfo/Update',[myinfoController::class,'UpdateStudent'])->name('UpdateStudent');
+
+
+
 
 // For Teacher
 Route::get('/statistics_report',[TeacherController::class,'report'])->name('t.report');
@@ -97,6 +109,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/student/schedule',[StudentController::class,'schedule'])->name('schedule');
     Route::get('/student/grading',[StudentController::class,'grading'])->name('grading');
     Route::post('/student/information/add',[myinfoController::class,'store'])->name('adddatatoDB');
+    Route::get('/student/information/edit',[StudentController::class,'edit'])->name('edit');
 });
 
 Route::group(['middleware' => 'auth'], function(){

@@ -91,10 +91,30 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label><input type="text" style="text-transform: uppercase" name="ClassID" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label><input type="text" style="text-transform: uppercase" name="CourseID" class="form-control" placeholder="อิงจากตารางคอร์สดีเทล (FK)" value=""></div>
-                                <div class="col-md-6 mt-2"><label class="labels">กลุ่ม</label><input type="text" style="text-transform: uppercase" name="Section" class="form-control" value="" placeholder=""></div>
-                                <div class="col-md-6 mt-2"><label class="labels">ภาคการศึกษา</label><input type="text" name="Semester" class="form-control" placeholder="" value=""></div>
+
+                                <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label>
+                                @error('ClassID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="ClassID" class="form-control" placeholder="" value=""></div>
+                                
+                                <div class="col-md-12">
+                                    <label class="mt-2">รหัสวิชา</label>
+                                    @error('CourseID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                        <select class="form-select" aria-label="Default select example" name="CourseID">
+                                            <option value="" selected>Select Course</option>
+                                            @foreach($CourseInfo as $row)
+                                                <option value="{{$row->CourseID}}">{{$row->CourseName}}</option>
+                                            @endforeach
+                                        </select>                                        
+                        </div> 
+                                
+                                <div class="col-md-6 mt-2"><label class="labels">กลุ่ม</label>
+                                @error('Section')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="Section" class="form-control" value="" placeholder=""></div>
+                                
+                                <div class="col-md-6 mt-2"><label class="labels">ภาคการศึกษา</label>
+                                @error('Semester')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <input type="text" name="Semester" class="form-control" placeholder="" value=""></div>
+
                             </div>
                     </div>
                 </div>

@@ -239,7 +239,8 @@
                     <div class="row mt-3">
                         <div class="col-md-12"><label class="labels">Advisor </label><input type="text" class="form-control" value="{{$studentshowinfo->TeacherName}}" readonly></div> 
                     </div> 
-                </div> 
+                    <div align="center"><br><a href="{{url('/student/information/edit')}}"><button type="button" class="btn btn-info">แก้ไขประวัตินักศึกษา</button></a></div>
+                </div>          
             </div>
             @endif
         </div>           
