@@ -131,8 +131,8 @@ class AdminController extends Controller
     }
 
     public function courseManage_update(Request $request,$CourseID) {
-         
-         $request->validate(
+
+        $request->validate(
             [                    
                 'CourseID' => 'required',
                 'CourseName' => 'required',
@@ -242,7 +242,7 @@ class AdminController extends Controller
     }
 
     public function studentManage_update(Request $request,$StudentID) {
-         
+
         $request->validate([
             'studentid' => 'required|unique:students',
             'StudentName' => 'required',

@@ -56,7 +56,7 @@
             <table class="table table-striped shadow-sm text-center mt-2">
             <thead class="table table-dark">
                 <tr>
-                    <th>รหัสคลาส</th>
+                    <th>รหัสตารางสอน</th>
                     <th>อาจารย์ผู้สอน</th>
                     <th>ห้องเรียน</th>
                     <th>วัน</th>
@@ -103,7 +103,7 @@
                         @csrf
 
                         
-                            <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label>
+                            <div class="col-md-12 mt-2"><label class="labels">รหัสตารางสอน</label>
                                 @error('CourseID')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 <input name="CourseID" style="text-transform: uppercase" type="text" class="form-control" placeholder="" value="">
                             </div>
