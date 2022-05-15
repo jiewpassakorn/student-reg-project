@@ -34,6 +34,16 @@
                 </div>
             </div>
         @endif
+
+        @if ($errors->any())
+            <div class="d-inline-flex mt-3">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                    {{'กรุณากรอกข้อมูลให้ถูกต้อง'}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
         
         <table class="table table-striped shadow-sm text-center mt-3">
             <thead class="table table-dark">
@@ -83,9 +93,9 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label><input type="text" name="ClassID" class="form-control" placeholder="" value=""></div>
-                                <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label><input type="text" name="CourseID" class="form-control" placeholder="อิงจากตารางคอร์สดีเทล (FK)" value=""></div>
-                                <div class="col-md-6 mt-2"><label class="labels">กลุ่ม</label><input type="text" name="Section" class="form-control" value="" placeholder=""></div>
+                                <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label><input type="text" style="text-transform: uppercase" name="ClassID" class="form-control" placeholder="" value=""></div>
+                                <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label><input type="text" style="text-transform: uppercase" name="CourseID" class="form-control" placeholder="อิงจากตารางคอร์สดีเทล (FK)" value=""></div>
+                                <div class="col-md-6 mt-2"><label class="labels">กลุ่ม</label><input type="text" style="text-transform: uppercase" name="Section" class="form-control" value="" placeholder=""></div>
                                 <div class="col-md-6 mt-2"><label class="labels">ภาคการศึกษา</label><input type="text" name="Semester" class="form-control" placeholder="" value=""></div>
                             </div>
                     </div>

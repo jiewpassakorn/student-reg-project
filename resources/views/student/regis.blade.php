@@ -44,7 +44,7 @@
                             @elseif (Auth::user()->students->Status == "3")
                                 <font color="red">Retire</font>
                             @elseif (Auth::user()->students->Status == "4")
-                                <font color="red">Graduated</font>
+                                <font color="green">Graduated</font>
                             @endif
                         </div>
                     </div>
@@ -75,6 +75,16 @@
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                         {{Session::get('delete')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="d-inline-flex mt-3">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        {{'กรุณากรอกข้อมูลให้ถูกต้อง'}}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
@@ -190,7 +200,19 @@
                                     <td>{{$row->TeacherName}}</td>
                                 </tr>
                                 @endforeach
-                                <button type="submit" class="btn btn btn-success btn-sm" id="waitButton">เลือก</button>
+                                {{-- <button type="submit" class="btn btn btn-success btn-sm" id="waitButton">เลือก</button> --}}
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn btn-success btn-sm" id="waitButton">เลือก</button>
+                                    </div>
+                                    <div class="col-md-3 offset-md-6">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" placeholder="ค้นหา" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </tbody>
                     </table>

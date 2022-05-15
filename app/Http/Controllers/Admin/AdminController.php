@@ -112,7 +112,7 @@ class AdminController extends Controller
                 'CourseID' => 'required|unique:course_details',
                 'CourseName' => 'required',
                 'DepartmentID' => 'required',
-                'Credit' => 'required',
+                'Credit' => 'required|integer',
             ],
             [
                 'CourseID.required' => "กรุณาป้อนรหัสวิชาด้วยครับ",
@@ -120,6 +120,7 @@ class AdminController extends Controller
                 'CourseName.required' => "กรุณาป้อนชื่อวิชาด้วยครับ",
                 'DepartmentID.required' => "กรุณาเลือกคณะด้วยครับ",
                 'Credit.required' => "กรุณาหน่วยกิตด้วยครับ",
+                'Credit.integer' => "กรุณากรอกตัวเลขจำนวนเต็ม"
             ]
         );
         // send data to DB

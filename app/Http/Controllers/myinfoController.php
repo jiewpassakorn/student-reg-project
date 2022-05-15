@@ -8,6 +8,14 @@ use Illuminate\Support\facades\DB;
 class myinfoController extends Controller
 {
     public function store(Request $request) {
+
+        $request->validate([
+            'studentid' => 'unique:students'
+        ],[
+            'studentid.unique' => "พบประวัตินักศึกษาในระบบแล้ว"
+        ]
+         );
+
         //send data to DB
         $data = array();
         $data["studentid"] = $request -> studentid;
