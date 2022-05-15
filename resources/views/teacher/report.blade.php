@@ -31,6 +31,7 @@
 
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <table class="table table-striped shadow-sm text-center mt-2">
+                        <h5 class="mt-3"><font color="black">ตารางแสดงสถิติของเกรดในแต่ละวิชา</font></h5>
                         <thead class="table table-dark">
                             <tr>
                                 <th>รหัสวิชา</th>
@@ -58,7 +59,8 @@
 
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <table class="table table-striped shadow-sm text-center mt-2">
-                        ตารางแสดงเกรดเฉลี่ย<thead class="table table-dark">
+                        <h5 class="mt-3"><font color="black">ตารางแสดงเกรดเฉลี่ย</font></h5>
+                        <thead class="table table-dark">
                             <tr>
                                 <th>ลำดับ</th>
                                 <th>รหัสนักศึกษา</th>
