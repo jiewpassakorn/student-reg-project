@@ -1,6 +1,8 @@
 @extends('layouts.default')
 @section('title','Welcome')
 @section('content')
+<link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
+
 
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
@@ -10,9 +12,9 @@
                   @if(Auth::user()->role_id == '1')
                     <h1>ระบบลงทะเบียนสำหรับแอดมิน</h1>        
                   @elseif(Auth::user()->role_id == '2')
-                    <h1>ระบบลงทะเบียนสำหรับอาจารย์</h1> 
-                  @elseif(Auth::user()->role_id == '3')
                     <h1>ระบบลงทะเบียนสำหรับนักศึกษา</h1>
+                  @elseif(Auth::user()->role_id == '3')
+                    <h1>ระบบลงทะเบียนสำหรับอาจารย์</h1> 
                   @endif
                   <h2>Welcome, {{Auth::user()->name}} </h2> 
                 </div>
