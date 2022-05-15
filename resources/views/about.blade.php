@@ -14,8 +14,20 @@
 
 </head>
 
+<style>
+    body {
+        background-image: url('assets/img/bg-sparkle.jpg');
+        /* background-size: 100% */
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;;
+    }
+
+</style>
+
 <body>
-    <nav class="navbar navbar-dark sticky-top" style="background-color: #1b1c1d;">
+    <nav class="navbar navbar-dark fixed-top" style="background-color: #1b1c1d;">
         <div class="container-fluid"> 
             <a class="navbar-brand" href="{{route('home')}}" ><img src="/images/kmutt-logo-2.png" alt="" width="60" height="60" class="d-inline-block align-text-center">KMUTT Student Information System</a>
             <div class="d-flex">
@@ -24,14 +36,11 @@
                     @auth
                     <a class="btn btn-light" href="{{ route('first') }}"><i class="fa fa-user"></i> Registration System</a>
                     <a class="btn btn-light" href="{{ route('home') }}"><i class="fa fa-user"></i> {{Auth::user()->name}}</a>
-                        {{-- <a href="{{ route('home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a> --}}
                     @else
                         <a class="btn btn-light" href="{{route('login')}}"><i class="fa fa-sign-in fa-lg"></i> Login</a>
-                        {{-- <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a> --}}
 
                         @if (Route::has('register'))
                             <a class="btn btn-light" href="{{route('register')}}"><i class="fa fa-id-card"></i> Register</a>
-                            {{-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a> --}}
                         @endif
                     @endauth
                     </div>
@@ -41,6 +50,7 @@
     </nav> 
 <section id="slider" class="pt-5">
 <div class="container">
+    <br><br><br>
     <h1 class="text-center"><b>Our Team</b></h1>
 	<div class="slider">
 		<div class="owl-carousel">
@@ -70,7 +80,7 @@
 
 			<div class="slider-card">
                 <div class="d-flex justify-content-center align-items-center mb-4">
-                    <img src="assets/img/women-large.jpg" style="max-width:60%" class="card-img-top" alt="...">
+                    <img src="assets/img/stang.jpg" class="card-img-top" alt="...">
                 </div>
                 <div class="container">
                     <h5><b>63070501090</b></h5>
@@ -84,7 +94,7 @@
 
 			<div class="slider-card">
                 <div class="d-flex justify-content-center align-items-center mb-4">
-                    <img src="assets/img/insta-1.jpg" class="card-img-top" alt="...">
+                    <img src="assets/img/mark.jpg" class="card-img-top" alt="...">
                 </div>
                 <div class="container">
                     <h5><b>63070501077</b></h5>
@@ -112,7 +122,7 @@
 
             <div class="slider-card">
                 <div class="d-flex justify-content-center align-items-center mb-4">
-                    <img src="assets/img/man-large.jpg" style="max-width:60%" alt="...">
+                    <img src="assets/img/Ton.jpg" alt="...">
                 </div>
                 <div class="container">
                     <h5><b>63070501087</b></h5>

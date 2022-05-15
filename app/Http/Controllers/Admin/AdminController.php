@@ -39,7 +39,8 @@ class AdminController extends Controller
         $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
         ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
         ->get();
-        return view('admin.manage.student', compact('studentsinfo','departments','teacherselect','studentscount'));
+        $teachersinfo2 = Teacher::all();
+        return view('admin.manage.student', compact('studentsinfo','departments','teacherselect','studentscount','teachersinfo2'));
     }
 
     function teacherManage()

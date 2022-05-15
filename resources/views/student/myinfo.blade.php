@@ -245,6 +245,4 @@
             @endif
         </div>           
     </div>
-    
-    
 </div>

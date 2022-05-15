@@ -67,7 +67,11 @@
                         <th>{{$row->StudentID}}</th>
                         <td>{{$row->StudentName}}</td>
                         <td>{{$row->DepartmentName}}</td>
-                        <td>{{$row->TeacherID}}</td>
+                        @if(is_null($teachersinfo2->where('TeacherID',$row->TeacherID)->first()))
+                            <td>-</td>
+                        @else
+                            <td>{{$teachersinfo2->where('TeacherID',$row->TeacherID)->first()->TeacherName}}</td>
+                        @endif
                         <td>
                             @if ($row->Status == "Normal")
                             <font color="green">Normal</font>
@@ -233,7 +237,7 @@
                                     <select class="form-select" aria-label="Default select example" name="TeacherID">
                                         <option value="" selected>Select Advisor</option>
                                         @foreach($teacherselect as $row)
-                                            <option value="{{$row->TeacherID}}">{{$row->TeacherName}} : {{$row->DepartmentName}}</option>
+                                            <option value="{{$row->TeacherID}}">{{$row->DepartmentName}} : {{$row->TeacherName}}</option>
                                         @endforeach
                                     </select>
                             </div>
