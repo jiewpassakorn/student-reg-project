@@ -96,6 +96,7 @@
 
                             <div class="row">
                                 <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
+                                @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
                                     <select name="DepartmentID" class="form-select">
                                         <option selected>Choose department...</option>
                                         <option value="101">CPE</option>
@@ -114,12 +115,7 @@
                                     <input name="Credit" type="text" class="form-control" value="" placeholder="">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
-                                    @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                    <input name="DepartmentID" type="text" class="form-control" placeholder="" value="">
-                                </div>
-                            </div>
+                            
                             <div class="modal-footer mt-3">
                                 <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
                             </div>
