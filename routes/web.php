@@ -42,7 +42,7 @@ Route::get('/about',[AboutController::class,'about'])->name('about');
 
 // For Admin
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
-Route::get('/studentManage',[AdminController::class,'studentManage'])->name('studentManage');
+
 Route::get('/teacherManage',[AdminController::class,'teacherManage'])->name('teacherManage');
 Route::post('/teacherManage/add',[AdminController::class,'teacherAdd'])->name('teacherAdd');
 Route::get('/teacherManage/delete/{TeacherID}',[AdminController::class,'teacherDelete']);
@@ -62,11 +62,11 @@ Route::get('/sectionManage',[AdminController::class,'sectionManage'])->name('sec
 Route::post('/sectionManage/add',[AdminController::class,'sectionAdd'])->name('sectionAdd');
 Route::get('/SectionManage/delete/{ClassID}',[AdminController::class,'SectionDelete']);
 
+Route::get('/studentManage',[AdminController::class,'studentManage'])->name('studentManage');
 Route::post('/studentManage/add',[AdminController::class,'studentManage_add'])->name('studentManage_add');
 Route::get('/studentManage/delete/{StudentID}',[AdminController::class,'studentManage_delete']);
-Route::get('/studentManage/edit/{StudentID}',[AdminController::class,'studentManage_edit']);
-Route::post('/studentManage/edit',[AdminController::class,'studentManage_edit']);
-Route::post('/service/update/{id}',[StudentController::class,'studentManage_edit'])->name('studentManage_edit');
+Route::get('/admin/studentManage/edit/{StudentID}',[AdminController::class,'studentManage_edit']);
+Route::post('/admin/studentManage/update/{StudentID}',[AdminController::class,'studentManage_update']);
 
 Route::get('/scheduleManage',[AdminController::class,'scheduleManage'])->name('scheduleManage');
 
