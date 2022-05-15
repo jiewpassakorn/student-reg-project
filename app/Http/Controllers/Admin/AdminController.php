@@ -56,17 +56,28 @@ class AdminController extends Controller
     function courseManage()
     {
         $courseinfo = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
-            ->select('course_details.CourseID', 'course_details.CourseName', 'course_details.Credit', 'departments.DepartmentName', 'departments.FacultyName')
-            ->paginate(5);
+        ->select('course_details.CourseID', 'course_details.CourseName', 'course_details.Credit', 'departments.DepartmentName', 'departments.FacultyName')
+        ->paginate(5);
         $coursecount = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
         ->select('course_details.CourseID', 'course_details.CourseName', 'course_details.Credit', 'departments.DepartmentName', 'departments.FacultyName')
         ->get();   
         $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
-            ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester')
-            ->get();
+        ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester')
+        ->get();
         $departments = Department::all();
         $registrations = Registration::all();
         return view('admin.manage.course', compact('courseinfo', 'classinfo','departments','coursecount'));
+    }
+
+    function sectionManage()
+    {
+        $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
+        ->Join('schedules', 'class_details.ClassID', '=', 'schedules.ClassID')
+        ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester','schedules.TeacherIDdif')
+        ->paginate(5);
+        $registrations = Registration::all();
+        $departments = Department::all();
+        return view('admin.manage.section', compact('classinfo', 'registrations','departments'));
     }
 
     function scheduleManage() {
@@ -175,17 +186,6 @@ class AdminController extends Controller
 
         $delete = Student::where('StudentID', $select)->delete();
         return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
-    }
-
-
-    function sectionManage()
-    {
-        $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
-            ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester')
-            ->paginate(5);
-        $registrations = Registration::all();
-        $departments = Department::all();
-        return view('admin.manage.section', compact('classinfo', 'registrations','departments'));
     }
 
     public function sectionAdd(Request $request)
