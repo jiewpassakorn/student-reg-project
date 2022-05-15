@@ -71,7 +71,10 @@ Route::get('/admin/scheduleManage',[AdminController::class,'scheduleManage'])->n
 //function delete Route::get
 // For Student
 
-// Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB');
+
+Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB');
+Route::post('/myinfo/Update',[myinfoController::class,'UpdateStudent'])->name('UpdateStudent');
+
 
 
 // For Teacher
