@@ -37,6 +37,29 @@
                         @endforeach
                     </tbody>
                 </table>
+                <table class="table table-striped shadow-sm text-center mt-2">
+                    ตารางแสดงเกรดเฉลี่ย<thead class="table table-dark">
+                        <tr>
+                            <th>รหัสนักศึกษา</th>
+                            <th>ชื่อ</th>
+                            <th>GPA</th>
+                            
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($reportstudent as $row)
+                        <tr>
+                            <th>{{$row->StudentID}}</th>
+                            <td>{{$row->StudentName}}</td>
+                            <td>{{ROUND($reportavg->where('StudentID',$row->StudentID)->avg('Grade'),2)}}</td>
+                           <!--  {{ROUND($reportavg->where('ClassID',$row->ClassID)->avg('Grade'),2)}}
+                             -->
+                           
+                        </tr>  
+                        @endforeach
+                    </tbody>
+                </table>
         </div>
     </div>
 </div>
