@@ -21,6 +21,7 @@
                 <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" data-bs-toggle="modal" data-bs-target="#insertCourseModal">เพิ่มวิชาเรียน</button></a>
             </div>
             <table class="table table-striped shadow-sm text-center mt-3">
+                
                 {{-- alert message --}}
                 @if(Session::has('success'))
                 <div class="d-inline-flex">
@@ -43,6 +44,8 @@
                     </div>
                 </div>
                 @endif
+                
+                {{-- table --}}
                 <thead class="table table-dark">
                     <tr>
                         <th>รหัสวิชา</th>
@@ -88,14 +91,16 @@
                 <div class="col-md-12">
                     <form action="{{route('courseManage_add')}}" method="POST">
                         @csrf
+
                         <div class="row">
                             <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label>
                                 @error('CourseID')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 <input name="CourseID" type="text" class="form-control" placeholder="" value="">
                             </div>
-
+                            
                             <div class="row">
                                 <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
+                                    @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
                                     <select name="DepartmentID" class="form-select">
                                         <option selected>Choose department...</option>
                                         <option value="101">CPE</option>
@@ -104,30 +109,31 @@
                                     </select>
                                 </div>
 
-                            <div class="col-md-6 mt-2"><label class="labels">ชื่อวิชา</label>
-                                @error('CourseName')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <input name="CourseName" type="text" class="form-control" placeholder="" value="">
+                                <div class="col-md-6 mt-2"><label class="labels">ชื่อวิชา</label>
+                                    @error('CourseName')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                    <input name="CourseName" type="text" class="form-control" placeholder="" value="">
+                                </div>
 
+                                <div class="col-md-6 mt-2"><label class="labels">หน่วยกิต</label>
+                                    @error('Credit')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                    <input name="Credit" type="text" class="form-control" value="" placeholder="">
+                                </div>
                             </div>
-                            <div class="col-md-6 mt-2"><label class="labels">หน่วยกิต</label>
-                                @error('Credit')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <input name="Credit" type="text" class="form-control" value="" placeholder="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
-                                @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <input name="DepartmentID" type="text" class="form-control" placeholder="" value="">
-                            </div>
+                            {{-- <div class="row">
+                                <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
+                                    @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                    <input name="DepartmentID" type="text" class="form-control" placeholder="" value="">
+                                </div>
+                            </div> --}}
                         </div>
                         <div class="modal-footer mt-3">
                             <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
+        
     </div>
 </div>
 
