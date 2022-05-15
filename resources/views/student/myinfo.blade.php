@@ -19,7 +19,16 @@
                     2 days remaining
                 </div>
             </div>
-            
+            <br>
+            @if(is_null($studentsinfo))
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">ไม่พบข้อมูลประวัตินักศึกษา</h4>
+                <p>โปรดกรอกข้อมูลประวัตินักศึกษา</p>
+                <hr>
+                <p class="mb-0">King Mongkut's University of Techonology Thonburi (KMUTT) Student Registration</p>
+            </div>
+            @endif
+
             {{-- alert message --}}
             @if(Session::has('success'))
                 <div class="d-inline-flex mt-3">

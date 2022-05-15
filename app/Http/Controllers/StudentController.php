@@ -22,11 +22,13 @@ class StudentController extends Controller
     function myinfo() {
         $users = User::all();
         $students = Student::all();
-
+        $studentsinfo = Student::where('StudentID',Auth::user()->student_licence_number)
+        ->select('students.StudentID')
+        ->first();
         $departments = Department::where('DepartmentID',Auth::user()->DepartmentID)
         ->select('departments.DepartmentID','departments.DepartmentName')->first();
 
-        return view('student.myinfo',compact('users','students','departments'));
+        return view('student.myinfo',compact('users','students','departments','studentsinfo'));
     }
 
     function welcome () {

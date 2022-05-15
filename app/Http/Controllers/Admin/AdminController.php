@@ -54,8 +54,8 @@ class AdminController extends Controller
     }
 
 
-    public function studentManage_add(Request $request) {
-
+    public function studentManage_add(Request $request) 
+    {
         $request->validate([
             'studentid' => 'required|unique:students',
             'StudentName' => 'required',
@@ -92,13 +92,13 @@ class AdminController extends Controller
         $data["Status"] = $request -> Status;
         $data["Sex"] = $request -> Sex;
         DB :: table('students') -> insert($data);
-        
+    }
 
-    public function courseManage_add(Request $request)
+    public function courseManage_add(Request $request) 
     {
         // dd($request);
         $request->validate(
-            [
+            [                    
                 'CourseID' => 'required|unique:course_details',
                 'CourseName' => 'required',
                 'DepartmentID' => 'required',
@@ -110,22 +110,18 @@ class AdminController extends Controller
                 'CourseName.required' => "กรุณาป้อนชื่อวิชาด้วยครับ",
                 'DepartmentID.required' => "กรุณาเลือกคณะด้วยครับ",
                 'Credit.required' => "กรุณาหน่วยกิตด้วยครับ",
-                
             ]
         );
         // send data to DB
-       
         $coursedetail= new CourseDetail;
         $coursedetail->CourseID = $request->CourseID;
         $coursedetail->CourseName = $request->CourseName;
         $coursedetail->DepartmentID = $request->DepartmentID;
         $coursedetail->Credit = $request->Credit;
-
-         $coursedetail->save();
-
-        
+        $coursedetail->save(); 
         return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
     }
+
 
     public function courseManage_delete($CourseID)
     {
@@ -133,51 +129,6 @@ class AdminController extends Controller
 
         $delete = CourseDetail::where('CourseID', $select)->delete();
         return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
-    }
-
-
-    public function studentManage_add(Request $request)
-    {
-        $request->validate(
-            [
-                'studentid' => 'required|unique:students',
-                'StudentName' => 'required',
-                'DOB' => 'required',
-                'Address' => 'required',
-                'DepartmentID' => 'required',
-                'Email' => 'required',
-                'Phone' => 'required',
-                'Status' => 'required',
-                'Sex' => 'required',
-            ],
-            [
-                'studentid.required' => "กรุณาป้อนรหัสนักศึกษาด้วยครับ",
-                'studentid.unique' => "รหัสนักศึกษานี้มีอยู่ในระบบแล้ว",
-                'StudentName.required' => "กรุณาป้อนชื่อนักศึกษาด้วยครับ",
-                'DOB.required' => "กรุณาป้อนวันเกิดด้วยครับ",
-                'Address.required' => "กรุณาป้อนที่อยู่ด้วยครับ",
-                'DepartmentID.required' => "กรุณาเลือกคณะด้วยครับ",
-                'Email.required' => "กรุณาระบุอีเมลด้วยครับ",
-                'Phone.required' => "กรุณาป้อนเบอร์ด้วยครับ",
-                'Status.required' => "กรุณาป้อนสถานภาพด้วยครับ",
-                'Sex.required' => "กรุณาระบุด้วยครับ",
-            ]
-        );
-        // send data to DB
-        $data = array();
-        $data["studentid"] = $request->studentid;
-        $data["StudentName"] = $request->StudentName;
-        $data["DOB"] = $request->DOB;
-        $data["Address"] = $request->Address;
-        $data["DepartmentID"] = $request->DepartmentID;
-        $data["Email"] = $request->Email;
-        $data["Phone"] = $request->Phone;
-        $data["Status"] = $request->Status;
-        $data["Sex"] = $request->Sex;
-        DB::table('students')->insert($data);
-
-
-        return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
     public function studentManage_edit($StudentID)
@@ -207,7 +158,8 @@ class AdminController extends Controller
         return view('admin.manage.section', compact('classinfo', 'registrations'));
     }
 
-    public function sectionAdd(Request $request){
+    public function sectionAdd(Request $request)
+    {
         $request->validate([
             'ClassID' => 'required|unique:class_details',
             'CourseID' => 'required',
@@ -230,13 +182,15 @@ class AdminController extends Controller
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
-    public function sectionDelete($ClassID){
+    public function sectionDelete($ClassID)
+    {
         $select=$ClassID;
         $delete=ClassDetail::where('ClassID',$select)->delete();
         return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
     }
 
-    public function teacherAdd(Request $request){
+    public function teacherAdd(Request $request)
+    {
         $request->validate([
             'TeacherID' => 'required|unique:students',
             'TeacherName' => 'required',

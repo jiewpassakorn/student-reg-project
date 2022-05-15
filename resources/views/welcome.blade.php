@@ -10,6 +10,18 @@
                 </div>
             </div>
             <hr>
+
+            @if(Auth::user()->role_id == '2')
+              @if(is_null($studentsinfo))
+              <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">ไม่พบข้อมูลประวัตินักศึกษา</h4>
+                <p>โปรดกรอกข้อมูลประวัตินักศึกษาที่ <b>ข้อมูลประวัตินักศึกษา</b></p>
+                <hr>
+                <p class="mb-0">ไปที่ <b>ข้อมูลประวัตินักศึกษา</b> <a href="/student/information" class="btn btn-primary btn-sm">ข้อมูลประวัตินักศึกษา</a></p>
+              </div>
+              @endif
+            @endif
+
           <div class="card">
             <div class="card-header">
               Update
