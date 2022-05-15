@@ -16,7 +16,7 @@
         <div class="row d-flex">
             <hr>
             <div class="col-12 mt-2 d-flex justify-content-center">
-                <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" data-bs-toggle="modal" data-bs-target="#insertCourseModal">เพิ่มตารางสอน</button></a>
+                <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" data-bs-toggle="modal" data-bs-target="#insertScheduleModal">เพิ่มตารางสอน</button></a>
             </div>
             <table class="table table-striped shadow-sm text-center">
                 
@@ -88,3 +88,70 @@
     </div>
 </div>
 <!--Container Main end-->
+
+<!-- Modal เพิ่มตารางสอน -->
+<div class="modal fade" id="insertScheduleModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">เพิ่มตารางสอน</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button> <!-- close button-->
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <form action="{{route('courseManage_add')}}" method="POST">
+                        @csrf
+
+                        
+                            <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label>
+                                @error('CourseID')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                <input name="CourseID" style="text-transform: uppercase" type="text" class="form-control" placeholder="" value="">
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12 mt-2"><label class="labels">อาจารย์ผู้สอน</label>
+
+                                @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
+
+                                    <select name="DepartmentID" class="form-select">
+                                        <option value="" selected>Select teacher...</option>
+                                        @foreach($departments as $row)
+                                            <option value="{{$row->DepartmentID}}">{{$row->DepartmentName}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 mt-2"><label class="labels">ห้องเรียน</label>
+                                    @error('CourseName')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                    <input name="CourseName" type="text" class="form-control" placeholder="" value="">
+                                </div>
+
+                                <div class="col-md-4 mt-2"><label class="labels">วัน</label>
+                                    @error('Credit')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                    <select name="DepartmentID" class="form-select">
+                                        <option value="" selected>Select day...</option>
+                                        <option value="Mon">Mon</option>
+                                        <option value="Tue">Tue</option>
+                                        <option value="Wed">Wed</option>
+                                        <option value="Thu">Thu</option>
+                                        <option value="Fri">Fri</option>
+                                        <option value="Sat">Sat</option>
+                                        <option value="Sun">Sun</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 mt-2"><label class="labels">เวลา</label>
+                                    @error('Credit')<span class="text-danger py-0">({{$message}})</span>@enderror
+                                    <input name="Credit" type="text" class="form-control" value="" placeholder="">
+                                </div>
+                            </div>                            
+                            <div class="modal-footer mt-3">
+                                <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
+                            </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
