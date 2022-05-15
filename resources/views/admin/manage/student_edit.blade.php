@@ -3,6 +3,9 @@
 @section('content')
 <br>
 <br>
+<div class="container ">
+    <button class="btn btn-secondary" onclick="history.back()">กลับ</button>
+</div>
 <div class="container rounded bg-white mt-2 mb-5 shadow-lg">
     <div class="pt-3">
         <h2>แบบฟอร์มแก้ไขข้อมูล</h2>

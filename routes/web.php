@@ -46,6 +46,8 @@ Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin
 Route::get('/teacherManage',[AdminController::class,'teacherManage'])->name('teacherManage');
 Route::post('/teacherManage/add',[AdminController::class,'teacherAdd'])->name('teacherAdd');
 Route::get('/teacherManage/delete/{TeacherID}',[AdminController::class,'teacherDelete']);
+Route::get('/admin/teacherManage/edit/{TeacherID}',[AdminController::class,'teacherManage_edit']);
+Route::post('/admin/teacherManage/update/{TeacherID}',[AdminController::class,'teacherManage_update']);
 
 Route::get('/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
 Route::post('/courseManage/add',[AdminController::class,'courseManage_add'])->name('courseManage_add');

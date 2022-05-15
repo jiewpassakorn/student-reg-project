@@ -90,7 +90,7 @@
                         
     
                         <td>
-                            <a href="{{url('/admin/studentManage/edit/'.$row->StudentID)}}#" class="btn btn-info">แก้ไขข้อมูล</a>
+                            <a href="{{url('/admin/studentManage/edit/'.$row->StudentID)}}" class="btn btn-info">แก้ไขข้อมูล</a>
 
                         <a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a></td>
                        

@@ -359,6 +359,52 @@ class AdminController extends Controller
         return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
+    public function teacherManage_edit($TeacherID) {
+        $select = $TeacherID;
+        $teachers = Teacher::where('TeacherID', $select)->first();
+        $departments = Department::all();
+        $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
+        ->get();
+        return view('admin.manage.teacher_edit', compact('teachers','departments','teacherselect'));
+    }
+
+    public function teacherManage_update(Request $request,$TeacherID) {
+         
+        $request->validate([
+            'TeacherID' => 'required',
+            'TeacherName' => 'required',
+            'Address' => 'required',
+            'DepartmentID' => 'required',
+            'Email' => 'required',
+            'Phone' => 'required',
+
+        ],
+        [
+            'TeacherID.required'=>"กรุณาป้อนรหัสอาจารย์ด้วยครับ",
+            'TeacherID.unique'=>"รหัสอาจารย์นี้มีอยู่ในระบบแล้ว",
+            'TeacherName.required'=>"กรุณาป้อนชื่ออาจารย์ด้วยครับ",
+            'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
+            'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
+            'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
+            'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
+
+        ]);  
+        // send data to DB
+
+        $update = Teacher::where('TeacherID', $TeacherID)->update([
+            'TeacherID'=>$request->TeacherID,
+            'TeacherName'=>$request->TeacherName,
+            'Address'=>$request->Address,
+            'DepartmentID'=>$request->DepartmentID,
+            'Email'=>$request->Email,
+            'Phone'=>$request->Phone,
+            ]);
+
+        return redirect('/teacherManage')->with('success', "อัพเดทข้อมูลเรียบร้อย");
+
+    }
+
     public function teacherDelete($TeacherID)
     {
         $select = $TeacherID;
