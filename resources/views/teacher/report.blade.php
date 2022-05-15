@@ -99,7 +99,7 @@
                     <th>ลำดับ</th>
                     <th>รหัสนักศึกษา</th>
                     <th>ชื่อ</th>
-                    <th>GPA</th>
+                    <th>GPAX</th>
                     <th>สถานะ
                     
             </thead>
@@ -107,7 +107,7 @@
                 @foreach($reportstudent as $row)
                 <tr>
                     <th>{{$reportstudent->firstItem()+$loop->index}}</th>
-                    <th>{{$row->StudentID}}</th>
+                    <td>{{$row->StudentID}}</td>
                     <td>{{$row->StudentName}}</td>
                     <td>{{ROUND($reportavg->where('StudentID',$row->StudentID)->avg('Grade'),2)}}</td>
                     <td>@if( $reportavg->where('StudentID',$row->StudentID)->avg('Grade') > 2 )
