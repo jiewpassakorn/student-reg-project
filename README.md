@@ -9,13 +9,7 @@
 
 # Process
 
-- แก้ footer
-- แก้ database ของ admin
+- ดึง address ในหน้า student information
+- เพิ่ม column DepartmentID ในตาราง users เป็น varchar(10) NULL
 - ทำให้ครบตาม transaction
-## Next step 
-
-1. clone this repo to your PC
-2. ลองดูวิธี clone laravel project https://medium.com/ckartisan/how-to-clone-laravel-from-github-6723377e6e1
-3. วิธีเปิด laravel ให้พิมพ์ php artisan serve ลงใน CMD
-4. php artisan migrate:fresh --seed
-5. Import SQL file to your database phpMyAdmin
+- ทำหน้า Update
