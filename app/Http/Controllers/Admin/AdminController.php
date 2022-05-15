@@ -85,6 +85,14 @@ class AdminController extends Controller
         return view('admin.manage.schedule');
     }
 
+    public function courseManage_edit($CourseID) {
+        $select = $CourseID;
+        $coursedetail = CourseDetail::where('CourseID', $select)->get();
+        
+
+        return view('admin.manage.course_edit', compact('coursedetail'));
+    }
+
 
     public function studentManage_add(Request $request) 
     {
