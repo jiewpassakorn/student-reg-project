@@ -24,7 +24,7 @@ class StudentController extends Controller
         $users = User::all();
         $students = Student::all();
         $studentsinfo = Student::where('StudentID',Auth::user()->student_licence_number)
-        ->select('students.StudentID')
+        ->select('students.StudentID','students.Phone','students.Sex','students.Status','students.DOB')
         ->first();
         $departments = Department::where('DepartmentID',Auth::user()->DepartmentID)
         ->select('departments.DepartmentID','departments.DepartmentName')->first();
@@ -72,7 +72,7 @@ class StudentController extends Controller
     function schedule() {
         return view('student.schedule');
     }
-     
+
     function grading() {
         return view('student.grading');
     }
@@ -90,9 +90,9 @@ class StudentController extends Controller
     
     public function storeRegistration(Request $request) {
         // ตรวจสอบข้อมูล
-       
+
         $request->validate([
-           'ClassID' => 'required'
+            'ClassID' => 'required'
         ],
         [
             'ClassID.required'=>"กรุณาป้อนชื่อแผนกด้วยครับ",
@@ -113,7 +113,6 @@ class StudentController extends Controller
         $registration->StudentID = $student_id;
         $registration->save();
         
-       
         return redirect() -> back() -> with('wait', "รอยืนยัน");
         // return redirect() -> back() -> with('success', "รอยืนยัน");
         
@@ -121,7 +120,9 @@ class StudentController extends Controller
     }
 
     public function submit(Request $request){
+
         $student_id = Auth::user()->student_licence_number;
+
         DB::table('registrations')->where('StudentID',$student_id)->update(array(
             'RegStatus'=>"Ready",));
             
@@ -141,7 +142,6 @@ class StudentController extends Controller
         // $classdetails = ClassDetail::with('CousreID')->get();
         // $registrations = Registration::with('ClassID')->get();
 
-     
         return view('student.regis',compact('coursedetails','classdetails','registrations'));
     }
 }

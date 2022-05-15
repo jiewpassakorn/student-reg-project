@@ -45,6 +45,16 @@
                 </div>
                 @endif
                 
+            @if ($errors->any())
+                <div class="d-inline-flex mt-3">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        {{'กรุณากรอกข้อมูลให้ถูกต้อง'}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+                
                 {{-- table --}}
                 <thead class="table table-dark">
                     <tr>
@@ -94,7 +104,7 @@
                         <div class="row">
                             <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label>
                                 @error('CourseID')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <input name="CourseID" type="text" class="form-control" placeholder="" value="">
+                                <input name="CourseID" style="text-transform: uppercase" type="text" class="form-control" placeholder="" value="">
                             </div>
                             
                             <div class="row">
@@ -103,7 +113,7 @@
                                 @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
 
                                     <select name="DepartmentID" class="form-select">
-                                        <option selected>Choose department...</option>
+                                        <option value="" selected>Choose department...</option>
                                         @foreach($departments as $row)
                                             <option value="{{$row->DepartmentID}}">{{$row->DepartmentName}}</option>
                                         @endforeach
