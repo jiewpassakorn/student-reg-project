@@ -2,8 +2,6 @@
 @section('title','Teacher | report')
 @section('content')
 <link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
 <div class="height-100 bg-light" style="margin-right: 10px;">
@@ -120,8 +118,8 @@
                     <h5 class="mt-3"><font color="black">ตารางแสดงสถิติจำนวนนักศึกษาของเกรดเฉลี่ยแต่ละช่วง</font></h5>
                     <thead class="table table-dark">
                         <tr>
-                            <th>ช่วงของเกรดที่ได้</th>
-                            <th>GPAX</th>
+                            <th>ช่วงของเกรด</th>
+                            <th>จำนวน</th>
                         </tr>
                     </thead>                    
                     <tbody>
@@ -143,19 +141,19 @@
                         ?>
                         <tr>
                             <th>0-1</th>
-                            <th><?php echo $range1;?></th>                            
+                            <td><?php echo $range1;?> คน</td>                            
                         </tr>
                         <tr>
                             <th>1-2</th>
-                            <th><?php echo $range2;?></th>
+                            <td><?php echo $range2;?> คน</td>
                         </tr>
                         <tr>
                             <th>2-3</th>
-                            <th><?php echo $range3;?></th>
+                            <td><?php echo $range3;?> คน</td>
                         </tr>
                         <tr>
                             <th>3-4</th>
-                            <th><?php echo $range4;?></th>
+                            <td><?php echo $range4;?> คน</td>
                         </tr>
                     </tbody>
                 </table>
