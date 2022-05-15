@@ -11,6 +11,7 @@ use App\Models\CourseDetail;
 use App\Models\ClassDetail;
 use App\Models\Registration;
 use App\Models\Department;
+use App\Models\Schedule;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\DB;
@@ -74,15 +75,20 @@ class AdminController extends Controller
         $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
         ->Join('schedules', 'class_details.ClassID', '=', 'schedules.ClassID')
         ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester','schedules.TeacherIDdif')
-        ->paginate(5);
+        ->paginate(8);
         $registrations = Registration::all();
         $departments = Department::all();
         return view('admin.manage.section', compact('classinfo', 'registrations','departments'));
     }
 
-    function scheduleManage() {
-
-        return view('admin.manage.schedule');
+    function scheduleManage() 
+    {
+        $scheduleinfo = Schedule::Join('teachers', 'schedules.TeacherIDdif', '=', 'teachers.TeacherID')
+        ->select('schedules.*', 'teachers.TeacherName')
+        ->paginate(8);
+        $registrations = Registration::all();
+        $departments = Department::all();
+        return view('admin.manage.schedule', compact('scheduleinfo', 'registrations', 'departments'));
     }
 
     public function courseManage_add(Request $request) 
