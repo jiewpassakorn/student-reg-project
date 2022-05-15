@@ -27,48 +27,11 @@ class AdminController extends Controller
         return view('admin.users.dashboard', compact('users'));
     }
 
-    function studentManage()
-    {
-        $studentsinfo = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
-        ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
-        ->paginate(10);
-        $studentscount = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
-        ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
-        ->get();
-        $departments = Department::all();
-        $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
-        ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
-        ->get();
-        return view('admin.manage.student', compact('studentsinfo','departments','teacherselect','studentscount'));
-    }
+    
 
-    function teacherManage()
-    {
-        $teachersinfo = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
-        ->select('teachers.TeacherID', 'teachers.TeacherName', 'teachers.Email', 'departments.DepartmentName', 'departments.FacultyName')
-        ->paginate(10);
-        $teacherscount = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
-        ->select('teachers.TeacherID', 'teachers.TeacherName', 'teachers.Email', 'departments.DepartmentName', 'departments.FacultyName')
-        ->get();
-        $departments = Department::all();
-        return view('admin.manage.teacher', compact('teachersinfo','departments','teacherscount'));
-    }
+    
 
-    function courseManage()
-    {
-        $courseinfo = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
-        ->select('course_details.CourseID', 'course_details.CourseName', 'course_details.Credit', 'departments.DepartmentName', 'departments.FacultyName')
-        ->paginate(8);
-        $coursecount = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
-        ->select('course_details.CourseID', 'course_details.CourseName', 'course_details.Credit', 'departments.DepartmentName', 'departments.FacultyName')
-        ->get();   
-        $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
-        ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester')
-        ->get();
-        $departments = Department::all();
-        $registrations = Registration::all();
-        return view('admin.manage.course', compact('courseinfo', 'classinfo','departments','coursecount'));
-    }
+    
 
     function sectionManage()
     {
@@ -90,7 +53,117 @@ class AdminController extends Controller
         ->paginate(8);
         $registrations = Registration::all();
         $departments = Department::all();
-        return view('admin.manage.schedule', compact('scheduleinfo', 'registrations', 'departments'));
+        $teachers = Teacher::all();
+        return view('admin.manage.schedule', compact('scheduleinfo', 'registrations', 'departments','teachers'));
+    }
+
+    public function scheduleManage_add(Request $request) 
+    {
+        // dd($request);
+        $request->validate(
+            [                    
+                'ScheduleID' => 'required|unique:schedules',
+                'TeacherIDdif' => 'required',
+                'ClassID' => 'required',
+                'Room' => 'required',
+                'Weekday' => 'required',
+                'Time' => 'required',
+
+            ],
+            [
+                'ScheduleID.required' => "กรุณาป้อนรหัสตารางสอนด้วยครับ",
+                'ScheduleID.unique' => "รหัสตารางสอนนี้มีอยู่ในระบบแล้ว",
+                'TeacherIDdif.required' => "กรุณาระบุอาจารย์ด้วยครับ",
+                'ClassID.required' => "กรุณารหัสคลาสด้วยครับ",
+                'Room.required' => "กรุณาระบุห้องเรียนด้วยครับ",
+                'Weekday.required' => "กรุณาระบุวันที่สอนด้วยครับ",
+                'Time.required' => "กรุณาระบุเวลาที่สอนด้วยครับ"
+            ]
+        );
+        // send data to DB
+        $schedules= new Schedule;
+        $schedules->ScheduleID = $request->ScheduleID;
+        $schedules->TeacherIDdif = $request->TeacherIDdif;
+        $schedules->ClassID = $request->ClassID;
+        $schedules->Room = $request->Room;
+        $schedules->Weekday = $request->Weekday;
+        $schedules->Time = $request->Time;
+        $schedules->save(); 
+
+        return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
+    }
+
+    public function scheduleManage_edit($ScheduleID) {
+        $select = $ScheduleID;
+        $schedules = Schedule::where('ScheduleID', $select)->first();
+        $departments = Department::all();
+        $teachers = Teacher::all();
+        return view('admin.manage.schedule_edit', compact('schedules','departments','teachers'));
+    }
+
+    public function scheduleManage_update(Request $request,$ScheduleID) {
+         
+        $request->validate(
+            [                    
+                'ScheduleID' => 'required|unique:schedules',
+                'TeacherIDdif' => 'required',
+                'ClassID' => 'required',
+                'Room' => 'required',
+                'Weekday' => 'required',
+                'Time' => 'required',
+
+            ],
+            [
+                'ScheduleID.required' => "กรุณาป้อนรหัสตารางสอนด้วยครับ",
+                'ScheduleID.unique' => "รหัสตารางสอนนี้มีอยู่ในระบบแล้ว",
+                'TeacherIDdif.required' => "กรุณาระบุอาจารย์ด้วยครับ",
+                'ClassID.required' => "กรุณารหัสคลาสด้วยครับ",
+                'Room.required' => "กรุณาระบุห้องเรียนด้วยครับ",
+                'Weekday.required' => "กรุณาระบุวันที่สอนด้วยครับ",
+                'Time.required' => "กรุณาระบุเวลาที่สอนด้วยครับ"
+            ]
+        );
+        // send data to DB
+
+        $update = Schedule::where('ScheduleID', $ScheduleID)->update([
+            'ScheduleID'=>$request->ScheduleID,
+            'TeacherIDdif'=>$request->TeacherIDdif,
+            'ClassID'=>$request->ClassID,
+            'Room'=>$request->Room,
+            'Weekday'=>$request->Weekday,
+            'Time'=>$request->Time
+
+        ]);
+
+        return redirect('/admin/scheduleManage')->with('success', "อัพเดทข้อมูลเรียบร้อย");
+
+    }
+
+    
+    public function scheduleManage_delete($ScheduleID)
+    {
+        $select = $ScheduleID;
+
+        $delete = Schedule::where('ScheduleID', $select)->delete();
+
+        return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
+
+    }
+
+    function courseManage()
+    {
+        $courseinfo = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('course_details.CourseID', 'course_details.CourseName', 'course_details.Credit', 'departments.DepartmentName', 'departments.FacultyName')
+        ->paginate(8);
+        $coursecount = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('course_details.CourseID', 'course_details.CourseName', 'course_details.Credit', 'departments.DepartmentName', 'departments.FacultyName')
+        ->get();   
+        $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
+        ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester')
+        ->get();
+        $departments = Department::all();
+        $registrations = Registration::all();
+        return view('admin.manage.course', compact('courseinfo', 'classinfo','departments','coursecount'));
     }
 
     public function courseManage_add(Request $request) 
@@ -171,6 +244,21 @@ class AdminController extends Controller
 
         return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
 
+    }
+
+    function studentManage()
+    {
+        $studentsinfo = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
+        ->paginate(10);
+        $studentscount = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
+        ->get();
+        $departments = Department::all();
+        $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
+        ->get();
+        return view('admin.manage.student', compact('studentsinfo','departments','teacherselect','studentscount'));
     }
 
 
@@ -324,6 +412,18 @@ class AdminController extends Controller
         $select=$ClassID;
         $delete=ClassDetail::where('ClassID',$select)->delete();
         return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
+    }
+
+    function teacherManage()
+    {
+        $teachersinfo = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('teachers.TeacherID', 'teachers.TeacherName', 'teachers.Email', 'departments.DepartmentName', 'departments.FacultyName')
+        ->paginate(10);
+        $teacherscount = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('teachers.TeacherID', 'teachers.TeacherName', 'teachers.Email', 'departments.DepartmentName', 'departments.FacultyName')
+        ->get();
+        $departments = Department::all();
+        return view('admin.manage.teacher', compact('teachersinfo','departments','teacherscount'));
     }
 
     public function teacherAdd(Request $request)
