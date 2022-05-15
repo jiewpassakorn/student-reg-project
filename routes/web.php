@@ -13,6 +13,7 @@ use Faker\Guesser\Name;
 use App\Http\Controllers\Teachers\CourseController;
 use App\Models\User;
 use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
