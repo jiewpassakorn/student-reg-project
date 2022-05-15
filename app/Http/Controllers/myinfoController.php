@@ -21,11 +21,29 @@ class myinfoController extends Controller
         $data["Status"] = $request -> Status;
         $data["Sex"] = $request -> Sex;
         $data["TeacherID"] = $request -> TeacherID;
+
+        $check = DB::table('students') 
+                    -> where ('studentid', '=', $data["studentid"])
+                    -> get();
+
+        if(is_null($check)){
+            DB :: table('students') -> insert($data);
+            return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย"); 
+        }
+        
+        else{
+            DB::table('registrations')->where('StudentID',$data["studentid"])->update($data); 
+            return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
+        }
+        
+        
+        
+        
+        
+  
         
 
-        DB :: table('students') -> insert($data);
-        return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
-
+        
     }
 }
 
