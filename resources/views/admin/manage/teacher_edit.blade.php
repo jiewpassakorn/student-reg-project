@@ -1,14 +1,16 @@
 @extends('layouts.default')
-@section('title','Student | information')
+@section('title','Manage | teacher')
 @section('content')
+<link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
+
 <br>
 <br>
 <div class="container ">
-    <button class="btn btn-secondary" onclick="history.back()">กลับ</button>
+    <a class="btn btn-secondary" href="{{route('teacherManage')}}">กลับ</a>
 </div>
 <div class="container rounded bg-white mt-2 mb-5 shadow-lg">
     <div class="pt-3">
-        <h2>แบบฟอร์มแก้ไขข้อมูล</h2>
+        <h2>แก้ไขข้อมูลอาจารย์</h2>
     </div>
     <hr>
 
@@ -52,12 +54,12 @@
                             </div>
                     </div>
                 </div>
-                <div class="modal-footer mt-3">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-success">บันทึกข้อมูล</button>
+                
+                <div class="d-flex justify-content-center">
+                    <div class="py-3">
+                        <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
+                    </div>
                 </div>
-
-
 
     </form>
 </div>

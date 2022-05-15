@@ -32,7 +32,7 @@
                             <td>{{$row->ClassID}}</td>
                             <td>{{$reportavg->where('ClassID',$row->ClassID)->min('Grade')}}</td>
                             <td>{{$reportavg->where('ClassID',$row->ClassID)->max('Grade')}}</td>
-                            <td>{{$reportavg->where('ClassID',$row->ClassID)->avg('Grade')}}</td>
+                            <td>{{ROUND($reportavg->where('ClassID',$row->ClassID)->avg('Grade'),2)}}</td>
                         </tr>  
                         @endforeach
                     </tbody>

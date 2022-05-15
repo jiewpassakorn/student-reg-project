@@ -78,27 +78,27 @@
 
                     {{-- Menu for admin --}}
                     @if (auth()->user()->role_id == 1)
-                    <a href="{{route('studentManage')}}" class="nav_link {{ Request::routeis('studentManage') ? 'active' : '' }}"> <i class="fa fa-address-card"></i> <span class="nav_name">จัดการข้อมูลนักศึกษา</span> </a>
-                    <a href="{{route('teacherManage')}}" class="nav_link {{ Request::routeis('teacherManage') ? 'active' : '' }}"> <i class="fa fa-address-book"></i> <span class="nav_name">จัดการข้อมูลอาจารย์</span> </a>
-                    <a href="{{route('courseManage')}}" class="nav_link {{ Request::routeis('courseManage') ? 'active' : '' }}"> <i class="fa fa-book"></i> <span class="nav_name">จัดการข้อมูลรายวิชา</span> </a>
-                    <a href="{{route('sectionManage')}}" class="nav_link {{ Request::routeis('sectionManage') ? 'active' : '' }}"> <i class="fa fa-bars"></i> <span class="nav_name">จัดการข้อมูลห้องเรียน</span> </a>
-                    <a href="{{route('scheduleManage')}}" class="nav_link {{ Request::routeis('scheduleManage') ? 'active' : '' }}"> <i class="fa fa-calendar"></i> <span class="nav_name">จัดการข้อมูลตารางสอน</span> </a>
+                    <a href="{{route('studentManage')}}" class="nav_link {{ Request::routeis('studentManage') ? 'active' : '' }} {{ Request::routeis('studentManage_edit') ? 'active' : '' }}" > <i class="fa fa-address-card"></i> <span class="nav_name">จัดการข้อมูลนักศึกษา</span> </a>
+                    <a href="{{route('teacherManage')}}" class="nav_link {{ Request::routeis('teacherManage') ? 'active' : '' }} {{ Request::routeis('teacherManage_edit') ? 'active' : '' }}"> <i class="fa fa-address-book"></i> <span class="nav_name">จัดการข้อมูลอาจารย์</span> </a>
+                    <a href="{{route('courseManage')}}" class="nav_link {{ Request::routeis('courseManage') ? 'active' : '' }} {{ Request::routeis('courseManage_edit') ? 'active' : '' }}"> <i class="fa fa-book"></i> <span class="nav_name">จัดการข้อมูลรายวิชา</span> </a>
+                    <a href="{{route('sectionManage')}}" class="nav_link {{ Request::routeis('sectionManage') ? 'active' : '' }} {{ Request::routeis('sectionManage_edit') ? 'active' : '' }}"> <i class="fa fa-bars"></i> <span class="nav_name">จัดการข้อมูลห้องเรียน</span> </a>
+                    <a href="{{route('scheduleManage')}}" class="nav_link {{ Request::routeis('scheduleManage') ? 'active' : '' }} {{ Request::routeis('scheduleManage_edit') ? 'active' : '' }}"> <i class="fa fa-calendar"></i> <span class="nav_name">จัดการข้อมูลตารางสอน</span> </a>
                     <a href="{{route('t.report')}}" class="nav_link {{ Request::routeis('t.report') ? 'active' : '' }}"> <i class="fa fa-bar-chart"></i> <span class="nav_name">รายงานสถิติ</span> </a>
                     <a href="{{route('admin.dashboard')}}" class="nav_link {{ Request::routeis('admin.dashboard') ? 'active' : '' }}"> <i class="fa fa-tachometer"></i> <span class="nav_name">Dashboard</span> </a>
                     @endif
 
                     {{-- Menu for student --}}
                     @if (auth()->user()->role_id == 2)    
-                        <a href="{{route('myinfo')}}" class="nav_link {{ Request::routeis('myinfo') ? 'active' : '' }}"> <i class="fa-solid fa-address-card"></i> <span class="nav_name">ข้อมูลประวัตินักศึกษา</span> </a> 
+                        <a href="{{route('myinfo')}}" class="nav_link {{ Request::routeis('myinfo') ? 'active' : '' }} {{ Request::routeis('edit') ? 'active' : '' }}"> <i class="fa-solid fa-address-card"></i> <span class="nav_name">ข้อมูลประวัตินักศึกษา</span> </a> 
                         <a href="{{route('regis')}}" class="nav_link {{ Request::routeis('regis') ? 'active' : '' }}"> <i class="fa-solid fa-book-open"></i> <span class="nav_name">ลงทะเบียนเรียน</span> </a> 
                         <a href="{{route('schedule')}}" class="nav_link {{ Request::routeis('schedule') ? 'active' : '' }}"> <i class="fa-solid fa-calendar ps-1"></i> <span class="nav_name">ตารางเรียน</span> </a> 
                         <a href="{{route('grading')}}" class="nav_link {{ Request::routeis('grading') ? 'active' : '' }}"> <i class="fa-solid fa-graduation-cap"></i> <span class="nav_name">ผลการเรียน</span> </a> 
                     @endif
                     {{-- Menu for teacher --}}                    
                     @if (auth()->user()->role_id == 3)
-                        <a href="{{route('courseManage')}}" class="nav_link {{ Request::routeis('courseManage') ? 'active' : '' }}"> <i class="fa fa-book"></i> <span class="nav_name">จัดการข้อมูลรายวิชา</span> </a>
-                        <a href="{{route('sectionManage')}}" class="nav_link {{ Request::routeis('sectionManage') ? 'active' : '' }}"> <i class="fa fa-bars"></i> <span class="nav_name">จัดการข้อมูลห้องเรียน</span> </a>
-                        <a href="{{route('scheduleManage')}}" class="nav_link {{ Request::routeis('scheduleManage') ? 'active' : '' }}"> <i class="fa fa-calendar"></i> <span class="nav_name">จัดการข้อมูลตารางสอน</span> </a>
+                        <a href="{{route('courseManage')}}" class="nav_link {{ Request::routeis('courseManage') ? 'active' : '' }} {{ Request::routeis('courseManage_edit') ? 'active' : '' }}"> <i class="fa fa-book"></i> <span class="nav_name">จัดการข้อมูลรายวิชา</span> </a>
+                        <a href="{{route('sectionManage')}}" class="nav_link {{ Request::routeis('sectionManage') ? 'active' : '' }} {{ Request::routeis('sectionManage_edit') ? 'active' : '' }}"> <i class="fa fa-bars"></i> <span class="nav_name">จัดการข้อมูลห้องเรียน</span> </a>
+                        <a href="{{route('scheduleManage')}}" class="nav_link {{ Request::routeis('scheduleManage') ? 'active' : '' }} {{ Request::routeis('scheduleManage_edit') ? 'active' : '' }}"> <i class="fa fa-calendar"></i> <span class="nav_name">จัดการข้อมูลตารางสอน</span> </a>
                         <a href="{{route('t.report')}}" class="nav_link {{ Request::routeis('t.report') ? 'active' : '' }}"> <i class="fa fa-bar-chart"></i> <span class="nav_name">รายงานสถิติ</span> </a>
                     @endif
                     
