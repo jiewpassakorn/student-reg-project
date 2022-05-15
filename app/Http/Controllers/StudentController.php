@@ -31,7 +31,12 @@ class StudentController extends Controller
         $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
         ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
         ->get();
-        return view('student.myinfo',compact('users','students','departments','studentsinfo','teacherselect'));
+        $studentshowinfo = Student::where('StudentID',Auth::user()->student_licence_number)
+        ->Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
+        ->Join('teachers', 'students.TeacherID', '=', 'teachers.TeacherID')
+        ->select('students.*','departments.DepartmentName','departments.FacultyName','teachers.TeacherName')
+        ->first();
+        return view('student.myinfo',compact('users','students','departments','studentsinfo','teacherselect','studentshowinfo'));
     }
 
     function welcome () {
