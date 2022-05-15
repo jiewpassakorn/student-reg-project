@@ -21,7 +21,7 @@ class TeacherController extends Controller
     function report() {
         $reportinfo = CourseDetail::Join('class_details', 'course_details.CourseID', '=', 'class_details.CourseID')
         ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section')
-        ->get();
+        ->paginate(5);
         $coursedetails = CourseDetail::all();
         $reportavg = Registration::where('RegStatus','Complete')
         ->select('registrations.ClassID', 'registrations.Grade', 'registrations.StudentID')
@@ -31,7 +31,7 @@ class TeacherController extends Controller
         ->select('students.StudentID', 'students.StudentName')
         ->groupBy('students.StudentID','students.studentName')
         ->paginate(10);
-        
-        return view('teacher.report', compact('reportinfo', 'registrations', 'reportavg', 'coursedetails','reportstudent'));
+        $department = Department::all();
+        return view('teacher.report', compact('reportinfo', 'registrations', 'reportavg', 'coursedetails','reportstudent','department'));
     }
 }
