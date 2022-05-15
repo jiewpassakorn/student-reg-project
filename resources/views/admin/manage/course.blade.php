@@ -65,8 +65,8 @@
                         <td>{{$row->Credit}}</td>
                         <td>{{$row->DepartmentName}}</td>
                         <td>{{$classinfo->where('CourseID',$row->CourseID)->count()}}</td>
-                        <td><a href="#"><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> </td>
-
+                        
+                        <td><a href="{{url('/admin/courseManage/edit/'.$row->CourseID)}}" class="btn ms-sm-5 mx-2 btn-danger" >แก้ไขข้อมูล</a></td>
                         <td><a href="{{url('/admin/courseManage/delete/'.$row->CourseID)}}" class="btn ms-sm-5 mx-2 btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a></td>
                     </tr>
                     @endforeach
