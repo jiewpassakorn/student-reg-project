@@ -126,7 +126,7 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
-Route::resource('tasks', TaskController::class);
+
 
 Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
 Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
@@ -137,11 +137,6 @@ Route::post('/student/register/delete/{ClassID}',[StudentController::class,'dele
 
 Route::resource('student',StudentController::class);
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('tasks', TaskController::class);
-
-    Route::resource('users', UsersController::class);
-});
 
  //Service
 Route::get('/service/all',[StudentController::class,'index'])->name('services');
