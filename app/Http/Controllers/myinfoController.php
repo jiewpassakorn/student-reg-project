@@ -85,7 +85,7 @@ class myinfoController extends Controller
             return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
         } */
         DB::table('students')->where('StudentID',$data["studentid"])->update($data); 
-            return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
+            return redirect('student/information') -> with('success', "บันทึกข้อมูลเรียบร้อย");
 
             
 

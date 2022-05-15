@@ -97,12 +97,19 @@
                             <div class="row">
 
                                 <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label>
-                                @error('CourseID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                @error('ClassID')<span class="text-danger py-2">({{$message}})</span>@enderror
                                 <input type="text" name="ClassID" class="form-control" placeholder="" value=""></div>
                                 
-                                <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label>
-                                @error('CourseID')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="CourseID" class="form-control" placeholder="อิงจากตารางคอร์สดีเทล (FK)" value=""></div>
+                                <div class="col-md-12">
+                                    <label class="mt-2">รหัสวิชา</label>
+                                    @error('CourseID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                        <select class="form-select" aria-label="Default select example" name="CourseID">
+                                            <option value="" selected>Select Course</option>
+                                            @foreach($CourseInfo as $row)
+                                                <option value="{{$row->CourseID}}">{{$row->CourseName}}</option>
+                                            @endforeach
+                                        </select>                                        
+                        </div> 
                                 
                                 <div class="col-md-6 mt-2"><label class="labels">กลุ่ม</label>
                                 @error('Section')<span class="text-danger py-2">({{$message}})</span>@enderror

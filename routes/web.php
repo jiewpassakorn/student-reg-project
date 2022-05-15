@@ -104,6 +104,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/student/schedule',[StudentController::class,'schedule'])->name('schedule');
     Route::get('/student/grading',[StudentController::class,'grading'])->name('grading');
     Route::post('/student/information/add',[myinfoController::class,'store'])->name('adddatatoDB');
+    Route::get('/student/information/edit',[StudentController::class,'edit'])->name('edit');
 });
 
 Route::group(['middleware' => 'auth'], function(){
