@@ -127,8 +127,14 @@
                             </div>
 
                             <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label>
-                                @error('ClassID')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <input name="ClassID" type="text" class="form-control" placeholder="ClassID" value="">
+
+                            @error('ClassID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <select class="form-select" aria-label="Default select example" name="ClassID">
+                                    <option value="" selected>รหัสคลาส</option>
+                                    @foreach($classinfo as $row)
+                                    <option value="{{$row->ClassID}}">{{$row->ClassID}} : {{$row->ClassName}}</option>
+                                    @endforeach
+                                </select>
 
                             </div>
 
@@ -157,7 +163,7 @@
                             </div>
                         </div>
                         <div class="modal-footer mt-3">
-                            <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
+                            <input type="submit" value="เพิ่มตารางสอน" class="btn btn-primary profile-button add_button">
                         </div>
 
                     </form>

@@ -67,7 +67,8 @@ class AdminController extends Controller
         $registrations = Registration::all();
         $departments = Department::all();
         $teachers = Teacher::all();
-        return view('admin.manage.schedule', compact('scheduleinfo', 'registrations', 'departments','teachers'));
+        $classinfo = ClassDetail::all();
+        return view('admin.manage.schedule', compact('scheduleinfo', 'registrations', 'departments','teachers','classinfo'));
     }
 
     public function scheduleManage_add(Request $request) 
