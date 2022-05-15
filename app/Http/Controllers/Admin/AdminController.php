@@ -80,7 +80,7 @@ class AdminController extends Controller
         return view('admin.manage.section', compact('classinfo', 'registrations','departments'));
     }
 
-    public function scheduleManage() {
+    function scheduleManage() {
 
         return view('admin.manage.schedule');
     }

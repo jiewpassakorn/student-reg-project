@@ -15,7 +15,7 @@
 
         <div class="row d-flex">
             <hr>
-            <table class="table table-striped shadow-sm text-center mt-3">
+            <table class="table table-striped shadow-sm text-center mt-3"></table>
                 
                 {{-- alert message --}}
                 @if(Session::has('success'))
