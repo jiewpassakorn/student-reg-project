@@ -8,7 +8,7 @@
         <h2>แบบฟอร์มแก้ไขข้อมูล</h2>
     </div>
     <hr>
-    <form action = "{{route('sectionEdit')}}"  method="POST">
+    <form action = "{{url('/admin/sectionManage/update/'.$classshow->ClassID)}}"  method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="col-md-12">
@@ -16,7 +16,7 @@
 
                             <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label>
                             @error('ClassID')<span class="text-danger py-2">({{$message}})</span>@enderror
-                            <input type="text" name="ClassID" class="form-control" placeholder="" value=""></div>
+                            <input type="text" name="ClassID" class="form-control" placeholder="" value="{{$classshow->ClassID}}"></div>
                                 
                                 
                                 <div class="col-md-12">
@@ -32,11 +32,11 @@
                                 
                                 <div class="col-md-6 mt-2"><label class="labels">กลุ่ม</label>
                                 @error('Section')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="Section" class="form-control" value="" placeholder=""></div>
+                                <input type="text" name="Section" class="form-control" value="{{$classshow->Section}}" placeholder=""></div>
                                 
                                 <div class="col-md-6 mt-2"><label class="labels">ภาคการศึกษา</label>
                                 @error('Semester')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="Semester" class="form-control" placeholder="" value=""></div>
+                                <input type="text" name="Semester" class="form-control" placeholder="" value="{{$classshow->Semester}}"></div>
 
                             </div>
                     </div>
