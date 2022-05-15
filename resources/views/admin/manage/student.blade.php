@@ -176,9 +176,9 @@
                                     <label class="" for="DepartmentID"></label>
                                     <select class="form-select" id="DepartmentID" name="DepartmentID">
                                         <option selected value="">Select department...</option>
-                                        <option value="101">CPE</option>
-                                        <option value="102">ME</option>
-                                        <option value="111">Maths</option>
+                                        @foreach($departments as $row)
+                                            <option value="{{$row->DepartmentID}}">{{$row->DepartmentName}}</option>
+                                        @endforeach
                                     </select>
                                     @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 </div>
@@ -224,8 +224,14 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12"><label class="labels mt-0">Advisor</label>
-                                <input type="text" name="Advisor" class="form-control" placeholder="Advisor name" value="" disabled>
+                            <div class="col-md-12">
+                                    <label class="mt-2">Advisor</label>
+                                    <select class="form-select" aria-label="Default select example" name="TeacherID">
+                                        <option value="" selected>Select Advisor</option>
+                                        @foreach($teacherselect as $row)
+                                            <option value="{{$row->TeacherID}}">{{$row->TeacherName}} : {{$row->DepartmentName}}</option>
+                                        @endforeach
+                                    </select>
                             </div>
                         </div>
                         <div class="modal-footer mt-3">
