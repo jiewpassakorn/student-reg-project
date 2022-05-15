@@ -84,6 +84,7 @@
                     <a href="{{route('teacherManage')}}" class="nav_link {{ Request::routeis('teacherManage') ? 'active' : '' }}"> <i class="fa fa-address-book"></i> <span class="nav_name">จัดการข้อมูลอาจารย์</span> </a>
                     <a href="{{route('courseManage')}}" class="nav_link {{ Request::routeis('courseManage') ? 'active' : '' }}"> <i class="fa fa-book"></i> <span class="nav_name">จัดการข้อมูลรายวิชา</span> </a>
                     <a href="{{route('sectionManage')}}" class="nav_link {{ Request::routeis('sectionManage') ? 'active' : '' }}"> <i class="fa fa-bars"></i> <span class="nav_name">จัดการข้อมูลห้องเรียน</span> </a>
+                    <a href="{{route('scheduleManage')}}" class="nav_link {{ Request::routeis('scheduleManage') ? 'active' : '' }}"> <i class="fa fa-calendar"></i> <span class="nav_name">จัดการข้อมูลตารางสอน</span> </a>
                     <a href="{{route('t.report')}}" class="nav_link {{ Request::routeis('t.report') ? 'active' : '' }}"> <i class="fa fa-bar-chart"></i> <span class="nav_name">รายงานสถิติ</span> </a>
                     <a href="{{route('admin.dashboard')}}" class="nav_link {{ Request::routeis('admin.dashboard') ? 'active' : '' }}"> <i class="fa fa-tachometer"></i> <span class="nav_name">Dashboard</span> </a>
                     @endif
@@ -99,6 +100,7 @@
                     @if (auth()->user()->role_id == 3)
                         <a href="{{route('courseManage')}}" class="nav_link {{ Request::routeis('courseManage') ? 'active' : '' }}"> <i class="fa fa-book"></i> <span class="nav_name">จัดการข้อมูลรายวิชา</span> </a>
                         <a href="{{route('sectionManage')}}" class="nav_link {{ Request::routeis('sectionManage') ? 'active' : '' }}"> <i class="fa fa-bars"></i> <span class="nav_name">จัดการข้อมูลห้องเรียน</span> </a>
+                        <a href="{{route('scheduleManage')}}" class="nav_link {{ Request::routeis('scheduleManage') ? 'active' : '' }}"> <i class="fa fa-calendar"></i> <span class="nav_name">จัดการข้อมูลตารางสอน</span> </a>
                         <a href="{{route('t.report')}}" class="nav_link {{ Request::routeis('t.report') ? 'active' : '' }}"> <i class="fa fa-bar-chart"></i> <span class="nav_name">รายงานสถิติ</span> </a>
                     @endif
                     

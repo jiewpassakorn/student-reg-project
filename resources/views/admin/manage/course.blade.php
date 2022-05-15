@@ -70,7 +70,7 @@
                 <tbody>
                     @foreach($courseinfo as $row)
                     <tr>
-                        <th>{{$row->CourseID}}</th>
+                        <th style="text-transform: uppercase">{{$row->CourseID}}</th>
                         <td>{{$row->CourseName}}</td>
                         <td>{{$row->Credit}}</td>
                         <td>{{$row->DepartmentName}}</td>
