@@ -15,7 +15,10 @@
 
         <div class="row d-flex">
             <hr>
-            <table class="table table-striped shadow-sm text-center mt-3"></table>
+            <div class="col-12 mt-2 d-flex justify-content-center">
+                <a href="#insertModal"><button class="btn ms-sm-5 mx-2 btn-success" data-bs-toggle="modal" data-bs-target="#insertCourseModal">เพิ่มตารางสอน</button></a>
+            </div>
+            <table class="table table-striped shadow-sm text-center">
                 
                 {{-- alert message --}}
                 @if(Session::has('success'))
@@ -50,7 +53,7 @@
                 </div>
             @endif
             
-            <table class="table table-striped shadow-sm text-center mt-3">
+            <table class="table table-striped shadow-sm text-center mt-2">
             <thead class="table table-dark">
                 <tr>
                     <th>รหัสคลาส</th>
@@ -59,7 +62,7 @@
                     <th>วัน</th>
                     <th>เวลา</th>
                     <th>จำนวนนักศึกษา</th>
-                    <th> </th>
+                    <th>แก้ไข</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,8 +75,8 @@
                     <td>{{$row->Time}}</td>
                     <td>{{$registrations->where('RegStatus','Ready')->where('ClassID',$row->ClassID)->count()}}</td>
                     <td>
-                        <a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> 
-                        <a onclick="return confirm('ยืนยันที่จะลบ คลาส {{$row->ClassID}} รายวิชา {{$row->CourseName}}')" href="{{url('/admin/SectionManage/delete/'.$row->ClassID)}}"><button class="btn ms-sm-5 mx-2 btn-danger" >ลบข้อมูล</button></a>
+                        <a href="#"><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> 
+                        <a onclick="return confirm('ยืนยันที่จะลบ คลาส {{$row->ClassID}} รายวิชา {{$row->CourseName}}')" href="{{url('/admin/SectionManage/delete/'.$row->ClassID)}}"><button class="btn btn-danger" >ลบข้อมูล</button></a>
                     </td>
                 
                 @endforeach
