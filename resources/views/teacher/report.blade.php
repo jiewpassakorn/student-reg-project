@@ -37,6 +37,8 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$reportinfo->links()}}
+                <hr>
                 <table class="table table-striped shadow-sm text-center mt-2">
                     ตารางแสดงเกรดเฉลี่ย<thead class="table table-dark">
                         <tr>
