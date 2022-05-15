@@ -132,7 +132,7 @@
                                 <select class="form-select" aria-label="Default select example" name="ClassID">
                                     <option value="" selected>รหัสคลาส</option>
                                     @foreach($classinfo as $row)
-                                    <option value="{{$row->ClassID}}">{{$row->ClassID}} : {{$row->ClassName}}</option>
+                                    <option value="{{$row->ClassID}}">{{$row->ClassID}}</option>
                                     @endforeach
                                 </select>
 

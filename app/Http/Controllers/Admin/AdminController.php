@@ -437,12 +437,18 @@ class AdminController extends Controller
             'Section.required'=>"กรุณาป้อนกลุ่มด้วยครับ",
             'Semester.required'=>"กรุณาป้อนภาคการศึกษาด้วยครับ",
         ]);
+
+        
         $data = array();
         $data["ClassID"] = $request -> ClassID;
         $data["CourseID"] = $request -> CourseID;
         $data["Section"] = $request -> Section;
         $data["Semester"] = $request -> Semester;   
-        DB::table('class_details')->where('classid',$data["ClassID"])->update($data); 
+        
+        // dd($data);
+
+        DB::table('class_details')->where('ClassID',$data["ClassID"])->update($data); 
+        
         return redirect('/sectionManage') -> with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 

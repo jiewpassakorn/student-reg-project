@@ -120,20 +120,18 @@
                                         <option value="F">Female</option>
                                         <option value="U">Undefined</option>
                                     </select>                              
-                                <input type="text" name ="Sex" class="form-control" value= "{{$studentsinfo->Sex}}" hidden>
                             </div>
 
                             <div class="col-md-6">
                                 <label class="mt-2">Status</label>
                                 <font color="red">(required)</font>
                                     <select class="form-select" aria-label="Default select example" name ="Status">
-                                        <option >Select...</option>
-                                        <option value="1" selected>Normal</option>
+                                        <option selected>Select...</option>
+                                        <option value="1">Normal</option>
                                         <option value="2">Drop</option>
                                         <option value="3">Retired</option>
                                         <option value="4">Graduated</option>
                                     </select>
-                                <input type="text" name ="Status" class="form-control" value= "{{$studentsinfo->Status}}" hidden>
                             </div>
                         </div>                            
                         
