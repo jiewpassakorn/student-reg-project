@@ -20,6 +20,7 @@ class myinfoController extends Controller
         $data["Phone"] = $request -> Phone;
         $data["Status"] = $request -> Status;
         $data["Sex"] = $request -> Sex;
+        $data["TeacherID"] = $request -> TeacherID;
         
 
         DB :: table('students') -> insert($data);

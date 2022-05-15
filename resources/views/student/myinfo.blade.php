@@ -75,25 +75,25 @@
                         <div class="col-md-12"><label class="labels">Student ID.</label><input type="text" name="studentid" class="form-control" value="{{Auth::user()->student_licence_number}}" readonly></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Name</label><input type="text" name="StudentName" class="form-control" value="{{Auth::user()->name}}"></div>             
+                        <div class="col-md-12"><label class="labels">Name <font color="red">(required)</font></label><input type="text" name="StudentName" class="form-control" value="{{Auth::user()->name}}"></div>             
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label class="labels mt-2">Department (required)<input type="text" class="form-control" value="{{$departments->DepartmentName}}" readonly>
+                                    <label class="labels mt-2">Department <font color="red">(required)</font><input type="text" class="form-control" value="{{$departments->DepartmentName}}" readonly>
                                     </label><input type="text" name="DepartmentID" class="form-control" value="{{Auth::user()->DepartmentID}}" hidden>
                                 </div>
-                                <div class="col-md-9"><label class="labels mt-2">DOB (required)</label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
+                                <div class="col-md-9"><label class="labels mt-2">DOB <font color="red">(required)</font></label><input type="date" name = "DOB" class="form-control" placeholder="enter dob" value=""></div>
                             </div>                            
                         </div>
                         <div class="col-md-12"><label class="labels mt-2">Address</label><input type="text" name = "Address" class="form-control" value="{{Auth::user()->student_address}}" readonly></div>
                         
                         <div class="col-md-12"><label class="labels mt-2">Email</label><input type="email" name ="Email" class="form-control" value="{{Auth::user()->email}}" readonly></div>
-                        <div class="col-md-12"><label class="labels mt-2">Phone (required)</label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
+                        <div class="col-md-12"><label class="labels mt-2">Phone <font color="red">(required)</font></label><input type="text" name ="Phone" class="form-control" placeholder="enter phone number" value=""></div>
 
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="mt-2">Sex (required)</label>
+                                    <label class="mt-2">Sex <font color="red">(required)</font></label>
                                     <select class="form-select" aria-label="Default select example" name="Sex">
                                         <option value="" selected>Select your sex</option>
                                         <option value="M">Male</option>
@@ -102,7 +102,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="mt-2">Status (required)</label>
+                                    <label class="mt-2">Status <font color="red">(required)</font></label>
                                     <select class="form-select" aria-label="Default select example" name ="Status">
                                         <option >Open this select menu</option>
                                         <option value="1" selected>Normal</option>
@@ -113,8 +113,15 @@
                                 </div>
                             </div>                            
                         </div>
-                        <div class="col-md-12"><label class="labels mt-2">Advisor</label><input type="text" name ="Advisor" class="form-control" placeholder="Advisor name" value="" disabled></div>
-                        
+                        <div class="col-md-12">
+                                    <label class="mt-2">Advisor</label>
+                                    <select class="form-select" aria-label="Default select example" name="TeacherID">
+                                        <option value="" selected>Select Advisor</option>
+                                        @foreach($teacherselect as $row)
+                                            <option value="{{$row->TeacherID}}">{{$row->TeacherName}} : {{$row->DepartmentName}}</option>
+                                        @endforeach
+                                    </select>
+                                </div> 
                     </div>
                     <div class="mt-4 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
                 </form>       

@@ -7,6 +7,7 @@ use App\Models\CourseDetail;
 use App\Models\ClassDetail;
 use App\Models\Department;
 use App\Models\Student;
+use App\Models\teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,8 +28,10 @@ class StudentController extends Controller
         ->first();
         $departments = Department::where('DepartmentID',Auth::user()->DepartmentID)
         ->select('departments.DepartmentID','departments.DepartmentName')->first();
-
-        return view('student.myinfo',compact('users','students','departments','studentsinfo'));
+        $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
+        ->get();
+        return view('student.myinfo',compact('users','students','departments','studentsinfo','teacherselect'));
     }
 
     function welcome () {
