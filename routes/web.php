@@ -74,6 +74,10 @@ Route::post('/admin/studentManage/update/{StudentID}',[AdminController::class,'s
 
 
 Route::get('/admin/scheduleManage',[AdminController::class,'scheduleManage'])->name('scheduleManage');
+Route::post('/admin/scheduleManage/add',[AdminController::class,'scheduleManage_add'])->name('scheduleManage_add');
+Route::get('/admin/scheduleManage/delete/{ScheduleID}',[AdminController::class,'scheduleManage_delete']);
+Route::get('/admin/scheduleManage/edit/{ScheduleID}',[AdminController::class,'scheduleManage_edit']);
+Route::post('/admin/scheduleManage/update/{ScheduleID}',[AdminController::class,'scheduleManage_update']);
 
 
 //function delete Route::get
