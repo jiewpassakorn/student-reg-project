@@ -2,6 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\CourseDetail;
+use App\Models\ClassDetail;
+use App\Models\Registration;
+use App\Models\Department;
+use App\Models\Schedule;
+
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -11,6 +19,14 @@ class TeacherController extends Controller
     }
 
     function report() {
-        return view('teacher.report');
+        $reportinfo = CourseDetail::Join('class_details', 'course_details.CourseID', '=', 'class_details.CourseID')
+        ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section')
+        ->get();
+        $coursedetails = CourseDetail::all();
+        $reportavg = Registration::where('RegStatus','Complete')
+        ->select('registrations.ClassID', 'registrations.Grade')
+        ->get();
+        $registrations = Registration::all();
+        return view('teacher.report', compact('reportinfo', 'registrations', 'reportavg', 'coursedetails'));
     }
 }

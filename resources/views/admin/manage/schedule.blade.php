@@ -71,13 +71,13 @@
                     <tbody>
                         @foreach($scheduleinfo as $row)
                         <tr>
-                            <td>{{$row->ScheduleID}}</td>
+                            <th>{{$row->ScheduleID}}</th>
                             <td>{{$row->ClassID}}</td>
                             <td>{{$row->TeacherName}}</td>
                             <td>{{$row->Room}}</td>
                             <td>{{$row->Weekday}}</td>
                             <td>{{$row->Time}}</td>
-                            <td>{{$registrations->where('RegStatus','Ready')->where('ClassID',$row->ClassID)->count()}}</td>
+                            <td>{{$registrations->where('RegStatus','Ready','Complete')->where('ClassID',$row->ClassID)->count()}}</td>
                             <td>
                                 <a href="{{url('/scheduleManage/edit/'.$row->ScheduleID)}}" class="btn btn-info">แก้ไขข้อมูล</button></a>
                                 <a onclick="return confirm('ยืนยันที่จะลบ {{$row->ScheduleID}}')" href="{{url('/scheduleManage/delete/'.$row->ScheduleID)}}"><button class="btn btn-danger">ลบข้อมูล</button></a>
@@ -127,8 +127,14 @@
                             </div>
 
                             <div class="col-md-12 mt-2"><label class="labels">รหัสคลาส</label>
-                                @error('ClassID')<span class="text-danger py-0">({{$message}})</span>@enderror
-                                <input name="ClassID" type="text" class="form-control" placeholder="ClassID" value="">
+
+                            @error('ClassID')<span class="text-danger py-2">({{$message}})</span>@enderror
+                                <select class="form-select" aria-label="Default select example" name="ClassID">
+                                    <option value="" selected>รหัสคลาส</option>
+                                    @foreach($classinfo as $row)
+                                    <option value="{{$row->ClassID}}">{{$row->ClassID}} : {{$row->ClassName}}</option>
+                                    @endforeach
+                                </select>
 
                             </div>
 
@@ -157,7 +163,7 @@
                             </div>
                         </div>
                         <div class="modal-footer mt-3">
-                            <input type="submit" value="Save Profile" class="btn btn-primary profile-button add_button">
+                            <input type="submit" value="เพิ่มตารางสอน" class="btn btn-primary profile-button add_button">
                         </div>
 
                     </form>
