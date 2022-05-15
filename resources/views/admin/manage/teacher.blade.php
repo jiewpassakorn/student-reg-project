@@ -134,11 +134,11 @@
                             <div class="row">
                                 <div class="col-md-12"><label class="labels">Teacher ID.</label>
                                 @error('TeacherID')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="TeacherID"class="form-control" placeholder="" value=""></div>
+                                <input type="text" name="TeacherID"class="form-control" placeholder="" value="{{old('TeacherID')}}"></div>
                                 
                                 <div class="col-md-12"><label class="labels">Name</label>
                                 @error('TeacherName')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="TeacherName" class="form-control" placeholder="" value=""></div>
+                                <input type="text" name="TeacherName" class="form-control" placeholder="" value="{{old('TeacherName')}}"></div>
                                 
                             </div>
                             <div class="row">
@@ -158,15 +158,15 @@
 
                                 <div class="col-md-12 mt-2"><label class="labels">Email</label>
                                 @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="Email" class="form-control" placeholder="" value=""></div>
+                                <input type="text" name="Email" class="form-control" placeholder="" value="{{old('Email')}}"></div>
 
                                 <div class="col-md-12 mt-2"><label class="labels">Phone</label>
                                 @error('Email')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="Phone" class="form-control" placeholder="" value=""></div>    
+                                <input type="text" name="Phone" class="form-control" placeholder="" value="{{old('Phone')}}"></div>    
 
                                 <div class="col-md-12 mt-2"><label class="labels">Address</Address></label>
                                 @error('Address')<span class="text-danger py-2">({{$message}})</span>@enderror
-                                <input type="text" name="Address" class="form-control" placeholder="" value=""></div>
+                                <input type="text" name="Address" class="form-control" placeholder="" value="{{old('Address')}}"></div>
                                 
                             </div>
                     </div>
