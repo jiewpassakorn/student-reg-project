@@ -1,8 +1,13 @@
 @extends('layouts.default')
-@section('title','Student | information')
+@section('title','Manage | course')
 @section('content')
+
 <br>
 <br>
+
+<div class="container mr-3">
+    <button class="btn btn-secondary" onclick="history.back()">กลับ</button>
+</div>
 <div class="container rounded bg-white mt-2 mb-5 shadow-lg">
     <div class="pt-3">
         <h2>แบบฟอร์มแก้ไขข้อมูล</h2>
@@ -30,7 +35,6 @@
                         @endforeach
                     </select>
                 </div>
-                
                 
             
                 <div class="col-md-6 mt-2"><label class="labels">ชื่อวิชา</label>

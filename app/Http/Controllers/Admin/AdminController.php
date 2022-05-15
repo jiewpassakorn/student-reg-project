@@ -78,7 +78,9 @@ class AdminController extends Controller
         ->paginate(8);
         $registrations = Registration::all();
         $departments = Department::all();
-        return view('admin.manage.section', compact('classinfo', 'registrations','departments'));
+        $CourseInfo = CourseDetail::all();
+
+        return view('admin.manage.section', compact('classinfo', 'registrations','departments','CourseInfo'));
     }
 
     function scheduleManage() 
@@ -210,6 +212,7 @@ class AdminController extends Controller
         $data["Status"] = $request -> Status;
         $data["Sex"] = $request -> Sex;
         $data["TeacherID"] = $request -> TeacherID;
+        
         DB :: table('students') -> insert($data);
 
         return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
@@ -311,7 +314,7 @@ class AdminController extends Controller
         $data2["ClassID"] = $request -> ClassID;
         $data2["CourseID"] = $request -> CourseID;
         $data2["Section"] = $request -> Section;
-        $data2["Semester"] = $request -> Semester;    
+        $data2["Semester"] = $request -> Semester;   
         DB :: table('class_details') -> insert($data2);
         return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
     }
