@@ -14,55 +14,21 @@
             </div>
             <hr>
 
-           ***เพิ่ม***     
-                <table class="table table-striped shadow-sm text-center mt-2">
-                    <thead class="table table-dark">
-                        <tr>
-                            <th>ภาควิชา</th>
-                            <th>GPAX</th>
-              
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($reportjiew2 as $row)
-                        <tr>
-                            <th>{{$row->departmentID}}</th>
-                            <td>{{ROUND($reportavg2->where('departmentID',$row->departmentID)->avg('Grade'),2)}}</td>
-                        </tr>  
-                        @endforeach
-                    </tbody>
-                </table>
-                
-                <table class="table table-striped shadow-sm text-center mt-2">
-                    <thead class="table table-dark">
-                        <tr>
-                            <th>StudentID</th>
-                            <th>GPAX</th>
-              
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($reportstudent2 as $row)
-                        <tr>
-                            <th>{{$row->StudentID}}</th>
-                            <td>{{$registrations->where('StudentID',$row->StudentID)->avg('Grade')}}</td>
-                        </tr>  
-                        @endforeach
-                    </tbody>
-                </table>
         </div>
-***เพิ่ม***
 
             {{-- tab header --}}
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">สถิติเกรดแต่ละวิชา</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">แสดงเกรดเฉลี่ยทั้งหมด</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">เกรดเฉลี่ยของแต่ละภาควิชา</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact2" type="button" role="tab" aria-controls="contact2" aria-selected="false">จำนวนคนที่ได้เกรดเฉลี่ยแต่ละช่วง</button>
                 </li>
             </ul>
             {{-- tab content --}}
@@ -105,7 +71,7 @@
                                 <th>รหัสนักศึกษา</th>
                                 <th>ชื่อ</th>
                                 <th>GPA</th>
-                                <th>สถานะ<th> 
+                                <th>สถานะ</th> 
                             </tr>
                         </thead>
                         <tbody>
@@ -113,7 +79,7 @@
                             <tr>
                                 <th>{{$reportstudent->firstItem()+$loop->index}}</th>
                                 <th>{{$row->StudentID}}</th>
-                                <td>{{$row->StudentName}}</td>
+                                <td>{{$row->Studentname}}</td>
                                 <td>{{ROUND($reportavg->where('StudentID',$row->StudentID)->avg('Grade'),2)}}</td>
                                 <td>@if( $reportavg->where('StudentID',$row->StudentID)->avg('Grade') > 2 )
                                     <font color="green">Normal</font>
@@ -125,12 +91,76 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{$reportstudent->links()}}
                 </div>
 
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-                
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    <table class="table table-striped shadow-sm text-center mt-2">
+                        <h5 class="mt-3"><font color="black">ตารางแสดงเกรดเฉลี่ยของแต่ละภาควิชา</font></h5>
+                        <thead class="table table-dark">
+                            <tr>
+                                <th>ภาควิชา</th>
+                                <th>GPAX</th>
+    
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($reportjiew2 as $row)
+                            <tr>
+                                <th>{{$row->departmentname}}</th>
+                                <td>{{ROUND($reportavg2->where('departmentID',$row->departmentID)->avg('Grade'),2)}}</td>
+                            </tr>  
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact-tab">
+                <table class="table table-striped shadow-sm text-center mt-2">
+                    <h5 class="mt-3"><font color="black">ตารางแสดงสถิติจำนวนนักศึกษาของเกรดเฉลี่ยแต่ละช่วง</font></h5>
+                    <thead class="table table-dark">
+                        <tr>
+                            <th>ช่วงของเกรดที่ได้</th>
+                            <th>GPAX</th>
+                        </tr>
+                    </thead>                    
+                    <tbody>
+                        <?php
+                            $range1 = 0;
+                            $range2 = 0;
+                            $range3 = 0;
+                            $range4 = 0;
+                            foreach($reportstudent2 as $row)
+                                if (($registrations->where('StudentID',$row->StudentID)->avg('Grade'))> "0" and ($registrations->where('StudentID',$row->StudentID)->avg('Grade'))<="1"){
+                                    $range1++;
+                                }elseif ((($registrations->where('StudentID',$row->StudentID)->avg('Grade'))> "1" and ($registrations->where('StudentID',$row->StudentID)->avg('Grade'))<="2")) {
+                                    $range2++;
+                                }elseif ((($registrations->where('StudentID',$row->StudentID)->avg('Grade'))> "2" and ($registrations->where('StudentID',$row->StudentID)->avg('Grade'))<="3")) {
+                                    $range3++;
+                                }elseif ((($registrations->where('StudentID',$row->StudentID)->avg('Grade'))> "3" and ($registrations->where('StudentID',$row->StudentID)->avg('Grade'))<="4")) {
+                                    $range4++;
+                                };
+                        ?>
+                        <tr>
+                            <th>0-1</th>
+                            <th><?php echo $range1;?></th>                            
+                        </tr>
+                        <tr>
+                            <th>1-2</th>
+                            <th><?php echo $range2;?></th>
+                        </tr>
+                        <tr>
+                            <th>2-3</th>
+                            <th><?php echo $range3;?></th>
+                        </tr>
+                        <tr>
+                            <th>3-4</th>
+                            <th><?php echo $range4;?></th>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
                 </div>        
-
-
+                
     </div>
 </div>
