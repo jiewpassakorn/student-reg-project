@@ -71,7 +71,7 @@
                     <tbody>
                         @foreach($scheduleinfo as $row)
                         <tr>
-                            <td>{{$row->ScheduleID}}</td>
+                            <th>{{$row->ScheduleID}}</th>
                             <td>{{$row->ClassID}}</td>
                             <td>{{$row->TeacherName}}</td>
                             <td>{{$row->Room}}</td>
