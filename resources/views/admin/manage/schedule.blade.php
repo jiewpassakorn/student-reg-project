@@ -79,8 +79,8 @@
                             <td>{{$row->Time}}</td>
                             <td>{{$registrations->where('RegStatus','Ready')->where('ClassID',$row->ClassID)->count()}}</td>
                             <td>
-                                <a href="{{url('/admin/scheduleManage/edit/'.$row->ScheduleID)}}" class="btn btn-info">แก้ไขข้อมูล</button></a>
-                                <a onclick="return confirm('ยืนยันที่จะลบ {{$row->ScheduleID}}')" href="{{url('/admin/scheduleManage/delete/'.$row->ScheduleID)}}"><button class="btn btn-danger">ลบข้อมูล</button></a>
+                                <a href="{{url('/scheduleManage/edit/'.$row->ScheduleID)}}" class="btn btn-info">แก้ไขข้อมูล</button></a>
+                                <a onclick="return confirm('ยืนยันที่จะลบ {{$row->ScheduleID}}')" href="{{url('/scheduleManage/delete/'.$row->ScheduleID)}}"><button class="btn btn-danger">ลบข้อมูล</button></a>
                             </td>
 
                             @endforeach

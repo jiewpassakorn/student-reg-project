@@ -76,8 +76,8 @@
                         <td>{{$classinfo->where('CourseID',$row->CourseID)->count()}}</td>
                         
                         <td>
-                            <a href="{{url('/admin/courseManage/edit/'.$row->CourseID)}}" class="btn btn-info" >แก้ไขข้อมูล</a>
-                            <a href="{{url('/admin/courseManage/delete/'.$row->CourseID)}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a>
+                            <a href="{{url('/courseManage/edit/'.$row->CourseID)}}" class="btn btn-info" >แก้ไขข้อมูล</a>
+                            <a href="{{url('/courseManage/delete/'.$row->CourseID)}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a>
                         </td>
 
                     </tr>
