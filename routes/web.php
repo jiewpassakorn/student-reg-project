@@ -69,6 +69,7 @@ Route::post('/service/update/{id}',[StudentController::class,'studentManage_edit
 // For Student
 
 Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB');
+Route::post('/myinfo/Update',[myinfoController::class,'UpdateStudent'])->name('UpdateStudent');
 
 
 // For Teacher
