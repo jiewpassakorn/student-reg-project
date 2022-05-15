@@ -50,8 +50,7 @@ class AdminController extends Controller
     function sectionManage()
     {
         $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
-        ->Join('schedules', 'class_details.ClassID', '=', 'schedules.ClassID')
-        ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester','schedules.TeacherIDdif')
+        ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester')
         ->paginate(8);
         $registrations = Registration::all();
         $departments = Department::all();
