@@ -121,7 +121,7 @@
                                             <option value="{{$row->TeacherID}}">{{$row->TeacherName}} : {{$row->DepartmentName}}</option>
                                         @endforeach
                                     </select>
-                                </div> 
+                        </div> 
                     </div>
                     <div class="mt-4 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
                 </form>       

@@ -71,7 +71,6 @@
             </table>
             {{$courseinfo->links()}}
         </div>
-
     </div>
 </div>
 <!--Container Main end-->
@@ -98,9 +97,9 @@
                                 <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>
                                     <select name="DepartmentID" class="form-select">
                                         <option selected>Choose department...</option>
-                                        <option value="101">CPE</option>
-                                        <option value="102">ME</option>
-                                        <option value="111">MTH</option>
+                                        @foreach($departments as $row)
+                                            <option value="{{$row->DepartmentID}}">{{$row->DepartmentName}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 

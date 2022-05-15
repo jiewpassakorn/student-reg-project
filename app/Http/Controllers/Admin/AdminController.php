@@ -10,6 +10,7 @@ use App\Models\Teacher;
 use App\Models\CourseDetail;
 use App\Models\ClassDetail;
 use App\Models\Registration;
+use App\Models\Department;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\DB;
@@ -30,7 +31,11 @@ class AdminController extends Controller
         $studentsinfo = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
             ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
             ->paginate(10);
-        return view('admin.manage.student', compact('studentsinfo'));
+        $departments = Department::all();
+        $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
+        ->get();
+        return view('admin.manage.student', compact('studentsinfo','departments','teacherselect'));
     }
 
     function teacherManage()
@@ -38,7 +43,8 @@ class AdminController extends Controller
         $teachersinfo = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
             ->select('teachers.TeacherID', 'teachers.TeacherName', 'teachers.Email', 'departments.DepartmentName', 'departments.FacultyName')
             ->paginate(10);
-        return view('admin.manage.teacher', compact('teachersinfo'));
+        $departments = Department::all();
+        return view('admin.manage.teacher', compact('teachersinfo','departments'));
     }
 
     function courseManage()
@@ -49,8 +55,9 @@ class AdminController extends Controller
         $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
             ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester')
             ->get();
+        $departments = Department::all();
         $registrations = Registration::all();
-        return view('admin.manage.course', compact('courseinfo', 'classinfo'));
+        return view('admin.manage.course', compact('courseinfo', 'classinfo','departments'));
     }
 
 
@@ -91,7 +98,9 @@ class AdminController extends Controller
         $data["Phone"] = $request -> Phone;
         $data["Status"] = $request -> Status;
         $data["Sex"] = $request -> Sex;
+        $data["TeacherID"] = $request -> TeacherID;
         DB :: table('students') -> insert($data);
+        return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
     public function courseManage_add(Request $request) 
@@ -155,7 +164,8 @@ class AdminController extends Controller
             ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester')
             ->paginate(5);
         $registrations = Registration::all();
-        return view('admin.manage.section', compact('classinfo', 'registrations'));
+        $departments = Department::all();
+        return view('admin.manage.section', compact('classinfo', 'registrations','departments'));
     }
 
     public function sectionAdd(Request $request)
