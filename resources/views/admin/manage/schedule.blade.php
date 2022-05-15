@@ -49,7 +49,38 @@
                     </div>
                 </div>
             @endif
+            
+            <table class="table table-striped shadow-sm text-center mt-3">
+            <thead class="table table-dark">
+                <tr>
+                    <th>รหัสคลาส</th>
+                    <th>อาจารย์ผู้สอน</th>
+                    <th>ห้องเรียน</th>
+                    <th>วัน</th>
+                    <th>เวลา</th>
+                    <th>จำนวนนักศึกษา</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($scheduleinfo as $row)
+                <tr>
+                    <th>{{$row->ClassID}}</th>
+                    <td>{{$row->TeacherName}}</td>
+                    <td>{{$row->Room}}</td>
+                    <td>{{$row->Weekday}}</td>
+                    <td>{{$row->Time}}</td>
+                    <td>{{$registrations->where('RegStatus','Ready')->where('ClassID',$row->ClassID)->count()}}</td>
+                    <td>
+                        <a href="#"><button class="btn ms-sm-5 mx-2 btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a> 
+                        <a onclick="return confirm('ยืนยันที่จะลบ คลาส {{$row->ClassID}} รายวิชา {{$row->CourseName}}')" href="{{url('/admin/SectionManage/delete/'.$row->ClassID)}}"><button class="btn ms-sm-5 mx-2 btn-danger" >ลบข้อมูล</button></a>
+                    </td>
                 
+                @endforeach
+            </tbody>
+        </table>
+        {{$scheduleinfo->links()}}
+
         </div>
     </div>
 </div>
