@@ -1,8 +1,8 @@
 @extends('layouts.default')
 @section('title','Manage | schedule')
 <link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
-
 @section('content')
+
 <div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
         <br>
@@ -15,7 +15,7 @@
 
         <div class="row d-flex">
             <hr>
-            <table class="table table-striped shadow-sm text-center mt-3">
+            <table class="table table-striped shadow-sm text-center mt-3"></table>
                 
                 {{-- alert message --}}
                 @if(Session::has('success'))
