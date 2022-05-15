@@ -14,6 +14,45 @@
             </div>
             <hr>
 
+           ***เพิ่ม***     
+                <table class="table table-striped shadow-sm text-center mt-2">
+                    <thead class="table table-dark">
+                        <tr>
+                            <th>ภาควิชา</th>
+                            <th>GPAX</th>
+              
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($reportjiew2 as $row)
+                        <tr>
+                            <th>{{$row->departmentID}}</th>
+                            <td>{{ROUND($reportavg2->where('departmentID',$row->departmentID)->avg('Grade'),2)}}</td>
+                        </tr>  
+                        @endforeach
+                    </tbody>
+                </table>
+                
+                <table class="table table-striped shadow-sm text-center mt-2">
+                    <thead class="table table-dark">
+                        <tr>
+                            <th>StudentID</th>
+                            <th>GPAX</th>
+              
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($reportstudent2 as $row)
+                        <tr>
+                            <th>{{$row->StudentID}}</th>
+                            <td>{{$registrations->where('StudentID',$row->StudentID)->avg('Grade')}}</td>
+                        </tr>  
+                        @endforeach
+                    </tbody>
+                </table>
+        </div>
+***เพิ่ม***
+
             {{-- tab header --}}
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -89,6 +128,7 @@
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                 
                 </div>        
+
 
     </div>
 </div>
