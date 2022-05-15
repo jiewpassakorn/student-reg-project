@@ -29,22 +29,28 @@ class AdminController extends Controller
     function studentManage()
     {
         $studentsinfo = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
-            ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
-            ->paginate(10);
+        ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
+        ->paginate(10);
+        $studentscount = Student::Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('students.*', 'departments.DepartmentName', 'departments.FacultyName')
+        ->get();
         $departments = Department::all();
         $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
         ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
         ->get();
-        return view('admin.manage.student', compact('studentsinfo','departments','teacherselect'));
+        return view('admin.manage.student', compact('studentsinfo','departments','teacherselect','studentscount'));
     }
 
     function teacherManage()
     {
         $teachersinfo = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
-            ->select('teachers.TeacherID', 'teachers.TeacherName', 'teachers.Email', 'departments.DepartmentName', 'departments.FacultyName')
-            ->paginate(10);
+        ->select('teachers.TeacherID', 'teachers.TeacherName', 'teachers.Email', 'departments.DepartmentName', 'departments.FacultyName')
+        ->paginate(10);
+        $teacherscount = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('teachers.TeacherID', 'teachers.TeacherName', 'teachers.Email', 'departments.DepartmentName', 'departments.FacultyName')
+        ->get();
         $departments = Department::all();
-        return view('admin.manage.teacher', compact('teachersinfo','departments'));
+        return view('admin.manage.teacher', compact('teachersinfo','departments','teacherscount'));
     }
 
     function courseManage()
@@ -52,12 +58,15 @@ class AdminController extends Controller
         $courseinfo = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
             ->select('course_details.CourseID', 'course_details.CourseName', 'course_details.Credit', 'departments.DepartmentName', 'departments.FacultyName')
             ->paginate(5);
+        $coursecount = CourseDetail::Join('departments', 'course_details.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('course_details.CourseID', 'course_details.CourseName', 'course_details.Credit', 'departments.DepartmentName', 'departments.FacultyName')
+        ->get();   
         $classinfo = ClassDetail::Join('course_details', 'course_details.CourseID', '=', 'class_details.CourseID')
             ->select('course_details.CourseID', 'course_details.CourseName', 'class_details.ClassID', 'class_details.Section', 'class_details.Semester')
             ->get();
         $departments = Department::all();
         $registrations = Registration::all();
-        return view('admin.manage.course', compact('courseinfo', 'classinfo','departments'));
+        return view('admin.manage.course', compact('courseinfo', 'classinfo','departments','coursecount'));
     }
 
 

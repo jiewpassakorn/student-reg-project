@@ -12,7 +12,7 @@
         <br>
         <div class="d-flex bd-highlight">
             <div class=""><h1><i class="fa fa-address-card fa-xs"></i> จัดการข้อมูลนักศึกษา</h1></div>
-            <div class="ms-auto p-2 bd-highlight"><font size = "5">จำนวนนักศึกษา <span>{{count($studentsinfo)}}</span> คน</font></div>
+            <div class="ms-auto p-2 bd-highlight"><font size = "5">จำนวนนักศึกษา <span>{{count($studentscount)}}</span> คน</font></div>
         </div>
         <hr>
         <div class="row d-flex">
