@@ -79,12 +79,12 @@
 
 <section class="hero-section">
     <div class="hero-items owl-carousel">
-        <div class="single-hero-items set-bg" data-setbg="assets/img/hero-3.jpg">
+        <div class="single-hero-items set-bg" data-setbg="assets/img/jiew2.jpg">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5">
                         <span>warning!</span>
-                        <h1>KEEP GOING.</h1>
+                        <h1 style="color:white">KEEP GOING.</h1>
                         <p>สู้ต่อไปอย่ายอมแพ้</p>
                         <a href="#" class="primary-btn">Coding Now</a>
                     </div>

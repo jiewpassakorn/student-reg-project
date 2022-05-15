@@ -13,6 +13,7 @@ use Faker\Guesser\Name;
 use App\Http\Controllers\Teachers\CourseController;
 use App\Models\User;
 use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,7 @@ Route::get('/admin/teacherManage/delete/{TeacherID}',[AdminController::class,'te
 Route::get('/admin/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
 Route::post('/admin/courseManage/add',[AdminController::class,'courseManage_add'])->name('courseManage_add');
 Route::get('/admin/courseManage/delete/{CourseID}',[AdminController::class,'courseManage_delete']);
+Route::get('/admin/courseManage/edit/{CourseID}',[AdminController::class,'courseManage_edit']);
 
 
 
@@ -60,6 +62,7 @@ Route::get('/admin/SectionManage/delete/{ClassID}',[AdminController::class,'Sect
 Route::post('/admin/studentManage/add',[AdminController::class,'studentManage_add'])->name('studentManage_add');
 Route::get('/admin/studentManage/delete/{StudentID}',[AdminController::class,'studentManage_delete']);
 Route::get('/admin/studentManage/edit/{StudentID}',[AdminController::class,'studentManage_edit']);
+Route::post('/admin/studentManage/edit',[AdminController::class,'studentManage_edit']);
 Route::post('/service/update/{id}',[StudentController::class,'studentManage_edit'])->name('studentManage_edit');
 
 Route::get('/admin/scheduleManage',[AdminController::class,'scheduleManage'])->name('scheduleManage');

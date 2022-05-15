@@ -8,7 +8,7 @@
         <br>
         <div class="d-flex bd-highlight">
             <div class=""><h1><i class="fa fa-address-book fa-xs"></i> จัดการข้อมูลอาจารย์</h1></div>
-            <div class="ms-auto p-2 bd-highlight"><font size = "5">จำนวนอาจารย์ <span>{{count($teachersinfo)}}</span> คน</font></div>
+            <div class="ms-auto p-2 bd-highlight"><font size = "5">จำนวนอาจารย์ <span>{{count($teacherscount)}}</span> คน</font></div>
         </div>
 
         <hr>
