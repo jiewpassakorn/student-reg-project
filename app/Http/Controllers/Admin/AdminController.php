@@ -73,20 +73,20 @@ class AdminController extends Controller
             'Phone' => 'required',
             'Status' => 'required',
             'Sex' => 'required',
-         ],
-         [
-             'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
-             'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว",
-             'StudentName.required'=>"กรุณาป้อนชื่อนักศึกษาด้วยครับ",
-             'DOB.required'=>"กรุณาป้อนวันเกิดด้วยครับ",
-             'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
-             'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
-             'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
-             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
-             'Status.required'=>"กรุณาป้อนสถานภาพด้วยครับ",
-             'Sex.required'=>"กรุณาระบุด้วยครับ",
-         ]
-         );
+        ],
+        [
+            'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
+            'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว",
+            'StudentName.required'=>"กรุณาป้อนชื่อนักศึกษาด้วยครับ",
+            'DOB.required'=>"กรุณาป้อนวันเกิดด้วยครับ",
+            'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
+            'DepartmentID.required'=>"กรุณาเลือกคณะด้วยครับ",
+            'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
+            'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
+            'Status.required'=>"กรุณาป้อนสถานภาพด้วยครับ",
+            'Sex.required'=>"กรุณาระบุด้วยครับ",
+        ]
+        );
         // send data to DB
         $data = array();
         $data["studentid"] = $request -> studentid;
@@ -100,6 +100,7 @@ class AdminController extends Controller
         $data["Sex"] = $request -> Sex;
         $data["TeacherID"] = $request -> TeacherID;
         DB :: table('students') -> insert($data);
+
         return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
@@ -128,6 +129,7 @@ class AdminController extends Controller
         $coursedetail->DepartmentID = $request->DepartmentID;
         $coursedetail->Credit = $request->Credit;
         $coursedetail->save(); 
+
         return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
     }
 
@@ -137,7 +139,9 @@ class AdminController extends Controller
         $select = $CourseID;
 
         $delete = CourseDetail::where('CourseID', $select)->delete();
-        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+
+        return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
+
     }
 
     public function studentManage_edit($StudentID)
@@ -145,6 +149,7 @@ class AdminController extends Controller
         $select = $StudentID;
         $student = Student::where('StudentID', $select)->get();
         dd($student);
+
         return view('admin.manage.student', compact('student'));
     }
 
@@ -154,7 +159,7 @@ class AdminController extends Controller
         $select = $StudentID;
 
         $delete = Student::where('StudentID', $select)->delete();
-        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+        return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
     }
 
 
@@ -175,14 +180,14 @@ class AdminController extends Controller
             'CourseID' => 'required',
             'Section' => 'required',
             'Semester' => 'required'
-         ],
-         [
-             'ClassID.required'=>"กรุณาป้อนรหัสคลาสด้วยครับ",
-             'ClassID.unique'=>"รหัสคลาสนี้มีอยู่ในระบบแล้ว",
-             'CourseID.required'=>"กรุณาป้อนรหัสวิชาด้วยครับ",
-             'Section.required'=>"กรุณาป้อนกลุ่มด้วยครับ",
-             'Semester.required'=>"กรุณาป้อนภาคการศึกษาด้วยครับ",
-         ]);
+        ],
+        [
+            'ClassID.required'=>"กรุณาป้อนรหัสคลาสด้วยครับ",
+            'ClassID.unique'=>"รหัสคลาสนี้มีอยู่ในระบบแล้ว",
+            'CourseID.required'=>"กรุณาป้อนรหัสวิชาด้วยครับ",
+            'Section.required'=>"กรุณาป้อนกลุ่มด้วยครับ",
+            'Semester.required'=>"กรุณาป้อนภาคการศึกษาด้วยครับ",
+        ]);
         $data2 = array();
         $data2["ClassID"] = $request -> ClassID;
         $data2["CourseID"] = $request -> CourseID;
@@ -196,7 +201,7 @@ class AdminController extends Controller
     {
         $select=$ClassID;
         $delete=ClassDetail::where('ClassID',$select)->delete();
-        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+        return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
     }
 
     public function teacherAdd(Request $request)
@@ -219,8 +224,7 @@ class AdminController extends Controller
             'Email.required'=>"กรุณาระบุอีเมลด้วยครับ",
             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
 
-        ]);
-        
+        ]);        
 
         $teacher = new Teacher;
         $teacher->TeacherID = $request->TeacherID;
@@ -237,6 +241,6 @@ class AdminController extends Controller
     {
         $select = $TeacherID;
         $delete = Teacher::where('TeacherID', $select)->delete();
-        return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อย");
+        return redirect()->back()->with('delete', "ลบข้อมูลเรียบร้อย");
     }
 }
