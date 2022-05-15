@@ -77,6 +77,25 @@ class StudentController extends Controller
         return view('student.grading');
     }
 
+    function edit(){
+        $users = User::all();
+        $students = Student::all();
+        $studentsinfo = Student::where('StudentID',Auth::user()->student_licence_number)
+        ->select('students.StudentID','students.StudentName','students.Phone','students.Sex','students.Status','students.DOB','students.Address')
+        ->first();
+        $departments = Department::where('DepartmentID',Auth::user()->DepartmentID)
+        ->select('departments.DepartmentID','departments.DepartmentName')->first();
+        $teacherselect = Teacher::Join('departments', 'teachers.DepartmentID', '=', 'departments.DepartmentID')
+        ->select('teachers.TeacherID','teachers.TeacherName','teachers.DepartmentID','departments.DepartmentName')
+        ->get();
+        $studentshowinfo = Student::where('StudentID',Auth::user()->student_licence_number)
+        ->Join('departments', 'students.DepartmentID', '=', 'departments.DepartmentID')
+        ->Join('teachers', 'students.TeacherID', '=', 'teachers.TeacherID')
+        ->select('students.*','departments.DepartmentName','departments.FacultyName','teachers.TeacherName')
+        ->first();
+        return view('student.edit',compact('users','students','departments','studentsinfo','teacherselect','studentshowinfo'));
+    }
+
     // public function store(Request $request) {
     //     //send data to DB
     //     $data = array();

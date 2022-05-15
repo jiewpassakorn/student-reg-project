@@ -42,10 +42,12 @@ Route::get('/about',[AboutController::class,'about'])->name('about');
 
 // For Admin
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
-Route::get('/studentManage',[AdminController::class,'studentManage'])->name('studentManage');
+
 Route::get('/teacherManage',[AdminController::class,'teacherManage'])->name('teacherManage');
 Route::post('/teacherManage/add',[AdminController::class,'teacherAdd'])->name('teacherAdd');
 Route::get('/teacherManage/delete/{TeacherID}',[AdminController::class,'teacherDelete']);
+Route::get('/admin/teacherManage/edit/{TeacherID}',[AdminController::class,'teacherManage_edit']);
+Route::post('/admin/teacherManage/update/{TeacherID}',[AdminController::class,'teacherManage_update']);
 
 Route::get('/courseManage',[AdminController::class,'courseManage'])->name('courseManage');
 Route::post('/courseManage/add',[AdminController::class,'courseManage_add'])->name('courseManage_add');
@@ -62,13 +64,25 @@ Route::get('/sectionManage',[AdminController::class,'sectionManage'])->name('sec
 Route::post('/sectionManage/add',[AdminController::class,'sectionAdd'])->name('sectionAdd');
 Route::get('/SectionManage/delete/{ClassID}',[AdminController::class,'SectionDelete']);
 
+Route::get('/studentManage',[AdminController::class,'studentManage'])->name('studentManage');
 Route::post('/studentManage/add',[AdminController::class,'studentManage_add'])->name('studentManage_add');
 Route::get('/studentManage/delete/{StudentID}',[AdminController::class,'studentManage_delete']);
-Route::get('/studentManage/edit/{StudentID}',[AdminController::class,'studentManage_edit']);
-Route::post('/studentManage/edit',[AdminController::class,'studentManage_edit']);
-Route::post('/service/update/{id}',[StudentController::class,'studentManage_edit'])->name('studentManage_edit');
+Route::get('/admin/studentManage/edit/{StudentID}',[AdminController::class,'studentManage_edit']);
+Route::post('/admin/studentManage/update/{StudentID}',[AdminController::class,'studentManage_update']);
 
-Route::get('/scheduleManage',[AdminController::class,'scheduleManage'])->name('scheduleManage');
+
+Route::get('/admin/scheduleManage',[AdminController::class,'scheduleManage'])->name('scheduleManage');
+
+
+//function delete Route::get
+// For Student
+
+
+Route::post('/myinfo/add',[myinfoController::class,'store'])->name('adddatatoDB');
+Route::post('/myinfo/Update',[myinfoController::class,'UpdateStudent'])->name('UpdateStudent');
+
+
+
 
 // For Teacher
 Route::get('/statistics_report',[TeacherController::class,'report'])->name('t.report');
@@ -97,6 +111,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/student/schedule',[StudentController::class,'schedule'])->name('schedule');
     Route::get('/student/grading',[StudentController::class,'grading'])->name('grading');
     Route::post('/student/information/add',[myinfoController::class,'store'])->name('adddatatoDB');
+    Route::get('/student/information/edit',[StudentController::class,'edit'])->name('edit');
 });
 
 Route::group(['middleware' => 'auth'], function(){

@@ -239,16 +239,10 @@
                     <div class="row mt-3">
                         <div class="col-md-12"><label class="labels">Advisor </label><input type="text" class="form-control" value="{{$studentshowinfo->TeacherName}}" readonly></div> 
                     </div> 
-                </div> 
+                    <div align="center"><br><a href="{{url('/student/information/edit')}}"><button type="button" class="btn btn-info">แก้ไขประวัตินักศึกษา</button></a></div>
+                </div>          
             </div>
             @endif
         </div>           
     </div>
-    
-    <div class="row d-flex">
-        <div class="col-12 mb-3 d-flex justify-content-center">
-            <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-success">เพิ่มข้อมูล</button></a> 
-            <a href="#saveProfile"><button class="btn ms-sm-5 mx-2 btn-secondary">แก้ไขข้อมูล</button></a> 
-        </div>
-    </div> 
 </div>

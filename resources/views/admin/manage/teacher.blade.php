@@ -70,7 +70,7 @@
                     <td>{{$row->DepartmentName}}</td>
 
                     <td>
-                        <a href="#"><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขข้อมูล</button></a>
+                        <a href="{{url('/admin/teacherManage/edit/'.$row->TeacherID)}}" class="btn btn-info" >แก้ไขข้อมูล</a>
                         <a onclick="return confirm('ยืนยันที่จะลบ อ.{{$row->TeacherName}}')" href="{{url('/admin/teacherManage/delete/'.$row->TeacherID)}}"><button class="btn btn-danger" >ลบข้อมูล</button></a> 
                     </td>
 
