@@ -94,9 +94,9 @@
                         
     
                         <td>
-                            <a href="{{url('/admin/studentManage/edit/'.$row->StudentID)}}" class="btn btn-info">แก้ไขข้อมูล</a>
+                            <a href="{{url('/studentManage/edit/'.$row->StudentID)}}" class="btn btn-info">แก้ไขข้อมูล</a>
 
-                        <a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a></td>
+                        <a href="{{url('/studentManage/delete/'.$row->StudentID)}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">ลบข้อมูล</a></td>
                        
                     </tr>
                     @endforeach
@@ -268,97 +268,9 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                <td><a href="{{url('/admin/studentManage/delete/'.$row->StudentID)}}" class="btn btn-danger">ตกลง</a></td>
+                <td><a href="{{url('/studentManage/delete/'.$row->StudentID)}}" class="btn btn-danger">ตกลง</a></td>
                 </button>
             </div>
         </div>
     </div>
 </div>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-
-@section('script')
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.add_student', function(e) {
-            e.preventDefault();
-            // console.log("hello");
-            var data = {
-                'studentid': $('.studentid').val(),
-                'StudentName': $('.StudentName').val(),
-                'DOB': $('.DOB').val(),
-                'Address': $('.Address').val(),
-                'DepartmentID': $('.DepartmentID').val(),
-                'Email': $('.Email').val(),
-                'Status': $('.Status').val(),
-                'Sex': $('.Sex').val(),
-            };
-            console.log(data);
-            
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                type: "POST",
-                url: "/admin/studentManage/add",
-                data: $('#addform').serialize(),
-                success: function(response) {
-                    console.log(response)
-                    
-                    $('#insertModal').modal('hide')
-                    alert("Data save");
-                    // location.reload();
-                },
-                error: function(error){
-                    console.log(error);
-                    alert("Data not save");
-                }
-
-            });
-
-        });
-
-        $(document).on('click', '.delete_student' ,function(e) {
-
-            e.preventDefault();
-            // console.log("hello");
-            var data = {
-                'studentid': $('.studentid').val(),
-                
-            };
-            console.log(data);
-            
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                type: "POST",
-                url: "/admin/studentManage/",
-                data: $('#addform').serialize(),
-                success: function(response) {
-                    console.log(response)
-                    
-                    $('#insertModal').modal('hide')
-                    alert("Data save");
-                    // location.reload();
-                },
-                error: function(error){
-                    console.log(error);
-                    alert("Data not save");
-                }
-
-            });
-            
-        })
-
-    });
-</script>
-@endsection

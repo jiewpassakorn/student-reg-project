@@ -15,7 +15,7 @@
     </div>
     <hr>
 
-    <form action="{{url('/admin/studentManage/update/'.$students->StudentID)}}" method="POST">
+    <form action="{{url('/studentManage/update/'.$students->StudentID)}}" method="POST">
         @csrf
         <div class="row">
             <div class="col-md-6"><label class="labels">Student ID</label>
@@ -50,7 +50,7 @@
                 <div class="mb-3">
                     <label class="" for="DepartmentID"></label>
                     <select class="form-select" id="DepartmentID" name="DepartmentID">
-                        <option selected value="{{$students->DepartmentID}}">เดิม...{{$students->DepartmentID}}</option>
+                        <option selected value="{{$students->DepartmentID}}">{{$students->DepartmentID}}</option>
                         @foreach($departments as $row)
                         <option value="{{$row->DepartmentID}}">{{$row->DepartmentID}}: {{$row->DepartmentName}}</option>
                         @endforeach
@@ -90,7 +90,7 @@
                 <div>
                     <label class="" for="Sex"></label>
                     <select class="form-select" id="Sex" name="Sex">
-                        <option selected value="{{$students->Sex}}">Select...</option>
+                        <option selected value="">Select...</option>
                         <option value="M">Male</option>
                         <option value="F">Female</option>
                         <option value="U">Undefined</option>
@@ -99,7 +99,8 @@
             </div>
             <div class="col-md-12">
                 <label class="mt-2">Advisor</label>
-                <select class="form-select" aria-label="Default select example" name="TeacherID">
+                @error('TeacherID')<span class="text-danger py-0">({{$message}})</span>@enderror
+                <select class="form-select" aria-label="Default select example" id="TeacherID" name="TeacherID">
                     <option value="" selected>Select Advisor</option>
                     @foreach($teacherselect as $row)
                     <option value="{{$row->TeacherID}}">{{$row->TeacherName}} : {{$row->DepartmentName}}</option>

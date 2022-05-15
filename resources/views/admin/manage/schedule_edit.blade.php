@@ -15,7 +15,7 @@
     </div>
     <hr>
 
-    <form action="{{url('/admin/scheduleManage/update/'.$schedules->ScheduleID)}}" method="POST">
+    <form action="{{url('/scheduleManage/update/'.$schedules->ScheduleID)}}" method="POST">
         @csrf
 
 
@@ -33,7 +33,7 @@
                                 @error('TeacherIDdif')<span class="text-danger py-0">({{$message}})</span>@enderror
 
                                 <select name="TeacherIDdif" class="form-select">
-                                    <option value="{{$schedules->TeacherIDdif }}" selected>เดิม...{{$schedules->TeacherIDdif }}</option>
+                                    <option value="{{$schedules->TeacherIDdif }}" selected>{{$schedules->TeacherIDdif }}</option>
                                     @foreach($teachers as $row)
                                     <option value="{{$row->TeacherID}}">{{$row->TeacherID}} : {{$row->TeacherName}}</option>
                                     @endforeach
@@ -53,7 +53,7 @@
                             <div class="col-md-4 mt-2"><label class="labels">วัน</label>
                                 @error('Weekday')<span class="text-danger py-0">({{$message}})</span>@enderror
                                 <select name="Weekday" class="form-select">
-                                    <option value="{{$schedules->Weekday}}" selected>เดิม...{{$schedules->Weekday}}</option>
+                                    <option value="{{$schedules->Weekday}}" selected>{{$schedules->Weekday}}</option>
                                     <option value="Mon">Mon</option>
                                     <option value="Tue">Tue</option>
                                     <option value="Wed">Wed</option>

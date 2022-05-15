@@ -14,7 +14,7 @@
         <h2>แก้ไขข้อมูลห้องเรียน</h2>
     </div>
     <hr>
-    <form action = "{{url('/admin/sectionManage/update/'.$classshow->ClassID)}}"  method="POST">
+    <form action = "{{url('/sectionManage/update/'.$classshow->ClassID)}}"  method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="col-md-12">
