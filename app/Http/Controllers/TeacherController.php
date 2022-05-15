@@ -26,12 +26,31 @@ class TeacherController extends Controller
         $reportavg = Registration::where('RegStatus','Complete')
         ->select('registrations.ClassID', 'registrations.Grade', 'registrations.StudentID')
         ->get();
+        $reportavg2 = Registration::join('students', 'registrations.StudentID', '=', 'students.StudentID')
+        ->join('departments', 'students.departmentID', '=', 'departments.departmentID')
+        ->where('RegStatus','Complete')
+        ->select('registrations.ClassID', 'registrations.Grade', 'registrations.StudentID', 'departments.departmentID')
+        ->get();
+
         $registrations = Registration::all();
-        $reportstudent = Student::Join('registrations', 'students.StudentID', '=', 'registrations.StudentID')
-        ->select('students.StudentID', 'students.StudentName')
-        ->groupBy('students.StudentID','students.studentName')
-        ->paginate(10);
         
-        return view('teacher.report', compact('reportinfo', 'registrations', 'reportavg', 'coursedetails','reportstudent'));
+        $reportstudent = Student::Join('registrations', 'students.StudentID', '=', 'registrations.StudentID')
+        ->select('students.StudentID', 'students.Studentname')
+        ->groupBy('students.StudentID' , 'students.Studentname')
+        ->paginate(5);
+
+        $reportstudent2 = Student::Join('registrations', 'students.StudentID', '=', 'registrations.StudentID')
+        ->select('students.StudentID')
+        ->groupBy('students.StudentID')
+        ->paginate(5);
+        
+
+        $reportjiew2 = Student::Join('registrations','students.StudentID', '=', 'registrations.StudentID' )
+        ->Join('departments', 'students.departmentID', '=', 'departments.departmentID')
+        ->select('departments.departmentID','departments.departmentname')
+        ->groupBy('departments.departmentID', 'departments.departmentname')
+        ->get();
+        
+        return view('teacher.report', compact('reportinfo', 'registrations', 'reportavg', 'coursedetails','reportstudent','reportjiew2', 'reportavg2','reportstudent2'));
     }
 }
