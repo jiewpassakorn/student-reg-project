@@ -22,10 +22,7 @@
             <br>
             @if(is_null($studentsinfo))
             <div class="alert alert-danger" role="alert">
-                <h4 class="alert-heading">ไม่พบข้อมูลประวัตินักศึกษา</h4>
-                <p>โปรดกรอกข้อมูลประวัตินักศึกษา</p>
-                <hr>
-                <p class="mb-0">King Mongkut's University of Techonology Thonburi (KMUTT) Student Registration</p>
+                <b>ไม่พบข้อมูลประวัตินักศึกษา</b> โปรดกรอกข้อมูลประวัตินักศึกษา
             </div>
             @endif
 
