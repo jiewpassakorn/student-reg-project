@@ -61,7 +61,7 @@
 
     {{-- sidebar --}}
     <div class="l-navbar bg-dark" id="nav-bar">
-        <nav class="nav">
+        <nav class="nav_sidebar">
             <div> 
                 {{-- <a class="nav_logo" href="{{route('home')}}"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">จัดการทะเบียนเรียน</span> </a> --}}
                 <form method="POST" action="{{ route('logout') }}" x-data>
