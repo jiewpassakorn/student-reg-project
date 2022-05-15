@@ -6,14 +6,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
-<div class="height-100% " style="margin-right: 10px;">
+<div class="height-100 bg-light" style="margin-right: 10px;">
     <div class="container">
-            <div class="row mt-5 p-2">
-                <div class="col-sm-12 mt-3 pt-3 justify-content-center">
-                    <h2><i class="fa fa-bar-chart"></i> รายงานสถิติ </h2> 
-                </div>
+        <div class="row mt-5 p-2">
+            <div class="col-sm-12 mt-3 pt-3 justify-content-center">
+                <h2><i class="fa fa-bar-chart"></i> รายงานสถิติ </h2>
             </div>
             <hr>
+
             {{-- tab header --}}
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -91,5 +91,6 @@
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                 
                 </div>        
+
     </div>
 </div>
