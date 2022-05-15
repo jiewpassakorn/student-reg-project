@@ -25,14 +25,16 @@ class myinfoController extends Controller
         $check = DB::table('students') 
                     -> where ('studentid', '=', $data["studentid"])
                     -> get();
+        /* dd($check); */
 
         if(is_null($check)){
+            dd($check);
             DB :: table('students') -> insert($data);
             return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย"); 
         }
         
         else{
-            DB::table('registrations')->where('StudentID',$data["studentid"])->update($data); 
+            DB::table('students')->where('StudentID',$data["studentid"])->update($data); 
             return redirect() -> back() -> with('success', "บันทึกข้อมูลเรียบร้อย");
         }
         
