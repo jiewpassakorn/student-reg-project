@@ -12,22 +12,31 @@
                 </div>
             </div>
             <hr>
-            <div class="card">
-                <div class="card-header">
-                    Update
-                </div>
-            <div class="card-body">
-                <h5 class="card-title">Anoucement</h5>
-                <p class="card-text">This is student register beta version.</p>
-                
-                @if (auth()->user()->role_id == 2) 
-                    <a href="{{route('myinfo')}}" class="btn btn-primary mt-2">Edit information</a>
-                @endif
             
-            </div>
-            <div class="card-footer text-muted">
-                2 days remaining
-            </div>
+            <table class="table table-striped shadow-sm text-center mt-2">
+                    <thead class="table table-dark">
+                        <tr>
+                            <th>รหัสวิชา</th>
+                            <th>ชื่อวิชา</th>
+                            <th>รหัสคลาส</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                            <th>Mean</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($reportinfo as $row)
+                        <tr>
+                            <th>{{$row->CourseID}}</th>
+                            <td>{{$row->CourseName}}</td>
+                            <td>{{$row->ClassID}}</td>
+                            <td>{{$reportavg->where('ClassID',$row->ClassID)->min('Grade')}}</td>
+                            <td>{{$reportavg->where('ClassID',$row->ClassID)->max('Grade')}}</td>
+                            <td>{{$reportavg->where('ClassID',$row->ClassID)->avg('Grade')}}</td>
+                        </tr>  
+                        @endforeach
+                    </tbody>
+                </table>
         </div>
     </div>
 </div>
