@@ -16,7 +16,7 @@
     </div>
 <hr>
     
-        <form action="{{url('/admin/courseManage/update/'.$coursedetails->CourseID)}}" method="POST">
+        <form action="{{url('/courseManage/update/'.$coursedetails->CourseID)}}" method="POST">
             @csrf
         
 
@@ -31,7 +31,7 @@
                     @error('DepartmentID')<span class="text-danger py-0">({{$message}})</span>@enderror
                     
                     <select name="DepartmentID" class="form-select">
-                        <option selected value="{{$coursedetails->DepartmentID}}">เดิม...{{$coursedetails->DepartmentID}}</option>
+                        <option selected value="{{$coursedetails->DepartmentID}}">{{$coursedetails->DepartmentID}}</option>
                         @foreach($departments as $row)
                         <option value="{{$row->DepartmentID}}">{{$row->DepartmentID}}: {{$row->DepartmentName}}</option>
                         @endforeach

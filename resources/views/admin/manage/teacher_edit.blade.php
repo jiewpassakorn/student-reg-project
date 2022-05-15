@@ -14,7 +14,7 @@
     </div>
     <hr>
 
-    <form action="{{url('/admin/teacherManage/update/'.$teachers->TeacherID)}}" method="POST">
+    <form action="{{url('/teacherManage/update/'.$teachers->TeacherID)}}" method="POST">
         @csrf
         <div class="modal-body">
                     <div class="col-md-12">

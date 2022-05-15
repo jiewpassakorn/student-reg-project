@@ -149,7 +149,7 @@ class AdminController extends Controller
 
         ]);
 
-        return redirect('/admin/scheduleManage')->with('success', "อัพเดทข้อมูลเรียบร้อย");
+        return redirect('/scheduleManage')->with('success', "อัพเดทข้อมูลเรียบร้อย");
 
     }
 
@@ -245,7 +245,7 @@ class AdminController extends Controller
 
         ]);
 
-        return redirect('/admin/courseManage')->with('success', "อัพเดทข้อมูลเรียบร้อย");
+        return redirect('/courseManage')->with('success', "อัพเดทข้อมูลเรียบร้อย");
 
     }
 
@@ -274,6 +274,7 @@ class AdminController extends Controller
             'Phone' => 'required',
             'Status' => 'required',
             'Sex' => 'required',
+            'TeacherID' => 'required',
         ],
         [
             'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
@@ -286,6 +287,7 @@ class AdminController extends Controller
             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
             'Status.required'=>"กรุณาป้อนสถานภาพด้วยครับ",
             'Sex.required'=>"กรุณาระบุด้วยครับ",
+            'TeacherID.required'=>"กรุณาระบุอาจารย์ด้วยครับ",
         ]
         );
         // send data to DB
@@ -300,6 +302,7 @@ class AdminController extends Controller
         $data["Status"] = $request -> Status;
         $data["Sex"] = $request -> Sex;
         $data["TeacherID"] = $request -> TeacherID;
+        
         
         DB :: table('students') -> insert($data);
 
@@ -332,7 +335,7 @@ class AdminController extends Controller
     public function studentManage_update(Request $request,$StudentID) {
 
         $request->validate([
-            'studentid' => 'required|unique:students',
+            'studentid' => 'required',
             'StudentName' => 'required',
             'DOB' => 'required',
             'Address' => 'required',
@@ -341,10 +344,10 @@ class AdminController extends Controller
             'Phone' => 'required',
             'Status' => 'required',
             'Sex' => 'required',
+            'TeacherID' => 'required',
         ],
         [
             'studentid.required'=>"กรุณาป้อนรหัสนักศึกษาด้วยครับ",
-            'studentid.unique'=>"รหัสนักศึกษานี้มีอยู่ในระบบแล้ว",
             'StudentName.required'=>"กรุณาป้อนชื่อนักศึกษาด้วยครับ",
             'DOB.required'=>"กรุณาป้อนวันเกิดด้วยครับ",
             'Address.required'=>"กรุณาป้อนที่อยู่ด้วยครับ",
@@ -353,6 +356,7 @@ class AdminController extends Controller
             'Phone.required'=>"กรุณาป้อนเบอร์ด้วยครับ",
             'Status.required'=>"กรุณาป้อนสถานภาพด้วยครับ",
             'Sex.required'=>"กรุณาระบุด้วยครับ",
+            'TeacherID.required'=>"กรุณาระบุอาจารย์ด้วยครับ",
         ]
         );
         // send data to DB
@@ -367,6 +371,7 @@ class AdminController extends Controller
             'Phone'=>$request->Phone,
             'Status'=>$request->Status,
             'Sex'=>$request->Sex,
+            'TeacherID'=>$request->TeacherID,
 
         ]);
 
