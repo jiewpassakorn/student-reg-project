@@ -120,6 +120,7 @@
 
                 <div class="text-end">
                     <font size = "4">จำนวนวิชาที่ลงทะเบียน <span>{{count($registrations)}}</span> วิชา</font>
+                    <br>
                     <font size = "4">หน่วยกิตทั้งหมด <span>{{$credit}}</span> หน่วยกิต</font>
                 </div>
                 <br>

@@ -64,6 +64,7 @@
                     <button type="button" class="btn btn-outline-primary mt-2">เปลี่ยนรูป</button>
                 </div>
             </div>
+            @if(is_null($studentsinfo))
             <div class="col-md-10 border-right">
                 <form action = "{{route('adddatatoDB')}}"  method="POST">
                 @csrf
@@ -126,6 +127,56 @@
                     <div class="mt-4 text-center"><input type="submit" value="Save Profile" class="btn btn-primary profile-button" ></div>
                 </form>       
             </div>
+            @else
+            <div class="col-md-10 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile</h4>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Student ID.</label><input type="text" class="form-control" value="{{$studentshowinfo->StudentID}}" readonly></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Name </label><input type="text" class="form-control" value="{{$studentshowinfo->StudentName}}" readonly></div>    
+                    </div> 
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Department </label><input type="text" class="form-control" value="{{$studentshowinfo->DepartmentName}}" readonly></div> 
+                        <div class="col-md-6"><label class="labels">Faculty </label><input type="text" class="form-control" value="{{$studentshowinfo->FacultyName}}" readonly></div>            
+                    </div> 
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">DOB </label><input type="date" class="form-control" value="{{$studentshowinfo->DOB}}" readonly></div>
+                        <div class="col-md-6"><label class="labels">Phone </label><input type="text" class="form-control" value="{{$studentshowinfo->Phone}}" readonly></div> 
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Address </label><input type="text" class="form-control" value="{{$studentshowinfo->Address}}" readonly></div> 
+                    </div> 
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Email </label><input type="text" class="form-control" value="{{$studentshowinfo->Email}}" readonly></div> 
+                    </div> 
+                    <div class="row mt-3">
+                        @if($studentshowinfo->Sex == "M")
+                        <div class="col-md-6"><label class="labels">Sex </label><input type="text" class="form-control" value="Male" readonly></div> 
+                        @elseif($studentshowinfo->Sex == "F")
+                        <div class="col-md-6"><label class="labels">Sex </label><input type="text" class="form-control" value="Female" readonly></div> 
+                        @elseif($studentshowinfo->Sex == "U")
+                        <div class="col-md-6"><label class="labels">Sex </label><input type="text" class="form-control" value="Undefined" readonly></div> 
+                        @endif
+                        @if($studentshowinfo->Status == "1")
+                        <div class="col-md-6"><label class="labels">Status </label><input type="text" class="form-control" value="Normal" readonly></div> 
+                        @elseif($studentshowinfo->Status == "2")
+                        <div class="col-md-6"><label class="labels">Status </label><input type="text" class="form-control" value="Drop" readonly></div> 
+                        @elseif($studentshowinfo->Status == "3")
+                        <div class="col-md-6"><label class="labels">Status </label><input type="text" class="form-control" value="Retired" readonly></div> 
+                        @elseif($studentshowinfo->Status == "4")
+                        <div class="col-md-6"><label class="labels">Status </label><input type="text" class="form-control" value="Graduated" readonly></div> 
+                        @endif
+                    </div>  
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Advisor </label><input type="text" class="form-control" value="{{$studentshowinfo->TeacherName}}" readonly></div> 
+                    </div> 
+                </div> 
+            </div>
+            @endif
         </div>           
     </div>
     

@@ -12,7 +12,7 @@
                 <h1><i class="fa fa-book fa-xs"></i> จัดการข้อมูลรายวิชา</h1>
             </div>
             <div class="ms-auto p-2 bd-highlight">
-                <font size="5">จำนวนวิชา <span>{{count($courseinfo)}}</span> วิชา</font>
+                <font size="5">จำนวนวิชา <span>{{count($coursecount)}}</span> วิชา</font>
             </div>
         </div>
         <div class="row d-flex">
