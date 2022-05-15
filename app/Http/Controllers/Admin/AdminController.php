@@ -87,9 +87,9 @@ class AdminController extends Controller
 
     public function courseManage_edit($CourseID) {
         $select = $CourseID;
-        $coursedetail = CourseDetail::where('CourseID', $select)->get();
+        $coursedetails = CourseDetail::where('CourseID', $select)->first();
         $departments = Department::all();
-        return view('admin.manage.course_edit', compact('coursedetail','departments'));
+        return view('admin.manage.course_edit', compact('coursedetails','departments'));
     }
 
 
