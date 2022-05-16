@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Teacher | report')
+@section('title','Statistics | report')
 @section('content')
 <link rel="icon" type="image/x-icon" href="/images/kmutt-logo.png">
 
@@ -141,19 +141,19 @@
                                 };
                         ?>
                         <tr>
-                            <th>0-1</th>
+                            <th>0.00 - 1.00</th>
                             <td><?php echo $range1;?> คน</td>                            
                         </tr>
                         <tr>
-                            <th>1-2</th>
+                            <th>1.00 - 2.00</th>
                             <td><?php echo $range2;?> คน</td>
                         </tr>
                         <tr>
-                            <th>2-3</th>
+                            <th>2.00 - 3.00</th>
                             <td><?php echo $range3;?> คน</td>
                         </tr>
                         <tr>
-                            <th>3-4</th>
+                            <th>3.00 - 4.00</th>
                             <td><?php echo $range4;?> คน</td>
                         </tr>
                     </tbody>

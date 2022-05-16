@@ -23,7 +23,7 @@
             <div class="row d-flex">
                 <div class="col-md-12 mt-2"><label class="labels">รหัสวิชา</label>
                     @error('CourseID')<span class="text-danger py-0">({{$message}})</span>@enderror
-                    <input name="CourseID" type="text" class="form-control" placeholder="" value="{{$coursedetails->CourseID}}">
+                    <input name="CourseID" type="text" class="form-control" placeholder="" value="{{$coursedetails->CourseID}}" readonly>
                 </div>            
             
                 <div class="col-md-12 mt-2"><label class="labels">ภาควิชา</label>

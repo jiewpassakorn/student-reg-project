@@ -40,9 +40,6 @@
               <h5 class="card-title">Anoucement</h5>
               <p class="card-text">This is student register beta version.</p>              
             </div>
-            <div class="card-footer text-muted">
-              2 days remaining
-            </div>
           </div>
     </div>
   </div>
