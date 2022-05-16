@@ -10,7 +10,7 @@ class myinfoController extends Controller
     public function store(Request $request) {
 
         $request->validate([
-            'studentid' => 'required|unique',
+            'studentid' => 'required',
             'StudentName' => 'required',
             'DOB' => 'required',
             'Address' => 'required',
