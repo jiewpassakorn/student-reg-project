@@ -7,9 +7,4 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Process
-
-- ดึง address ในหน้า student information
-- เพิ่ม column DepartmentID ในตาราง users เป็น varchar(10) NULL
-- ทำให้ครบตาม transaction
-- ทำหน้า Update
+# Student Registration Website Project
